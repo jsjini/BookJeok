@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
 		System.out.println("init() 호출");
 		// 도서 관련
 		//  -> 메인페이지
-		// map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		
 		// 목록 관련
 
