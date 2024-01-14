@@ -16,7 +16,7 @@ import com.yedam.book.command.BookListControl;
 
 // 컨트롤러 : url -> 서블릿 실행을 정해주는 역할
 //@WebServlet("*.do")
-public class FrontController extends HttpServlet {
+public class FrontController extends HttpServlet { servlet
 	// 톰캣에서 정한 규칙
 	// 생명주기 : 생성자 -> init() -> service() -> destroy()
 	
@@ -32,7 +32,7 @@ public class FrontController extends HttpServlet {
 		System.out.println("init() 호출");
 		// 도서 관련
 		//  -> 메인페이지
-		// map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		
 		// 목록 관련
 
