@@ -5,7 +5,7 @@ import java.util.List;
 import com.yedam.book.vo.BookVO;
 
 public interface BookMapper {
-	List<BookVO> selectList();
-	
+
+	public List<BookVO> selectList();
 
 }
