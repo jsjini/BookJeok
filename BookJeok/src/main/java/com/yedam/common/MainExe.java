@@ -15,5 +15,4 @@ public class MainExe { // 테스트용 클래스
 		List<BookVO> list = svc.bookList();
 		System.out.println(list.toString());
 	}
-
 }
