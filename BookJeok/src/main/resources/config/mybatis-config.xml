@@ -8,20 +8,23 @@
 		<setting name="jdbcTypeForNull" value="NULL" />
 	</settings>
 
+	<typeAliases>
+		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
+	</typeAliases>
+	
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="POOLED">
 				<property name="driver" value="oracle.jdbc.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@192.168.0.19:1521:xe" />
+					value="jdbc:oracle:thin:@localhost:1521:xe" />
 				<property name="username" value="team2" />
 				<property name="password" value="team2" />
 			</dataSource>
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="com/yedam/book/mapper/BookMapper.xml" />
-
+	 	<package name="com.yedam"/>
 	</mappers>
 </configuration>
