@@ -12,7 +12,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Title Tag  -->
-	<title>북적북적</title>
+	<title>Eshop - eCommerce HTML5 Template.</title>
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="images/favicon.png">
 	<!-- Web Font -->
@@ -45,7 +45,7 @@
 
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="css/responsive.css">
 
 
@@ -53,6 +53,8 @@
 </head>
 
 <body class="js">
+
+
 
 	<!-- Header -->
 	<header class="header shop">
@@ -66,6 +68,7 @@
 
 	<!-- Slider Area -->
 	<tiles:insertAttribute name="body" />
+
 
 	<!-- Start Footer Area -->
 	<tiles:insertAttribute name="footer" />

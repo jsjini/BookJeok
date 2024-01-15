@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class BookVO {
+
 	private int bookNo;
 	private String name;
 	private String author;
@@ -14,5 +15,6 @@ public class BookVO {
 	private String about;
 	private String img;
 	private String isbn;
+
 }
 
