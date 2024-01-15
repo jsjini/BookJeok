@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>브랜치 테스트11111</title>
+<title>가입완료</title>
 </head>
 <body>
-
-
+<p>회원이 되신 걸 환영합니다</p>
 </body>
 </html>

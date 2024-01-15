@@ -11,8 +11,13 @@
   	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
   <definition name="WILDCARD:*/*" extends="myhomepage">
+  	<put-attribute name="header2" value="/WEB-INF/{1}/header2/{2}.jsp" />
   	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
   </definition>
   
+  
+  <definition name="WILDCARD:*/*" extends="myhomepage">
+  	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
+  </definition>
  
 </tiles-definitions>
