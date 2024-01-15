@@ -1,46 +1,23 @@
 package com.yedam.common;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import com.yedam.search.service.SearchService;
+import com.yedam.search.serviceImpl.SearchServiceImpl;
+import com.yedam.search.vo.SearchVO;
 
-import com.yedam.cart.mapper.CartMapper;
-import com.yedam.cart.vo.CartVO;
+public class MainExe {
 
-
-public class MainExe { // 테스트용 클래스
 	public static void main(String[] args) {
-		SqlSession session = DataSource.getInstance().openSession(true);
-		CartMapper mapper = session.getMapper(CartMapper.class);
-		
-		// 목록테스트
-//		List<CartVO> mapper1 = mapper.selectList(2);
+		// 검색어 테스트
+		// 저장된 검색어 실시간으로 보여주는 기능
+				SearchService ssvc = new SearchServiceImpl();
+				// 오늘 날짜 기준
+				String today = "24/01/15"; 
+				List<SearchVO> searchVO = ssvc.searchList(today);
+				
+				System.out.println(searchVO.toString());
 
-		// 등록테스트
-//		int quantity = 2;
-//		int memberNo = 1;
-//		int bookNo = 2;
-//		CartVO vo = new CartVO();
-//		vo.setQuantity(quantity);
-//		vo.setMemberNo(memberNo);
-//		vo.setBookNo(bookNo);
-//		int mapper1 = mapper.insertCart(vo);
-		
-		// 삭제테스트
-//		int mapper1 = mapper.deleteCart(7);
-		
-		// 수정테스트
-//		int cartNo = 7;
-//		int quantity = 1;
-//		CartVO vo = new CartVO();
-//		vo.setCartNo(cartNo);
-//		vo.setQuantity(quantity);
-//		int mapper1 = mapper.updateCart(vo);
-		
-		
-//		System.out.println(mapper1);
 	}
 
 }
