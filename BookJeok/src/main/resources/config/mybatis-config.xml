@@ -10,6 +10,8 @@
 
 	<typeAliases>
 		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
+		<typeAlias alias="book" type="com.yedam.book.vo.BookVO" />
+		<typeAlias alias="member" type="com.yedam.book.vo.MemberVO" />
 	</typeAliases>
 	
 	<environments default="development">
