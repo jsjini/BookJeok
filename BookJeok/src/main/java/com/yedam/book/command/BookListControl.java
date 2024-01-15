@@ -18,12 +18,12 @@ public class BookListControl implements Control {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.bookBestList();
+		List<BookVO> list = svc.bookList();
 		
 		req.setAttribute("list", list);
 		
 		// 페이지를 이동(forward)
-		// 사용자가 URL을 입력시 "/WEB-INF/book/bookList.jsp"페이지 재이동
+		// 사용자가 URL을 입력시 페이지 재이동
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookList.tiles");
 		try {
 			rd.forward(req, resp); // 요청을 재 지정하겠습니다.

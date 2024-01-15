@@ -624,7 +624,7 @@ Version:1.0
 }
 .header.shop .logo {
 	float: left;
-	margin: 19px 0 0;
+	margin: 0 auto;
 }
 .header.shop .top-contact {
 	margin-top:0px;
@@ -632,7 +632,7 @@ Version:1.0
 /* Header Middle */
 .header.shop .search-bar-top {
 	text-align: center;
-	margin-top: 10px;
+	padding : 50px 0;
 }
 .header.shop .search-bar {
 	margin-top: 33px;
@@ -690,11 +690,13 @@ Version:1.0
 }
 .header.shop .search-bar form {
 	display: inline-block;
-	float: left;
-	width: 260px;
+	width: 535px;
+	
 }
 .header.shop .search-bar input {
+	width: 473px;
 	height: 48px;
+	float:left;
 	background: transparent;
 	color: #666;
 	border-radius: 0;
@@ -702,7 +704,6 @@ Version:1.0
 	font-size: 14px;
 	font-weight: 400;
 	padding: 0 25px 0 20px;
-	width: 328px;
 }
 .header.shop .search-bar .btnn {
 	height: 50px;
@@ -948,6 +949,7 @@ Version:1.0
 	text-transform: capitalize;
 	font-size: 15px;
 	padding: 20px 15px;
+	margin-right: 50px;
 	font-weight: 500;
 	display: block;
 	position: relative;
@@ -1021,7 +1023,7 @@ Version:1.0
 	display: inline-block;
 	padding: 0;
 	margin: 0;
-	top: 20px;
+	top: 50px;
 	float: right;
 	position: relative;
 }
@@ -4895,7 +4897,9 @@ Version:1.0
 .footer .about .logo{
 	margin-bottom:20px;
 }
-.footer .about .logo img{}
+.footer .about .logo img{
+	width: 110px;
+}
 .footer .about .text{
 	color:#fff;
 	font-weight: 400;

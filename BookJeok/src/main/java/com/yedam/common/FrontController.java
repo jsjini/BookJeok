@@ -26,9 +26,6 @@ import com.yedam.member.command.MemberJoinControl;
 import com.yedam.search.command.SearchListControl;
 
 
-
-
-
 // 컨트롤러 : url -> 서블릿 실행을 정해주는 역할
 //@WebServlet("*.do")
 public class FrontController extends HttpServlet {
@@ -45,9 +42,11 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("init() 호출");
+		// 메인페이지
+		map.put("/main.do", new MainControl());
+		
 		// 도서 관련
-		//  -> 메인페이지
-		//map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
 		
@@ -74,7 +73,7 @@ public class FrontController extends HttpServlet {
 
 		
 		// 검색 관련
-		// map.put("/searchList", new SearchListControl());
+		// map.put("/searchList.do", new SearchListControl());
 
 	}
 

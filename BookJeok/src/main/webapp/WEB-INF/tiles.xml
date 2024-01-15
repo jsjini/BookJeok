@@ -7,7 +7,6 @@
   	<put-attribute name="header1" value="/WEB-INF/layout/header1.jsp" />
   	<put-attribute name="header2" value="/WEB-INF/layout/header2.jsp" />
   	<put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
-  	<put-attribute name="footbody" value="/WEB-INF/layout/footbody.jsp" />
   	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
 
@@ -15,9 +14,5 @@
   	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
   </definition>
   
-  
-  <definition name="WILDCARD:*/*" extends="myhomepage">
-  	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
-  </definition>
  
 </tiles-definitions>

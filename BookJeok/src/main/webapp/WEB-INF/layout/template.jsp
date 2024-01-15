@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>    
 <!DOCTYPE html>
-<html lang="zxx">
+<html lang="ko">
 
 <head>
 	<!-- Meta Tag -->
@@ -12,13 +12,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Title Tag  -->
-	<title>Eshop - eCommerce HTML5 Template.</title>
+	<title>북적북적</title>
 	<!-- Favicon -->
 	<link rel="icon" type="image/png" href="images/favicon.png">
 	<!-- Web Font -->
-	<link
-		href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap"
-		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
 	<!-- StyleSheet -->
 
@@ -45,18 +43,14 @@
 
 	<!-- Eshop StyleSheet -->
 	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/responsive.css">
-
-
 
 </head>
 
 <body class="js">
 
-
-
-	<!-- Header -->
+	<!-- Header(헤더) -->
 	<header class="header shop">
 		<!-- Topbar -->
 		<tiles:insertAttribute name="header1" />
@@ -72,6 +66,7 @@
 
 	<!-- Start Footer Area -->
 	<tiles:insertAttribute name="footer" />
+	
 
 	<!-- Jquery -->
 	<script src="js/jquery.min.js"></script>

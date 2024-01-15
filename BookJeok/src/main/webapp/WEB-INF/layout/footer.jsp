@@ -9,15 +9,13 @@
 					<!-- Single Widget -->
 					<div class="single-footer about">
 						<div class="logo">
-							<a href="index.html"><img src="images/logo2.png" alt="#"></a>
+							<a href="#"><img src="images/logo2.png" alt="#"></a>
 						</div>
-						<p class="text">Praesent dapibus, neque id cursus ucibus,
-							tortor neque egestas augue, magna eros eu erat. Aliquam erat
-							volutpat. Nam dui mi, tincidunt quis, accumsan porttitor,
-							facilisis luctus, metus.</p>
+						<p class="text">
+							북적북적 모여서 책 읽고 싶은 사람들을 위한 도서판매 사이트
+						</p>
 						<p class="call">
-							Got Question? Call us 24/7<span><a href="tel:66667777">+82
-									666 7777</a></span>
+							문의전화는 여기로<span><a href="tel:010-1234">+82 010 1234</a></span>
 						</p>
 					</div>
 					<!-- End Single Widget -->
@@ -57,7 +55,7 @@
 								<li>Lorem ipsum Street.</li>
 								<li>South Korea</li>
 								<li>info@bookjk.com</li>
-								<li>+82 6666 7777</li>
+								<li>+82 010 1234</li>
 							</ul>
 						</div>
 						<!-- End Single Widget -->
@@ -81,15 +79,12 @@
 					<div class="col-lg-6 col-12">
 						<div class="left">
 							<p>
-								Copyright © 2023 <a href="http://www.wpthemesgrid.com"
-									target="_blank">Bookjeok</a> - All Rights Reserved.
+								Copyright © 2023 <a href="#" target="_blank">Bookjeok</a> - All Rights Reserved.
 							</p>
 						</div>
 					</div>
 					<div class="col-lg-6 col-12">
-						<div class="right">
-							<img src="images/payments.png" alt="#">
-						</div>
+						
 					</div>
 				</div>
 			</div>
