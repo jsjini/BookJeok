@@ -10,6 +10,7 @@
 
 	<typeAliases>
 		<typeAlias alias="book" type="com.yedam.book.vo.BookVO" />
+		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
 		<typeAlias alias="search" type="com.yedam.search.vo.SearchVO" />
 	</typeAliases>
 	
@@ -19,7 +20,7 @@
 			<dataSource type="POOLED">
 				<property name="driver" value="oracle.jdbc.OracleDriver" />
 				<property name="url"
-					value="jdbc:oracle:thin:@localhost:1521:xe" />
+					value="jdbc:oracle:thin:@192.168.0.19:1521:xe" />
 				<property name="username" value="team2" />
 				<property name="password" value="team2" />
 			</dataSource>

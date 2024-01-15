@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test</title>
+<title>Insert title here</title>
 </head>
 <body>
-<h1>hello there</h1>
-${list }
-
+	<h1>검색결과 나오기</h1>
+	<script>
+	</script>
 </body>
 </html>

@@ -12,6 +12,9 @@ import com.yedam.book.service.BookService;
 import com.yedam.book.serviceImpl.BookServiceImpl;
 import com.yedam.book.vo.BookVO;
 import com.yedam.common.Control;
+import com.yedam.search.service.SearchService;
+import com.yedam.search.serviceImpl.SearchServiceImpl;
+import com.yedam.search.vo.SearchVO;
 
 public class BookListControl implements Control {
 
@@ -22,9 +25,17 @@ public class BookListControl implements Control {
 		
 		req.setAttribute("list", list);
 		
+		// 저장된 검색어 실시간으로 보여주는 기능
+		SearchService ssvc = new SearchServiceImpl();
+		// 오늘 날짜 기준
+		String today = "24/01/15"; 
+		List<SearchVO> searchVO = ssvc.searchList(today);
+		
+		req.setAttribute("searchVO", searchVO);
+		
 		// 페이지를 이동(forward)
-		// 사용자가 URL을 입력시 "/WEB-INF/book/bookList.jsp"페이지 재이동
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/book/bookList.jsp");
+		// 사용자가 URL을 입력시 페이지 재이동
+		RequestDispatcher rd = req.getRequestDispatcher("book/bookList.tiles");
 		try {
 			rd.forward(req, resp); // 요청을 재 지정하겠습니다.
 		} catch (ServletException | IOException e) {
