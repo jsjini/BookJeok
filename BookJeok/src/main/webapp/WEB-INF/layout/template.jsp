@@ -69,8 +69,7 @@
 	<!-- Slider Area -->
 	<tiles:insertAttribute name="body" />
 
-	<!-- Start Shop Services Area -->
-	<tiles:insertAttribute name="footbody" />
+
 	<!-- Start Footer Area -->
 	<tiles:insertAttribute name="footer" />
 
