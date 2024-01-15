@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.book.command.BookDetailControl;
-import com.yedam.cart.command.CartListControl;
-import com.yedam.cart.command.RemoveCartControl;
+import com.yedam.search.command.SearchListControl;
+
+
+
 
 
 
@@ -48,7 +50,8 @@ public class FrontController extends HttpServlet {
 		//map.put("/cartList.do", new CartListControl());
 		//map.put("/removeCart.do", new RemoveCartControl());
 		
-		// 등등...
+		// 검색 관련
+		map.put("/searchList", new SearchListControl());
 
 	}
 
