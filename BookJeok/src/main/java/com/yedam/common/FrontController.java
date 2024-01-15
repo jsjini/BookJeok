@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.book.command.BookDetailControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.RemoveCartControl;
 
@@ -33,16 +34,19 @@ public class FrontController extends HttpServlet {
 		System.out.println("init() 호출");
 		// 도서 관련
 		//  -> 메인페이지
-		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		//map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		
 		// 목록 관련
+		
+		//상세페이지
+		map.put("/bookDetail.do", new BookDetailControl()); // 도서 상세페이지
 
 		// 회원 관련
 		
 		// 주문 관련
 			// 장바구니
-		map.put("/cartList.do", new CartListControl());
-		map.put("/removeCart.do", new RemoveCartControl());
+		//map.put("/cartList.do", new CartListControl());
+		//map.put("/removeCart.do", new RemoveCartControl());
 		
 		// 등등...
 

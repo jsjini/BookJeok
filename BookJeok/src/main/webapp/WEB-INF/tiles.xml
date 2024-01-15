@@ -3,15 +3,15 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-  <definition name="myhomepage" template="/WEB-INF/cart/layout/template.jsp">
-  	<put-attribute name="header1" value="/WEB-INF/cart/layout/header1.jsp" />
-  	<put-attribute name="header2" value="/WEB-INF/cart/layout/header2.jsp" />
-  	<put-attribute name="body" value="/WEB-INF/cart/layout/body.jsp" />
-  	<put-attribute name="footbody" value="/WEB-INF/cart/layout/footbody.jsp" />
-  	<put-attribute name="footer" value="/WEB-INF/cart/layout/footer.jsp" />
+  <definition name="myhomepage" template="/WEB-INF/layout/template.jsp">
+  	<put-attribute name="header1" value="/WEB-INF/layout/header1.jsp" />
+  	<put-attribute name="header2" value="/WEB-INF/layout/header2.jsp" />
+  	<put-attribute name="body" value="/WEB-INF/layout/body.jsp" />
+  	<put-attribute name="footbody" value="/WEB-INF/layout/footbody.jsp" />
+  	<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
   </definition>
+
   <definition name="WILDCARD:*/*" extends="myhomepage">
-  	<put-attribute name="header2" value="/WEB-INF/{1}/header2/{2}.jsp" />
   	<put-attribute name="body" value="/WEB-INF/{1}/{2}.jsp" />
   </definition>
  

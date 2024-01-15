@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.yedam.book.service.BookDetailService;
+import com.yedam.book.serviceImpl.BookDetailServiceImpl;
+import com.yedam.book.vo.BookVO;
 import com.yedam.cart.mapper.CartMapper;
 import com.yedam.cart.vo.CartVO;
 
@@ -14,6 +17,10 @@ public class MainExe { // 테스트용 클래스
 	public static void main(String[] args) {
 		SqlSession session = DataSource.getInstance().openSession(true);
 		CartMapper mapper = session.getMapper(CartMapper.class);
+		
+		BookDetailService svc = new BookDetailServiceImpl();
+		BookVO bookInfo = svc.selectOne(1);
+		System.out.println(bookInfo);
 		
 		// 목록테스트
 //		List<CartVO> mapper1 = mapper.selectList(2);
