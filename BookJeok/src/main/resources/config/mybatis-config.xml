@@ -9,7 +9,8 @@
 	</settings>
 
 	<typeAliases>
-		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
+		<typeAlias alias="book" type="com.yedam.book.vo.BookVO" />
+		<typeAlias alias="search" type="com.yedam.search.vo.SearchVO" />
 	</typeAliases>
 	
 	<environments default="development">
