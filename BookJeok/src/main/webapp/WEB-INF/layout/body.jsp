@@ -114,6 +114,7 @@
 						<div class="tab-pane fade show active" id="man" role="tabpanel">
 							<div class="tab-single">
 								<div class="row">
+
 									<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 										<div class="single-product">
 											<div class="product-img">

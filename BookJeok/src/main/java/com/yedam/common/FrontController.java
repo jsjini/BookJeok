@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.book.command.BookBestListControl;
+import com.yedam.book.command.BookGenreListControl;
+import com.yedam.book.command.BookListControl;
+import com.yedam.book.command.BookNewListControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.RemoveCartControl;
 
@@ -34,6 +38,12 @@ public class FrontController extends HttpServlet {
 		// 도서 관련
 		//  -> 메인페이지
 		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		
+		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
+		
+		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
+		
+		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
 		
 		// 목록 관련
 

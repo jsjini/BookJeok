@@ -19,5 +19,24 @@ public class BookServiceImpl  implements BookService{
 	public List<BookVO> bookList() {
 		return mapper.selectList();
 	}
+	
+	@Override
+	public List<BookVO> bookBestList() {
+		return mapper.selectBestList();
+	}
+
+	@Override
+	public List<BookVO> bookNewList() {
+		return mapper.selectNewList();
+	}
+
+
+	@Override
+	public List<BookVO> bookGenreList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
 
 }

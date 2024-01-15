@@ -8,6 +8,23 @@
 		select * from book order by 1
 	</select>
 	
+	<select id="selectBestList" resultType="book">
+		
+	select b.* , c.*
+	from book b ,  cart c 
+	where b.book_no = c.book_no
+	order by c.quantity desc
+	</select>
+	<select id="selectNewList" resultType="book">
+	select * from book
+	where dt > '2023/12/31'
+	order by dt desc
+	</select>
+	<select id="selectGenreList" resultType="book">
+	select * from book
+	where category = #{category} order by 1
+	</select>
+	
 	
 </mapper>
 
