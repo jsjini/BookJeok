@@ -10,7 +10,7 @@ import com.yedam.cart.mapper.CartMapper;
 import com.yedam.cart.vo.CartVO;
 
 
-public class Mainexe { // 테스트용 클래스
+public class MainExe { // 테스트용 클래스
 	public static void main(String[] args) {
 		SqlSession session = DataSource.getInstance().openSession(true);
 		CartMapper mapper = session.getMapper(CartMapper.class);
