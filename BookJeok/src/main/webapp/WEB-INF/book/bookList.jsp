@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +7,10 @@
 <title>test</title>
 </head>
 <body>
+
+<h1>hello there</h1>
+${list }
+
 	<div class="container text-center">
 		<div class="col-4">
 		<h1>hello there</h1>
@@ -17,7 +20,6 @@
 		</div>
 	</div>
 	
-
 
 </body>
 </html>
