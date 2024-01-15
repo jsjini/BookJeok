@@ -67,7 +67,6 @@
 	<!-- Slider Area -->
 	<tiles:insertAttribute name="body" />
 
-	
 	<!-- Start Footer Area -->
 	<tiles:insertAttribute name="footer" />
 

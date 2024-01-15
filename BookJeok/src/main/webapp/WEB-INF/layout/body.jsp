@@ -34,6 +34,7 @@
 			<div class="row"> -->
 	<!-- Single Banner  -->
 	<!-- <div class="col-lg-4 col-md-6 col-12">
+
 					<div class="single-banner">
 						<img src="https://via.placeholder.com/600x370" alt="#">
 						<div class="content">
@@ -43,9 +44,11 @@
 						</div>
 					</div>
 				</div> -->
+
 	<!-- /End Single Banner  -->
 	<!-- Single Banner  -->
 	<!-- <div class="col-lg-4 col-md-6 col-12">
+
 					<div class="single-banner">
 						<img src="https://via.placeholder.com/600x370" alt="#">
 						<div class="content">
@@ -55,9 +58,11 @@
 						</div>
 					</div>
 				</div> -->
+
 	<!-- /End Single Banner  -->
 	<!-- Single Banner  -->
 	<!-- <div class="col-lg-4 col-12">
+
 					<div class="single-banner tab-height">
 						<img src="https://via.placeholder.com/600x370" alt="#">
 						<div class="content">
@@ -67,6 +72,7 @@
 						</div>
 					</div>
 				</div> -->
+
 	<!-- /End Single Banner  -->
 	<!-- </div>
 		</div>
@@ -224,6 +230,7 @@
 										</div>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<!-- <div class="single-product">
+
 													<div class="product-img">
 														<a href="product-details.html">
 															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -247,9 +254,11 @@
 														</div>
 													</div>
 												</div> -->
+
 										</div>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<!-- <div class="single-product">
+
 													<div class="product-img">
 														<a href="product-details.html">
 															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -274,9 +283,11 @@
 														</div>
 													</div>
 												</div> -->
+
 										</div>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<!-- <div class="single-product">
+
 													<div class="product-img">
 														<a href="product-details.html">
 															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -300,9 +311,11 @@
 														</div>
 													</div>
 												</div> -->
+
 										</div>
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<!-- <div class="single-product">
+
 													<div class="product-img">
 														<a href="product-details.html">
 															<img class="default-img" src="https://via.placeholder.com/550x750" alt="#">
@@ -328,6 +341,7 @@
 														</div>
 													</div>
 												</div> -->
+
 										</div>
 									</div>
 								</div>
@@ -570,12 +584,14 @@
 														<span class="old">$60.00</span>
 														<span>$50.00</span>
 													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--/ End Single Tab -->
 							<!-- Start Single Tab -->
 							<div class="tab-pane fade" id="kids" role="tabpanel">
@@ -814,12 +830,14 @@
 														<span class="old">$60.00</span>
 														<span>$50.00</span>
 													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--/ End Single Tab -->
 							<!-- Start Single Tab -->
 							<div class="tab-pane fade" id="accessories" role="tabpanel">
@@ -1058,12 +1076,14 @@
 														<span class="old">$60.00</span>
 														<span>$50.00</span>
 													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--/ End Single Tab -->
 							<!-- Start Single Tab -->
 							<div class="tab-pane fade" id="essential" role="tabpanel">
@@ -1302,12 +1322,14 @@
 														<span class="old">$60.00</span>
 														<span>$50.00</span>
 													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--/ End Single Tab -->
 							<!-- Start Single Tab -->
 							<div class="tab-pane fade" id="prices" role="tabpanel">
@@ -1546,19 +1568,23 @@
 														<span class="old">$60.00</span>
 														<span>$50.00</span>
 													</div>
+
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+
 							<!--/ End Single Tab -->
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- End Product Area -->
 
 	<!-- Start Midium Banner  -->
@@ -1727,13 +1753,16 @@
 						</div>
 						<!-- End Single Product -->
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- End Most Popular Area -->
 
 	<!-- <section class="section free-version-banner">
+
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8 offset-md-2 col-xs-12">
@@ -1750,6 +1779,7 @@
             </div>
         </div>
     </section> -->
+
 
 	<!-- Start Shop Home List  -->
 	<section class="shop-home-list section">
@@ -1951,6 +1981,7 @@
 
 	<!-- Start Shop Blog  -->
 	<!-- <section class="shop-blog section">
+
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
@@ -1961,8 +1992,10 @@
 			</div>
 			<div class="row">
 				<div class="col-lg-4 col-md-6 col-12"> -->
+
 	<!-- Start Single Blog  -->
 	<!-- <div class="shop-single-blog">
+
 						<img src="https://via.placeholder.com/370x300" alt="#">
 						<div class="content">
 							<p class="date">22 July , 2020. Monday</p>
@@ -1970,11 +2003,13 @@
 							<a href="#" class="more-btn">Continue Reading</a>
 						</div>
 					</div> -->
+
 	<!-- End Single Blog  -->
 	<!-- </div>
 				<div class="col-lg-4 col-md-6 col-12"> -->
 	<!-- Start Single Blog  -->
 	<!-- <div class="shop-single-blog">
+
 						<img src="https://via.placeholder.com/370x300" alt="#">
 						<div class="content">
 							<p class="date">22 July, 2020. Monday</p>
@@ -1982,11 +2017,13 @@
 							<a href="#" class="more-btn">Continue Reading</a>
 						</div>
 					</div> -->
+
 	<!-- End Single Blog  -->
 	<!-- </div>
 				<div class="col-lg-4 col-md-6 col-12"> -->
 	<!-- Start Single Blog  -->
 	<!-- <div class="shop-single-blog">
+
 						<img src="https://via.placeholder.com/370x300" alt="#">
 						<div class="content">
 							<p class="date">22 July, 2020. Monday</p>
@@ -1994,9 +2031,11 @@
 							<a href="#" class="more-btn">Continue Reading</a>
 						</div>
 					</div> -->
+
 	<!-- End Single Blog  -->
 	</div>
 	</div>
 	</div>
 	</section>
 	<!-- End Shop Blog  -->
+
