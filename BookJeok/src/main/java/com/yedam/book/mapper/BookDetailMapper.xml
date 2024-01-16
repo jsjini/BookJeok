@@ -6,16 +6,17 @@
 <mapper namespace="com.yedam.book.mapper.BookDetailMapper">
 	<select id="selectOne" parameterType="int" resultType="book">
 		select BOOK_NO,
-				NAME,
-				AUTHOR,
-				COMP,
-				PRICE,
-				DT,
-				CATEGORY,
-				ABOUT,
-				IMG,
-				ISBN
-		from book where BOOK_NO=#{bookNo}
+  		  	   NAME,
+			   AUTHOR,
+			   COMP,
+			   PRICE,
+			   DT,
+			   CATEGORY,
+			   ABOUT,
+			   IMG,
+			   ISBN
+		from book 
+		where BOOK_NO=#{bookNo}
 
 	</select>
 

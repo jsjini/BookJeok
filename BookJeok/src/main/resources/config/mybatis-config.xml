@@ -13,6 +13,7 @@
 		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
 		<typeAlias alias="member" type="com.yedam.member.vo.MemberVO" />
 		<typeAlias alias="search" type="com.yedam.search.vo.SearchVO" />
+		<typeAlias alias="review" type="com.yedam.review.vo.ReviewVO" />
 	</typeAliases>
 	
 	<environments default="development">
