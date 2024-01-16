@@ -19,6 +19,7 @@ import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
+import com.yedam.cart.command.ModifyCartControl;
 import com.yedam.cart.command.RemoveCartControl;
 
 import com.yedam.member.command.JoinControl;
@@ -70,6 +71,7 @@ public class FrontController extends HttpServlet {
 		map.put("/cartList.do", new CartListControl());
 		map.put("/cartListJson.do", new CartListJson());
 		map.put("/removeCart.do", new RemoveCartControl());
+		map.put("/modifyCart.do", new ModifyCartControl());
 
 		
 		// 검색 관련

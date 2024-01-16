@@ -39,7 +39,7 @@
 								<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 							</tr>
 						</thead>
-						<tbody id="cartList">
+						<tbody id="cartList" style="text-align: center;">
 						
 						</tbody>
 					</table>
