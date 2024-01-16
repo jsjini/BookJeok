@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.book.command.BookBestListControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookDetailControl;
+import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
@@ -54,6 +55,8 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
 		
+		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
+		
 		// 목록 관련
 		
 		//상세페이지
@@ -73,7 +76,8 @@ public class FrontController extends HttpServlet {
 
 		
 		// 검색 관련
-		// map.put("/searchList.do", new SearchListControl());
+		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
+		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어
 
 	}
 
