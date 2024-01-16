@@ -68,6 +68,12 @@
 			<artifactId>gson</artifactId>
 			<version>2.10.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.basc.framework/log4j2 -->
+		<dependency>
+			<groupId>io.basc.framework</groupId>
+			<artifactId>log4j2</artifactId>
+			<version>1.8.3</version>
+		</dependency>
 
 
 		<!-- jsp 밑줄에러 해결하기 위해서 넣은것 -->
