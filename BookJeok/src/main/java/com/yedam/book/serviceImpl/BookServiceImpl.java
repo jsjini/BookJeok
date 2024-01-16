@@ -33,10 +33,10 @@ public class BookServiceImpl  implements BookService{
 	}
 
 
+	
 	@Override
-	public List<BookVO> bookGenreList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookVO> bookGenreList(BookVO cat) {
+		return mapper.selectGenreList(cat);
 	}
 	
 	
