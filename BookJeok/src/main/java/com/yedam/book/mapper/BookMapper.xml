@@ -9,20 +9,28 @@
 	</select>
 	
 	<select id="selectBestList" resultType="book">
-		
-	select b.* , c.*
-	from book b ,  cart c 
-	where b.book_no = c.book_no
-	order by c.quantity desc
+	select cnt ,b.* 
+	from (
+    select book_no,count(book_no) as cnt
+        from  order_item         
+        group by book_no    
+        order by count(book_no) desc
+   ) o,book b  
+   where b.book_no = o.book_no
 	</select>
 	<select id="selectNewList" resultType="book">
 	select * from book
-	where dt > '2023/12/31'
+	where dt > '2023-12-31'
 	order by dt desc
 	</select>
-	<select id="selectGenreList" resultType="book">
+	<select id="selectGenreList" resultType="book" parameterType="book">
 	select * from book
-	where category = #{category} order by 1
+	<where>
+    <foreach item="item" index="index" collection="categories"
+        open="category in (" separator="," close=")" nullable="true">
+          #{item}
+    </foreach>
+  </where>
 	</select>
 	
 	
