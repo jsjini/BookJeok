@@ -18,8 +18,12 @@ public class BookGenreListControl implements Control {
 //bookGenreList 페이지 틀 만드는 중- 아직 미완성 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		
+		String[] cat= req.getParameterValues("categories");
+		BookVO vo = new BookVO();
+		vo.setCategories(cat);
 		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.bookGenreList();
+		List<BookVO> list = svc.bookGenreList(vo);
 		
 		req.setAttribute("bookGenreList", list);
 		

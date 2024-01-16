@@ -3,7 +3,7 @@
 
 <meta charset="utf-8">    
 
-  <form action="Join.do" method="post">
+  <form action="memberJoin.do" method="post">
     <table class="table">
       <tbody>
         <tr>
@@ -28,7 +28,7 @@
           <td><input type="radio" name="userAge" value="30">30대</td>
           <td><input type="radio" name="userAge" value="40">40대</td>
           <td><input type="radio" name="userAge" value="50">50대</td>
-          <td><input type="radio" name="userAge" value="60">60대 이상 </td>      
+          <td><input type="radio" name="userAge" value="60">60대 이상</td>      
         </tr>        
         <tr>
           <th>휴대폰번호</th><td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111"></td>
