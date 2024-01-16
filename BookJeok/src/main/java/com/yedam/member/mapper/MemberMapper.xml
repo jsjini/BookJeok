@@ -7,7 +7,11 @@
 
   <insert id="insertMember" parameterType="member">
   	insert into member
-  	values(#{id}, #{mname}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms})
+  	values (MEMBER_SEQUENCE.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
   </insert>
+  
+  <select id="selectMember" resultType="member">
+    select * from member where id=#{id} and pw=#{pw}
+  </select>
   
 </mapper>
