@@ -1,4 +1,4 @@
-package com.yedam.book.command;
+package com.yedam.review.command;
 
 import java.io.IOException;
 import java.util.List;
@@ -8,28 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.yedam.book.service.BookDetailService;
-import com.yedam.book.serviceImpl.BookDetailServiceImpl;
-import com.yedam.book.vo.BookVO;
 import com.yedam.common.Control;
 import com.yedam.review.service.ReviewService;
 import com.yedam.review.serviceImpl.ReviewServiceImpl;
 import com.yedam.review.vo.ReviewVO;
 
-public class BookDetailControl implements Control {
+public class ReviewControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String bookNo = req.getParameter("bookNo");
 		
-		BookDetailService svc = new BookDetailServiceImpl();
-		BookVO bookInfo = svc.selectOne(Integer.parseInt(bookNo));
-		
-		req.setAttribute("vo", bookInfo);
-		
-		
-		ReviewService rsvc = new ReviewServiceImpl();
-		List<ReviewVO> reviewInfo = rsvc.selectOne(Integer.parseInt(bookNo));
+		ReviewService svc = new ReviewServiceImpl();
+		List<ReviewVO> reviewInfo = svc.selectOne(Integer.parseInt(bookNo));
 		
 		req.setAttribute("reviewVO", reviewInfo);
 		

@@ -10,18 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.yedam.book.command.BookBestListControl;
-import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookDetailControl;
-import com.yedam.search.command.SearchListControl;
+import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
 import com.yedam.cart.command.RemoveCartControl;
-
 import com.yedam.member.command.JoinControl;
+import com.yedam.member.command.MemberJoinControl;
+import com.yedam.review.command.ReviewControl;
 import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.search.command.SearchListControl;
@@ -59,6 +58,7 @@ public class FrontController extends HttpServlet {
 		
 		//상세페이지
 		map.put("/bookDetail.do", new BookDetailControl()); // 도서 상세페이지
+		map.put("/review.do", new ReviewControl()); // 리뷰
 
 		// 회원 관련
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
