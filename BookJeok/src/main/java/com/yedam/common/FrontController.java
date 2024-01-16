@@ -21,6 +21,9 @@ import com.yedam.cart.command.RemoveCartControl;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.MemberJoinControl;
 import com.yedam.review.command.ReviewControl;
+import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.search.command.SearchListControl;
 
 
 // 컨트롤러 : url -> 서블릿 실행을 정해주는 역할
@@ -46,7 +49,7 @@ public class FrontController extends HttpServlet {
 		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
-		
+		 
 		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
 		
 		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
@@ -58,9 +61,10 @@ public class FrontController extends HttpServlet {
 		map.put("/review.do", new ReviewControl()); // 리뷰
 
 		// 회원 관련
-		map.put("/memberJoin.do", new MemberJoinControl()); //회원가입
-		map.put("/Join.do", new JoinControl()); //회원등록처리
-		//map.put("/loginBook.do", new LoginBookControl()); //로그인화면
+		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
+		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
+		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
+		//
 		
 		// 주문 관련
 
