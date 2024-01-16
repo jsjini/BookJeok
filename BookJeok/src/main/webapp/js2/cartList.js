@@ -1,41 +1,45 @@
 /**
  * cartList.js
  */
-function showCartList() {
 
-}
-fetch("cartListJson.do?memberNo=3")
-	.then(result => result.json())
-	.then(result => {
-		console.log(result);
-		let lastPrice = 0;
-		let totalPoint = 0;
-		result.forEach(item => {
-			console.log(item);
-			lastPrice += item.price;
-			totalPoint += item.addPoint;
-			const newtbody = maketr(item);
-			cartList.insertAdjacentHTML("beforeend", newtbody);
-		});
 
-		// 카트 삭제 이벤트 등록
-		const cartNos = result.forEach(item => {
-			cartNos.push(item.cartNo);
+showCart();
+
+
+function showCart(){
+	fetch("cartListJson.do?memberNo=3")
+		.then(result => result.json())
+		.then(result => {
+			console.log(result);
+			let lastPrice = 0;
+			let totalPoint = 0;
+			result.forEach(item => {
+				console.log(item);
+				lastPrice += item.price;
+				totalPoint += item.addPoint;
+				const newtbody = maketr(item);
+				cartList.insertAdjacentHTML("beforeend", newtbody);
+			});
+	
+			// 카트 삭제 이벤트 등록
+			removeCartEvent();
+	
+			// 포인트 출력
+			let addPoint = document.getElementById("addPoint");
+			const addpoint = `<div class="cart_point_total" style="padding: 10px; text-align: right; border-bottom: 1px solid #aaa;"><span>적립 예정 포인트</span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;${totalPoint}</span></div>
+				<div class="row">`;
+			addPoint.insertAdjacentHTML("beforeend", addpoint);
+	
+			// 토탈 출력
+			let totalAmount = document.getElementById("totalAmount");
+			const totalAmo = makeTotal(lastPrice);
+			totalAmount.insertAdjacentHTML("beforeend", totalAmo);
+	
 		})
-		removeCartEvent();
+}
 
-		// 포인트 출력
-		let addPoint = document.getElementById("addPoint");
-		const addpoint = `<div class="cart_point_total" style="padding: 10px; text-align: right; border-bottom: 1px solid #aaa;"><span>적립 예정 포인트</span><span style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;${totalPoint}</span></div>
-			<div class="row">`;
-		addPoint.insertAdjacentHTML("beforeend", addpoint);
-		
-		// 토탈 출력
-		let totalAmount = document.getElementById("totalAmount");
-		const totalAmo = makeTotal(lastPrice);
-		totalAmount.insertAdjacentHTML("beforeend", totalAmo);
 
-	})
+
 
 
 function maketr(item) {
@@ -73,39 +77,53 @@ function maketr(item) {
 				</div> <!--/ End Input Order -->
 			</td>
 			<td class="total-amount" data-title="Total"><span>${item.totalPrice}</span></td>
-			<td class="action" data-title="Remove"><i
+			<td class="action" data-cartNo="${item.cartNo}"><i
 						class="ti-trash remove-icon"></i></td>
 		</tr>`
-		return newtbody;
+	return newtbody;
 }
 
 
 
-function removeCartEvent(cartNo) {
-	
-	console.log(cartNo);
+
+function removeCartEvent() {
 	let remCarts = document.querySelectorAll("#cartList td:last-child");
 	console.log(remCarts);
 	remCarts.forEach(remCart => {
-
+		let cartNo = remCart.dataset.cartNo
+		console.log(cartNo);
 		remCart.addEventListener("click", function () {
-			fetch("removeCart.do?cartNo="+cartNo)
-			.then(result => result.json())
-			.then(result => {
-				if (result.retCode == "OK") {
-					alert('삭제됨.');
-					remCart.closest("tr").remove();
-				} else {
-					alert('삭제 중 오류발생.');
-				}
-			})
+			fetch("removeCart.do?cartNo=" + cartNo)
+				.then(result => result.json())
+				.then(result => {
+					if (result.retCode == "OK") {
+						alert('삭제됨.');
+						remCart.closest("tr").remove();
+					} else {
+						alert('삭제 중 오류발생.');
+					}
+				})
 		})
 	})
 }
 
 
+
+$(".plus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	$(this).parent("div").find("input").val(++quantity);
+});
+
+$(".minus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	if(quantity > 1){
+		$(this).parent("div").find("input").val(--quantity);		
+	}
+});
+
+
 function makeTotal(lastPrice) {
-		const totalAmo = `<div class="total-amount">
+	const totalAmo = `<div class="total-amount">
 			<div class="row">
 				<div class="col-lg-8 col-md-5 col-12">
 					<div class="left">
@@ -138,7 +156,7 @@ function makeTotal(lastPrice) {
 				</div>
 			</div>
 		</div>`;
-		return totalAmo;
+	return totalAmo;
 }
 
 
