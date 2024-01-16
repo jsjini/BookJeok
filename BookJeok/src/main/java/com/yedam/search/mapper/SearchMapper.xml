@@ -4,7 +4,11 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.search.mapper.SearchMapper">
-	<select id="selectList" resultType="search" parameterType="string">
+	<select id="selectKeyword" resultType="search" parameterType="string">
 		select * from search where sdt=#{today} order by 4 desc
+	</select>
+	
+	<select id="selectList" resultType="book" parameterType="string">
+		select * from book where name like '%'||#{keyword}||'%'
 	</select>
 </mapper>

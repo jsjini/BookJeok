@@ -29,7 +29,7 @@
 			<div class="col-lg-2 col-md-2 col-12">
 				<!-- Logo(로고) -->
 				<div class="logo">
-					<a href="index.html"><img src="images/logo.png" alt="logo"></a>
+					<a href="main.do"><img src="images/logo.png" alt="logo"></a>
 				</div>
 				<!--/ End Logo -->
 			</div>
@@ -37,7 +37,7 @@
 				<!-- 검색창 -->
 				<div class="search-bar-top ">
 					<div class="search-bar">
-						<form>
+						<form action="searchList.do" method="get">
 							<input name="search" placeholder="도서명을 입력해주세요~" type="search">
 							<button class="btnn">
 								<i class="ti-search"></i>
@@ -50,16 +50,19 @@
 			<div class="col-lg-2 col-md-3 col-12">
 				<div class="right-bar">
 					<!-- 오른쪽 아이콘 -->
+					<!-- 내서재 아이콘 -->
 					<div class="sinlge-bar">
 						<a href="#" class="single-icon"><i class="fa fa-heart-o"
 							aria-hidden="true"></i></a>
 					</div>
+					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
 						<a href="#" class="single-icon"><i class="fa fa-user-circle-o"
 							aria-hidden="true"></i></a>
 					</div>
+					<!-- 장바구니 아이콘 -->
 					<div class="sinlge-bar shopping">
-						<a href="#" class="single-icon"><i class="ti-bag"></i> <span
+						<a href="cartList.do" class="single-icon"><i class="ti-bag"></i> <span
 							class="total-count">2</span></a>
 					</div>
 					<!-- 오른쪽 아이콘 끝. -->

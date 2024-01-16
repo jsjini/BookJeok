@@ -45,6 +45,8 @@
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/responsive.css">
+	<!-- 검색결과 관련 css -->
+	<link rel="stylesheet" href="css/search.css">
 
 </head>
 
