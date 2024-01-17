@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    
-  
- 
-  <%
-    String msg = (String) request.getAttribute("message");
-  %>
-  
-  <% if (msg != null) { %>
-  <p><%=msg %></p>
-  <% } %>
+<%  String id=(String)session.getAttribute("id");
+  	if(id==null || id==""){
+		out.println("<script>alert('로그인되었습니다');</script>");
+	}	 %>
     
 <!-- 로그인하면 메인에서 로그아웃보이고 OOO님, 환영합니다 뜨게 -->
   <form action="/main.do" method="post">
