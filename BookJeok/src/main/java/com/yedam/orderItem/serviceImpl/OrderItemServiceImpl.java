@@ -24,4 +24,9 @@ public class OrderItemServiceImpl implements OrderItemService {
 		return mapper.deleteOrderItem(orderitemNo) == 1;
 	}
 
+	@Override
+	public boolean modOrderItem(OrderItemVO vo) {
+		return mapper.updateOrderItem(vo) == 1;
+	}
+
 }

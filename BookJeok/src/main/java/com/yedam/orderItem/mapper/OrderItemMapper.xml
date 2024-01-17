@@ -15,4 +15,8 @@
   		delete from order_item where orderitem_no = #{orderitemNo}
   	</delete>
   	
+  	<update id="updateOrderItem" parameterType="orderItem">
+  		update order_item set quantity = #{quantity} where orderitem_no = #{orderitemNo}
+ 	</update>
+  	
 </mapper> 

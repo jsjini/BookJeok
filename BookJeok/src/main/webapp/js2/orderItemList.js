@@ -26,8 +26,8 @@ function showOrderItem() {
             // 플러스, 마이너스 버튼 이벤트 등록
             btnEvent();
 
-            // // 카트 수정 이벤트 등록
-            // modifyCartEvent();
+            // 카트 수정 이벤트 등록
+            modifyOrderItemEvent();
 
             // 상품 체크박스 이벤트 등록
             allCheckboxEvent();
@@ -85,6 +85,40 @@ function maketr(item) {
 						class="ti-trash remove-icon"></i></a></td>
 		</tr>`
     return newtbody;
+}
+
+function modifyOrderItemEvent() {
+	let modOrderItems = document.querySelectorAll("#orderItemList .modBtn");
+	modOrderItems.forEach(modOrderItem => {
+		modOrderItem.addEventListener("click", function (e) {
+			e.preventDefault();
+			if (confirm("수정하시겠습니까?")) {
+				let orderitemNo = modOrderItem.dataset.orderitemno
+				let curQuantity = modOrderItem.dataset.quantity
+				let modquantity = modOrderItem.parentElement.parentElement.childNodes[3].value
+				console.log(orderitemNo, curQuantity, modquantity);
+				if (curQuantity != modquantity) {
+					fetch("modifyOrderItem.do?itemno=" + orderitemNo + "&quan=" + modquantity)
+						.then(result => result.json())
+						.then(result => {
+							if (result.retCode == "OK") {
+								alert('수정되었습니다.');
+								// modCart.parentElement.parentElement.childNodes[3].value = quantity;
+								// cartList.innerHTML = '';
+								// addPoint.innerHTML = '';
+								// totalAmount.innerHTML = '';
+								// showCart(parseInt(memberNo));
+								location.reload();
+							} else {
+								alert('수정 중 오류발생.');
+							}
+						})
+				} else {
+					alert("수량이 동일합니다.");
+				}
+			}
+		})
+	})
 }
 
 function removeOrderItemEvent() {

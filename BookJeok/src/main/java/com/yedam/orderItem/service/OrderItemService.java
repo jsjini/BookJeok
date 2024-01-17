@@ -10,4 +10,7 @@ public interface OrderItemService {
 	
 	// 주문아이템 삭제
 	public boolean remOrderItem(int orderitemNo); 
+	
+	// 카트 수정
+	public boolean modOrderItem(OrderItemVO vo); 
 }

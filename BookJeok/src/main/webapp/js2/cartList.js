@@ -97,7 +97,7 @@ function addCartEvent() {
 		form.quantity = $(".quantity_input").val();
 		$.ajax({
 			url: 'addCart.do',
-			type: 'POST',
+			type: 'GET',
 			data: form,
 			success: function (result) {
 				cartAlert(result);
