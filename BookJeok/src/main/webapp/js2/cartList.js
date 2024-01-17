@@ -18,6 +18,8 @@ function showCart() {
 				cartList.insertAdjacentHTML("beforeend", newtbody);
 			});
 
+			const createBtn = createOrderBtn();
+			orderbutton.insertAdjacentHTML("beforeend", createBtn);
 			// 토탈 출력
 			makeTotal();
 
@@ -33,6 +35,8 @@ function showCart() {
 			// 상품 체크박스 이벤트 등록
 			allCheckboxEvent();
 			selCheckboxEvent();
+
+			orderBtnEvent();
 		})
 }
 
@@ -48,7 +52,7 @@ function selCheckboxEvent() {
 function maketr(item) {
 	let totalPrice = item.price * item.quantity;
 	const newtbody = `<tr>
-			<td><input type="checkbox" class="selCheck" checked></td>
+			<td><input type="checkbox" class="selCheck" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" checked></td>
 			<td class="image" data-title="No"><img src="images/${item.img}"
 					alt="#"></td>
 			<td>
@@ -87,31 +91,48 @@ function maketr(item) {
 	return newtbody;
 }
 
-const form = {
-	memberNo: '${}',
-	bookNo: '${}',
-	quantity: ''
-}
-function addCartEvent() {
-	$(".add_cart").on("click", function () {
-		form.quantity = $(".quantity_input").val();
-		$.ajax({
-			url: 'addCart.do',
-			type: 'GET',
-			data: form,
-			success: function (result) {
-				cartAlert(result);
+
+
+function orderBtnEvent() {
+	document.querySelector("#orderBtn").addEventListener("click", function () {
+		let orders = [];
+		let checks = document.querySelectorAll('#cartList .selCheck');
+		checks.forEach(check => {
+			if (check.checked == true) {
+					let bookNo1 = check.dataset.bookno;
+					let quantity1 = check.dataset.quantity;
+					let order = {"bookNo": bookNo1, "quantity": quantity1}
+					orders.push(order);
 			}
 		})
+		console.log(orders);
 	})
 }
 
+// const form = {
+// 	memberNo: '${}',
+// 	bookNo: '${}',
+// }
+// function addCartEvent() {
+// 	$(".add_cart").on("click", function () {
+// 		form.quantity = $(".quantity_input").val();
+// 		$.ajax({
+// 			url: 'addCart.do',
+// 			type: 'GET',
+// 			data: form,
+// 			success: function (result) {
+// 				cartAlert(result);
+// 			}
+// 		})
+// 	})
+// }
+
 function cartAlert(result) {
-	if (result == '0') {
+	if (result.retCode == 'NG') {
 		alert("장바구니에 추가를 하지 못하였습니다.");
 	} else if (result.retCode == 'OK') {
 		alert("장바구니에 추가되었습니다.");
-	} else if (result == '2') {
+	} else if (result == 'CK') {
 		alert("장바구니에 이미 추가되어져 있습니다.");
 	} else if (result == '5') {
 		alert("로그인이 필요합니다.");
@@ -243,4 +264,11 @@ function makeTotal() {
 	document.querySelector(".totalType").innerText = totalType;
 	document.querySelector(".totalPrice").innerText = totalPrice;
 	document.querySelector(".deliveryPrice").innerText = deliveryPrice;
+}
+
+function createOrderBtn() {
+	const createBtn = `<div class="button5">
+		<a href="#" class="btn" id="orderBtn" style="font-weight: bold; font-size: larger;">주문하기</a> <a href="#" class="btn" style="font-weight: bold; font-size: larger;">쇼핑 계속하기</a>
+	</div>`
+	return createBtn;
 }

@@ -18,5 +18,5 @@ public interface CartMapper {
 	int updateCart(CartVO vo);
 		
 	// 카트 중복 체크
-	int checkSelCart(CartVO vo);
+	CartVO checkCart(CartVO vo);
 }

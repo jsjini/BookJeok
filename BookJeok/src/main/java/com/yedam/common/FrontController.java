@@ -27,6 +27,8 @@ import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.order.command.OrderListControl;
+import com.yedam.orderItem.command.AddOrderItemControl;
 import com.yedam.orderItem.command.ModifyOrderItemControl;
 import com.yedam.orderItem.command.OrderItemListControl;
 import com.yedam.orderItem.command.OrderItemListJson;
@@ -95,9 +97,11 @@ public class FrontController extends HttpServlet {
 
 		// 주문 관련
 		map.put("/orderItemList.do", new OrderItemListControl());
+		map.put("/orderList.do", new OrderListControl());
 		map.put("/orderItemListJson.do", new OrderItemListJson());
 		map.put("/remveOrderItem.do", new RemoveOrderItemControl());
 		map.put("/modifyOrderItem.do", new ModifyOrderItemControl());
+		map.put("/addOrderItem.do", new AddOrderItemControl());
 		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록

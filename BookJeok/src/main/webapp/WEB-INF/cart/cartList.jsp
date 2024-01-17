@@ -56,15 +56,13 @@
 						<div class="row">
 							
 							<div class="col-11">
-								<div class="right">
+								<div class="right" id="orderbutton">
 									<ul>
 									<li>주문도서 수량<span>권)</span><span class="totalQuantity" style="font-size: small;"></span><span>(</span><span style="font-weight: bold;">&nbsp;종</span><span class="totalType" style="font-weight: bold;"></span></li>
 									<li>배송비<span class="deliveryPrice" style="font-weight: bold;"></span></li>
 										<li class="last">주문 합계 금액<span>&nbsp;원</span><span class="totalPrice" style="font-weight: bold; font-size: larger;"></span></li>
 									</ul>
-									<div class="button5">
-										<a href="#" class="btn" style="font-weight: bold; font-size: larger;">주문하기</a> <a href="#" class="btn" style="font-weight: bold; font-size: larger;">쇼핑 계속하기</a>
-									</div>
+									
 								
 							</div>
 						</div>

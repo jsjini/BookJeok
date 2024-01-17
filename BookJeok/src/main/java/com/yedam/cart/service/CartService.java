@@ -9,7 +9,7 @@ public interface CartService {
 	public List<CartVO> cartList(int memberNo);
 	
 	// 카트 등록
-	public boolean addCart(CartVO vo); 
+	public int addCart(CartVO vo); 
 	
 	// 카트 삭제
 	public boolean remCart(int cartNo); 

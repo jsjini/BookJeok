@@ -19,4 +19,8 @@
   		update order_item set quantity = #{quantity} where orderitem_no = #{orderitemNo}
  	</update>
   	
+  	<insert id="insertOrderItem" parameterType="orderItem">
+  		insert into order_item values (order_item_seq.nextval, #{odNo}, #{bookNo}, #{quantity})
+  	</insert>
+  	
 </mapper> 
