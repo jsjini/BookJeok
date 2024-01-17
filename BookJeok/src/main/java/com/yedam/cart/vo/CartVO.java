@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Data
+@NoArgsConstructor
 public class CartVO {
 	private int cartNo;
 	private int quantity;
@@ -30,5 +32,7 @@ public class CartVO {
 		this.putDate = formatedNow;
 		this.addPoint = (int)(this.totalPrice * 0.05);
 	}
+	
+//	public 
 
 }

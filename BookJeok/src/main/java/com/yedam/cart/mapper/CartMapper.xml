@@ -22,5 +22,10 @@
   	<update id="updateCart" parameterType="cart">
   		update cart set quantity = #{quantity} where cart_no = #{cartNo}
  	</update>
+ 	
+ 	<select id="checkSelCart" resultType="cart" parameterType="cart">
+    	select * from cart 
+    	where memberNo = #{memberNo} and bookNo = #{bookNo}
+	</select>
 
 </mapper>  

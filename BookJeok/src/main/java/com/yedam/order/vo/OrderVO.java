@@ -1,5 +1,11 @@
 package com.yedam.order.vo;
 
-public class OrderVO {
+import java.util.List;
 
+import com.yedam.orderItem.vo.OrderItemVO;
+
+import lombok.Data;
+@Data
+public class OrderVO {
+	private List<OrderItemVO> orders;
 }

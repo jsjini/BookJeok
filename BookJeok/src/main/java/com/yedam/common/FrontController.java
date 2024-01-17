@@ -17,6 +17,7 @@ import com.yedam.search.command.SearchListControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
+import com.yedam.cart.command.AddCartControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
 import com.yedam.cart.command.ModifyCartControl;
@@ -26,6 +27,9 @@ import com.yedam.member.command.MemberJoinControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.orderItem.command.OrderItemListControl;
+import com.yedam.orderItem.command.OrderItemListJson;
+import com.yedam.orderItem.command.RemoveOrderItemControl;
 import com.yedam.search.command.SearchListControl;
 
 
@@ -69,16 +73,18 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
 		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
-		//
 		
-		// 주문 관련
-
 		// 장바구니
 		map.put("/cartList.do", new CartListControl());
 		map.put("/cartListJson.do", new CartListJson());
 		map.put("/removeCart.do", new RemoveCartControl());
 		map.put("/modifyCart.do", new ModifyCartControl());
+		map.put("/addCart.do", new AddCartControl());
 
+		// 주문 관련
+		map.put("/orderItemList.do", new OrderItemListControl());
+		map.put("/orderItemListJson.do", new OrderItemListJson());
+		map.put("/remveOrderItem.do", new RemoveOrderItemControl());
 		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록

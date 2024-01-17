@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.yedam.orderItem.mapper.OrderItemMapper">
+	<select id="selectList" resultType="orderItem" parameterType="int">
+  		select oi.orderitem_no, oi.od_no, oi.book_no, oi.quantity, b.name, b.price, b.img
+		from order_item oi join book b on oi.book_no = b.book_no
+		where od_no = #{odNo}
+		order by 1
+  	</select>
+
+	<delete id="deleteOrderItem" parameterType="int">
+  		delete from order_item where orderitem_no = #{orderitemNo}
+  	</delete>
+  	
+</mapper> 
