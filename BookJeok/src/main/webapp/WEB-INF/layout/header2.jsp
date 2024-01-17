@@ -23,16 +23,15 @@
 										<li>
 											<a href="bookGenreList.do">분야별 인기 서적</a>
 											<ul class="dropdown">
-												<li><a href="#">소설</a></li>
-												<li><a href="#">시/에세이</a></li>
-												<li><a href="#">경제</a></li>
-												<li><a href="#">인문/교양</a></li>
-												<li><a href="#">사회/정치</a></li>
-												<li><a href="#">자연과학/공학</a></li>
-												<li><a href="#">가정</a></li>
-												<li><a href="#">유아/어린이</a></li>
-												<li><a href="#">컴퓨터/IT</a></li>
-												<li><a href="#">외국어</a></li>
+												<li><a href="bookGenreList.do?categories=소설">소설</a></li>
+												<li><a href="bookGenreList.do?categories=시&categories=에세이">시/에세이</a></li>
+												<li><a href="bookGenreList.do?categories=인문&categories=교양">인문/교양</a></li>
+												<li><a href="bookGenreList.do?categories=사회&categories=정치">사회/정치</a></li>
+												<li><a href="bookGenreList.do?categories=자연과학&categories=공학">자연과학/공학</a></li>
+												<li><a href="bookGenreList.do?categories=가정">가정</a></li>
+												<li><a href="bookGenreList.do?categories=유아&categories=어린이">유아/어린이</a></li>
+												<li><a href="bookGenreList.do?categories=컴퓨터&categories=IT">컴퓨터/IT</a></li>
+												<li><a href="bookGenreList.do?categories=외국어">외국어</a></li>
 											</ul>
 										</li>
 										<li><a href="#">마이페이지<i class="mypage"></i></a>

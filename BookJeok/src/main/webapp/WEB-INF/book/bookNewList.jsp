@@ -14,36 +14,42 @@
 			</div>
 		</div>
 		<div class="row">
+						
 			<div class="col-12">
 				<div class="owl-carousel popular-slider">
 					<!-- Start Single Product -->
+					
+					<!-- End Single Product -->
+					<!-- Start Single Product -->
+					<c:forEach var="vo" items="${bookNewList}">
 					<div class="single-product">
-						<c:forEach var="vo" items="${bookNewList}">
-							<div class="product-img">
-								<a href="product-details.html"> <img class="default-img"
-									src="images/${vo.img}" alt="#"> <span class="out-of-stock">New</span>
-								</a>
-								<div class="button-head">
-									<div class="product-action">
-										<a data-toggle="modal" data-target="#exampleModal"
-											title="Quick View" href="#"><i class=" ti-eye"></i><span>상세보기</span></a>
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a>
-									</div>
-									<div class="product-action-2">
-										<a title="Add to cart" href="#">장바구니에 담기</a>
-									</div>
+						<div class="product-img">
+							<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img class="default-img"
+								src="images/${vo.img}" alt="#"> <img
+								class="hover-img" src="images/${vo.img}"
+								alt="#">
+							</a>
+							<div class="button-head">
+								<div class="product-action">
+									<a data-toggle="modal" data-target="#exampleModal"
+										title="Quick View" href="#"><i class=" ti-eye"></i><span>상세보기</span></a> 
+										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a> 
+								</div>
+								<div class="product-action-2">
+									<a title="Add to cart" href="#">장바구니에 담기</a>
 								</div>
 							</div>
-							<div class="product-content">
-								<h3>
-									<a href="product-details.html">${vo.name}</a>
-								</h3>
-								<div class="product-price">
-									<span>${vo.price}원</span>
-								</div>
+						</div>
+						<div class="product-content">
+							<h3>
+								<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
+							</h3>
+							<div class="product-price">
+								<span>${vo.price}원</span>
 							</div>
-						</c:forEach>
+						</div>
 					</div>
+		</c:forEach>
 					<!-- End Single Product -->
 				</div>
 			</div>

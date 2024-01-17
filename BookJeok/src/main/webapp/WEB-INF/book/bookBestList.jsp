@@ -21,7 +21,7 @@
 						<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 							<div class="single-product">
 								<div class="product-img">
-									<a href="product-details.html"> <img class="default-img"
+									<a href="bookDetail.do?bookNo=${Bookvo.bookNo}"> <img class="default-img"
 										src="images/${Bookvo.img}">
 									</a>
 									<div class="button-head">
@@ -37,7 +37,7 @@
 								</div>
 								<div class="product-content">
 									<h3>
-										<a href="product-details.html">${Bookvo.name}</a>
+										<a href="bookDetail.do?bookNo=${Bookvo.bookNo}">${Bookvo.name}</a>
 									</h3>
 									<div class="product-price">
 										<span>${Bookvo.price}원</span>
