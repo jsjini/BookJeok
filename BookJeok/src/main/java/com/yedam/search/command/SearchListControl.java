@@ -20,10 +20,11 @@ public class SearchListControl implements Control {
 		// 검색 목록 리스트
 		SearchService svc = new SearchServiceImpl();
 		
-		String search = req.getParameter("search");
+		String search = req.getParameter("search"); // 검색어 파라미터
 		
-		List<BookVO> result = svc.searchList(search);
+		svc.addKeyword(search); // 검색어 저장
 		
+		List<BookVO> result = svc.searchList(search); // 검색결과
 		req.setAttribute("resultVO", result);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookSearchList.tiles");

@@ -102,6 +102,9 @@
 	<script src="js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
+	
+	<!-- 검색어 JS -->
+	<script src="js/search.js"></script>
 </body>
 
 </html>

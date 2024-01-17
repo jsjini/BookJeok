@@ -7,6 +7,7 @@ import com.yedam.search.vo.SearchVO;
 
 
 public interface SearchMapper {
-	List<SearchVO> selectKeyword(String today);
+	List<SearchVO> selectKeyword(String daysAgo);
 	List<BookVO> selectList(String keyword);
+	int insertKeyword(String search);
 }

@@ -11,13 +11,14 @@
 				<!-- Top Right (우측상단 메뉴)-->
 				<div class="right-content">
 					<ul class="list-main">
+
 						<c:choose>
 							<c:when test="${empty logId }">
-								<a class="login" data-toggle="modal" data-target="#loginModal" href="login.html#">로그인</a>
-								<a class="join" data-toggle="modal" data-target="#joinModal" href="join.html#">회원가입</a>
+								<li><a class="login" data-toggle="modal" data-target="#loginModal" href="login.html#">로그인</a><li>
+								<li><a class="join" data-toggle="modal" data-target="#joinModal" href="join.html#">회원가입</a><li>
 							</c:when>
 							<c:otherwise>
-								<a class="logout" href="logout.do">로그아웃</a>
+								<li><a class="logout" href="logout.do">로그아웃</a><li>
 							</c:otherwise>
 						</c:choose>
 						<li><i class="infomem"></i><a href="#">회원안내</a></li>
@@ -50,6 +51,9 @@
 								<i class="ti-search"></i>
 							</button>
 						</form>
+					</div>
+					<div class="search-popular pt-3">
+						<span>인기검색어 : </span>
 					</div>
 				</div>
 				<!-- 검색창 끝. -->
