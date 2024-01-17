@@ -20,6 +20,8 @@ import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
 import com.yedam.cart.command.ModifyCartControl;
 import com.yedam.cart.command.RemoveCartControl;
+import com.yedam.likeIt.command.LikeItControl;
+import com.yedam.likeIt.command.LikeItListJson;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.LogoutBookControl;
@@ -72,8 +74,14 @@ public class FrontController extends HttpServlet {
 		// 회원 관련
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
+		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
+
+		// 찜하기
+		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
+		map.put("/likeItListJson.do", new LikeItListJson());
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
+    
 		//마이페이지
 		
 		// 장바구니

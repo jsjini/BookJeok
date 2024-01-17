@@ -11,5 +11,5 @@ public class ReviewVO {
 	private int memberNo;
 	private int orderItemNo;
 	private String mname;
-
+	private int price; 
 }
