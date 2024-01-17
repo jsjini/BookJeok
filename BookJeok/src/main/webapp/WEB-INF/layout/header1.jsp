@@ -133,7 +133,6 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
-				</button>
 			</div>
 			<div class="modal-body">
 				<form action="memberJoin.do" method="post">
@@ -144,7 +143,8 @@
 							</tr>
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" name="id" id="id" required/></td>
+								<td><input type="text" name="id" id="id" required/>
+								<input type="button" id="confirmId" class = "checkSome" value="중복 확인"></td>
 							</tr>
 							<tr>
 								<th>이름</th>
@@ -159,7 +159,6 @@
 								<td><input type="text" name="email"
 									placeholder="ex. info@bookjk.com" id="email" required/></td>
 							</tr>
-
 							<tr>
 								<th>연령대(선택)</th>
 								<td><input type="radio" name="userAge" id="userAge" checked>선택안함</td>
@@ -208,4 +207,36 @@
 		</div>
 	</div>
 </div>
+
+<!-- 아이디 중복체크 -->
+<script>
+
+$('#checkSome').click(function({
+	if($('input[name="id"]').val().length == 0){
+		alert("아이디를 입력하세요");
+		return;
+	}
+	
+	$.ajax({
+			url: "idcheck.jsp",
+			data : { userid : $('input[name="id"]'.val())}
+	},
+	success : function(responseData){
+		alert('data:' + $.trim(responseData));
+		if($.trim(responseData) == 'YES'){
+			$('#id_message').html("<font color=blue>사용가능합니다</font>");
+			$('#id_message').show();
+			use = "possible";
+		}else{
+			$('#id_message').html("<font color=red>이미 사용중엔 ID입니다</font>");
+			$('#id_message').show();
+			use = "impossible";
+		}
+	}
+	});
+});
+
+
+
+</script>
 

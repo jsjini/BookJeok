@@ -10,7 +10,8 @@
           <th colspan="2">회원가입</th>
         </tr>
         <tr>
-          <th>아이디</th><td><input type="text" name="id" id="id" required/></td>
+          <th>아이디</th><td><input type="text" name="id" id="id" required/>
+          <input type="button" id="confirmId" class = "checkSome" value="중복체크"></td>
         </tr>
         <tr>
           <th>이름</th><td><input type="text" name="mName" id="name" required/></td>

@@ -31,6 +31,7 @@ public class LoginBookControl implements Control {
 			session.setAttribute("logId", vo.getId());// 세션객체에 로그인아이값을 저장.
 			session.setAttribute("logPw", vo.getPw());	
 			session.setAttribute("memberNo", vo.getMemberNo());	
+
 			try {
 				resp.sendRedirect("main.do");
 			} catch (IOException e) {

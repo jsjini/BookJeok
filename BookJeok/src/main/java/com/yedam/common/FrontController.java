@@ -24,6 +24,7 @@ import com.yedam.likeIt.command.LikeItControl;
 import com.yedam.likeIt.command.LikeItListJson;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.orderItem.command.ModifyOrderItemControl;
@@ -80,6 +81,7 @@ public class FrontController extends HttpServlet {
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
 		map.put("/likeItListJson.do", new LikeItListJson());
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
+		//map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
     
 		//마이페이지
