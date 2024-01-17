@@ -12,7 +12,7 @@
 					<ul class="list-main">
 						<li><i class="login"></i><a data-toggle="modal" data-target="#loginModal" href="login.html#">로그인</a></li>
 						<li><i class="join"></i><a data-toggle="modal" data-target="#joinModal" href="join.html#">회원가입</a></li>
-						<li><i class="infomem"></i><a href="#">회원안내</a></li>
+						<li><i class="infomem"></i><a href="#">마이페이지</a></li>
 					</ul>
 				</div>
 				<!-- End Top Right -->
@@ -43,6 +43,9 @@
 								<i class="ti-search"></i>
 							</button>
 						</form>
+					</div>
+					<div class="search-popular pt-3">
+						<span>인기검색어 : </span>
 					</div>
 				</div>
 				<!-- 검색창 끝. -->

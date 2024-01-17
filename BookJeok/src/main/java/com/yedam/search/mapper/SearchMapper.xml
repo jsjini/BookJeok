@@ -5,10 +5,18 @@
 
 <mapper namespace="com.yedam.search.mapper.SearchMapper">
 	<select id="selectKeyword" resultType="search" parameterType="string">
-		select * from search where sdt=#{today} order by 4 desc
+		select keyword, count(*) as hit
+		from search
+		where sdt between #{daysAgo} and sysdate
+		group by keyword
+		order by hit desc
 	</select>
 	
 	<select id="selectList" resultType="book" parameterType="string">
 		select * from book where name like '%'||#{keyword}||'%'
 	</select>
+	
+	<insert id="insertKeyword" parameterType="string">
+		insert into search values (search_sequence.nextval, #{search} , sysdate)
+	</insert>
 </mapper>
