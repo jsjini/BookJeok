@@ -12,6 +12,7 @@
 						<div class="row">
 							<div class="col-lg-7 col-12">
 								<div class="hero-text">
+									<!-- 
 									<h1>
 										<span>UP TO 50% OFF </span>Shirt For Man
 									</h1>
@@ -22,6 +23,7 @@
 									<div class="button">
 										<a href="#" class="btn">Shop Now!</a>
 									</div>
+									 -->
 								</div>
 							</div>
 						</div>
