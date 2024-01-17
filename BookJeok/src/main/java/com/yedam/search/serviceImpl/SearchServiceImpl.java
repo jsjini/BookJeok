@@ -17,12 +17,17 @@ public class SearchServiceImpl implements SearchService {
 
 
 	@Override
-	public List<SearchVO> searchKeyword(String today) {
-		return mapper.selectKeyword(today);
+	public List<SearchVO> searchKeyword(String daysAgo) {
+		return mapper.selectKeyword(daysAgo);
 	}
 
 	@Override
 	public List<BookVO> searchList(String keyword) {
 		return mapper.selectList(keyword);
+	}
+
+	@Override
+	public boolean addKeyword(String search) {
+		return mapper.insertKeyword(search) == 1;
 	}
 }
