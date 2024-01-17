@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.yedam.likeIt.mapper.LikeItMapper">
+	<select id="selectOne" parameterType="int" resultType="likeIt">
+		select member_no,			   
+	           l.book_no,	    
+	           b.img,
+	           b.name,
+	           b.author,
+	           b.comp,
+	           b.price
+		from book b, like_it l
+		where member_no=${memberNo}
+		and b.book_no=l.book_no
+
+
+
+	</select>
+
+
+</mapper>  

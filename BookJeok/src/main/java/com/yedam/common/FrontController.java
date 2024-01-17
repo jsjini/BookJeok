@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.yedam.book.command.BookBestListControl;
 import com.yedam.book.command.BookDetailControl;
-import com.yedam.search.command.SearchKeywordControl;
-import com.yedam.search.command.SearchListControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
@@ -21,11 +19,13 @@ import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
 import com.yedam.cart.command.ModifyCartControl;
 import com.yedam.cart.command.RemoveCartControl;
+import com.yedam.likeIt.command.LikeItControl;
+import com.yedam.likeIt.command.LikeItListJson;
 import com.yedam.member.command.JoinControl;
-import com.yedam.member.command.MemberJoinControl;
-import com.yedam.review.command.ReviewControl;
 import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.review.command.ReviewControl;
+import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
 
 
@@ -69,7 +69,10 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
 		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
-		//
+
+		// 찜하기
+		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
+		map.put("/likeItListJson.do", new LikeItListJson());
 		
 		// 주문 관련
 
