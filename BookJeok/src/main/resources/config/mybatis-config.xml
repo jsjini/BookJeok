@@ -11,9 +11,11 @@
 	<typeAliases>
 		<typeAlias alias="book" type="com.yedam.book.vo.BookVO" />
 		<typeAlias alias="cart" type="com.yedam.cart.vo.CartVO" />
+		<typeAlias alias="orderItem" type="com.yedam.orderItem.vo.OrderItemVO" />
 		<typeAlias alias="member" type="com.yedam.member.vo.MemberVO" />
 		<typeAlias alias="search" type="com.yedam.search.vo.SearchVO" />
 		<typeAlias alias="review" type="com.yedam.review.vo.ReviewVO" />
+		<typeAlias alias="likeIt" type="com.yedam.likeIt.vo.LikeItVO" />
 	</typeAliases>
 	
 	<environments default="development">

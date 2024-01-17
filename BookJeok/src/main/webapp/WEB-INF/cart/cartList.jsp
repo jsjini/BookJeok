@@ -10,7 +10,7 @@
 						<div class="orderStepN" style="margin-top:20px; 
 						border: 1px solid #aaa;
 						border-radius: 15px;
-						padding: 30px;
+						padding: 27px;
 						color: rgb(71, 71, 66);
 					">
 							<h2>쇼핑 카트</h2>
