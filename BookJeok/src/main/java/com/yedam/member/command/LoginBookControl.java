@@ -29,7 +29,8 @@ public class LoginBookControl implements Control {
 			// 로그인 성공. ->세션에 정보 담아야 됨. 세션객체에 로그인정보를 저장함.
 			HttpSession session = req.getSession(); //req.:요청정보
 			session.setAttribute("logId", vo.getId());// 세션객체에 로그인아이값을 저장.
-			session.setAttribute("logMName", vo.getMName());	
+			session.setAttribute("logPw", vo.getPw());	
+			session.setAttribute("memberNo", vo.getMemberNo());	
 			try {
 				resp.sendRedirect("main.do");
 			} catch (IOException e) {

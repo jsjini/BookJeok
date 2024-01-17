@@ -20,20 +20,10 @@ public class ModifyCartControl implements Control {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		String cartNo = req.getParameter("cno");
 		String quantity = req.getParameter("quan");
-		String memberNo = req.getParameter("mno");
-		String bookNo = req.getParameter("bno");
-		String name = req.getParameter("bookName");
-		String price = req.getParameter("bookPrice");
-		String img = req.getParameter("bookImg");
 		
-		CartVO vo = new CartVO(Integer.parseInt(cartNo), Integer.parseInt(quantity), Integer.parseInt(memberNo), Integer.parseInt(bookNo), name, Integer.parseInt(price), img);
+		CartVO vo = new CartVO();
 		vo.setCartNo(Integer.parseInt(cartNo));
 		vo.setQuantity(Integer.parseInt(quantity));
-		vo.setMemberNo(Integer.parseInt(memberNo));
-		vo.setBookNo(Integer.parseInt(bookNo));
-		vo.setName(name);
-		vo.setPrice(Integer.parseInt(price));
-		vo.setImg(img);
 		
 		CartService svc = new CartServiceImpl();
 		Map<String, Object> map = new HashMap<>();

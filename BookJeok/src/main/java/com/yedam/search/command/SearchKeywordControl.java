@@ -1,13 +1,16 @@
 package com.yedam.search.command;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.yedam.common.Control;
 import com.yedam.search.service.SearchService;
 import com.yedam.search.serviceImpl.SearchServiceImpl;
@@ -17,23 +20,29 @@ public class SearchKeywordControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		// 저장된 검색어 실시간으로 보여주는 기능
+		resp.setContentType("text/json;charset=utf-8");
+		// 검색어 실시간으로 보여주는 기능
 		SearchService svc = new SearchServiceImpl();
 		
-		// 오늘 날짜 기준
-		String today = "24/01/05"; 
+		// 어제 날짜 기준
+		Calendar today = Calendar.getInstance();
 		
-		//List<SearchVO> list = svc.searchList(today);
+		int year = today.get(Calendar.YEAR);
+		int month = today.get(Calendar.MONTH) + 1;
+		int day = today.get(Calendar.DATE) - 7;
 		
-		//req.setAttribute("searchVO", list);
+		String daysAgo = year + "/" + month + "/" + day;
 		
-		RequestDispatcher rd = req.getRequestDispatcher("book/bookList.tiles");
+		List<SearchVO> list = svc.searchKeyword(daysAgo);
+		
+		Gson gson = new GsonBuilder().create();
+				
 		try {
-			rd.forward(req, resp); // 요청을 재 지정하겠습니다.
-		} catch (ServletException | IOException e) {
+			resp.getWriter().print(gson.toJson(list));
+		} catch (IOException e) {
 			e.printStackTrace();
-		}
-
+		}	
+		
 	}
 
 }

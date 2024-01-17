@@ -15,6 +15,7 @@ import com.yedam.book.command.BookDetailControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
+import com.yedam.cart.command.AddCartControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
 import com.yedam.cart.command.ModifyCartControl;
@@ -23,7 +24,12 @@ import com.yedam.likeIt.command.LikeItControl;
 import com.yedam.likeIt.command.LikeItListJson;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.orderItem.command.ModifyOrderItemControl;
+import com.yedam.orderItem.command.OrderItemListControl;
+import com.yedam.orderItem.command.OrderItemListJson;
+import com.yedam.orderItem.command.RemoveOrderItemControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
@@ -73,15 +79,23 @@ public class FrontController extends HttpServlet {
 		// 찜하기
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
 		map.put("/likeItListJson.do", new LikeItListJson());
+		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
+		map.put("/logout.do", new LogoutBookControl());//로그아웃
+    
+		//마이페이지
 		
-		// 주문 관련
-
 		// 장바구니
 		map.put("/cartList.do", new CartListControl());
 		map.put("/cartListJson.do", new CartListJson());
 		map.put("/removeCart.do", new RemoveCartControl());
 		map.put("/modifyCart.do", new ModifyCartControl());
+		map.put("/addCart.do", new AddCartControl());
 
+		// 주문 관련
+		map.put("/orderItemList.do", new OrderItemListControl());
+		map.put("/orderItemListJson.do", new OrderItemListJson());
+		map.put("/remveOrderItem.do", new RemoveOrderItemControl());
+		map.put("/modifyOrderItem.do", new ModifyOrderItemControl());
 		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
