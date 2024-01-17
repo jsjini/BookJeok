@@ -13,9 +13,9 @@
 		 //console.log(item);
 		 if(idx < 5) {
 			 let span = document.createElement('span');
-			 span.innerHTML = `${item.keyword}  (${item.hit}회)`;
+			 span.innerHTML = ` ${item.keyword}  (${item.hit}회) `;
 			 document.querySelector('.search-popular').appendChild(span);
-			 span.setAttribute('class', 'mx-2');
+			 document.querySelector('.search-popular span').setAttribute('class', 'mx-2');
 		 }
 	 })
  })
