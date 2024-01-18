@@ -14,4 +14,6 @@ public interface OrderItemMapper {
 	// 주문아이템 수정
 	int updateOrderItem(OrderItemVO vo);
 	
+	// 주문아이템 등록
+	int insertOrderItem(OrderItemVO vo);
 }
