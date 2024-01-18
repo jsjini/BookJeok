@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>	
 	<script src="js2/cartList.js"></script>
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
@@ -13,7 +12,7 @@
 						padding: 27px;
 						color: rgb(71, 71, 66);
 					">
-							<h2>쇼핑 카트</h2>
+							<h2 id="memberNumber" data-memberno="${sessionScope.memberNo}">쇼핑 카트</h2>
 						</div>
 					</div>
 				</div>
@@ -73,8 +72,8 @@
 		</div>
 	</div>
 	<!--/ End Shopping Cart -->
-
-	
+	<form id="formOrder" action="orderItemPageList.do" method="post"><input type="hidden" name="orders" id="orders"></form>
+	<script src="js2/cartList.js"></script>
 	<script>
 		
 

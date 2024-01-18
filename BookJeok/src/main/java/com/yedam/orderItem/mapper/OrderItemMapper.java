@@ -16,4 +16,7 @@ public interface OrderItemMapper {
 	
 	// 주문아이템 등록
 	int insertOrderItem(OrderItemVO vo);
+	
+	// 주문번호 중복체크
+	OrderItemVO checkOrderNo(int odNo);
 }

@@ -31,7 +31,7 @@ public class CartListControl implements Control {
 //			e.printStackTrace();
 //		}
 //		req.setAttribute("cartList", list);
-
+		
 		RequestDispatcher rd = req.getRequestDispatcher("cart/cartList.tiles");
 		try {
 			rd.forward(req, resp);

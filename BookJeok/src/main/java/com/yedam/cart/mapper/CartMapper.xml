@@ -25,7 +25,7 @@
  	
  	<select id="checkCart" resultType="cart" parameterType="cart">
     	select * from cart 
-    	where member_No = #{memberNo} and book_No = #{bookNo}
+    	where member_no = #{memberNo} and book_no = #{bookNo}
 	</select>
 
 </mapper>  

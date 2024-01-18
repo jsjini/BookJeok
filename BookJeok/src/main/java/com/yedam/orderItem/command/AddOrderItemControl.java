@@ -18,25 +18,25 @@ public class AddOrderItemControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String memberNo = req.getParameter("memberNo");
+		String odNo = req.getParameter("odNo");
 		String bookNo = req.getParameter("bookNo");
 		String quantity = req.getParameter("quantity");
 		
 		OrderItemVO vo = new OrderItemVO();
-		vo.setMemberNo(Integer.parseInt(memberNo));
+		vo.setMemberNo(Integer.parseInt(odNo));
 		vo.setBookNo(Integer.parseInt(bookNo));
 		vo.setQuantity(Integer.parseInt(quantity));
 		
 		OrderItemService svc = new OrderItemServiceImpl();
 		Map<String, Object> map = new HashMap<>();
 		
-//		if(svc.addOrderItem(vo) == 1) {
-//			map.put("retCode", "OK");
-//		} else if (svc.addOrderItem(vo) == 2){
-//			map.put("retCode", "CK");
-//		} else {
-//			map.put("retCode", "NG");
-//		}
+		if(svc.addOrderItem(vo) == 1) {
+			map.put("retCode", "OK");
+		} else if (svc.addOrderItem(vo) == 2){
+			map.put("retCode", "CK");
+		} else {
+			map.put("retCode", "NG");
+		}
 		
 		Gson gson = new GsonBuilder().create();
 		try {
