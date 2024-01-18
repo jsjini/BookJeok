@@ -14,8 +14,8 @@
 
 						<c:choose>
 							<c:when test="${empty logId }">
-								<li><a class="login" data-toggle="modal" data-target="#loginModal" href="login.html#">로그인</a><li>
-								<li><a class="join" data-toggle="modal" data-target="#joinModal" href="join.html#">회원가입</a><li>
+								<li><a class="login" data-toggle="modal" data-target="#loginModal" href="#">로그인</a><li>
+								<li><a class="join" data-toggle="modal" data-target="#joinModal" href="#">회원가입</a><li>
 							</c:when>
 							<c:otherwise>
 								<li><a class="logout" href="logout.do">로그아웃</a><li>
@@ -72,10 +72,20 @@
 							aria-hidden="true"></i></a>
 					</div>
 					<!-- 장바구니 아이콘 -->
-					<div class="sinlge-bar shopping">
-						<a href="cartList.do" class="single-icon"><i class="ti-bag"></i>
-							<span class="total-count">2</span></a>
-					</div>
+					<c:choose>
+						<c:when test="${empty logId }">
+							<div class="sinlge-bar shopping">
+								<a href="main.do" class="single-icon"><i class="ti-bag"></i>
+									<span class="total-count">2</span></a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="sinlge-bar shopping">
+								<a href="cartList.do?memberNo=${memberNo }" class="single-icon"><i class="ti-bag"></i>
+									<span class="total-count">2</span></a>
+							</div>
+						</c:otherwise>
+					</c:choose>
 					<!-- 오른쪽 아이콘 끝. -->
 				</div>
 			</div>
@@ -90,7 +100,6 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
-				</button>
 			</div>
 			<div class="modal-body">
 				<form action="loginbook.do" method="post">
@@ -129,7 +138,7 @@
 <!-- 회원가입모달 -->
 <div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
 	aria-labelledby="joinModallabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
@@ -192,7 +201,7 @@
 							</tr>
 							<tr>
 								<td colspan="3" align="center"><input type="submit"
-									value="가입신청" class="btn btn-primary"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+									value="가입신청" class="btn btn-primary" id="joinPlease"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
 									<input type="reset" value="다시 입력" class="btn btn-warning">
 								</td>
 							</tr>
@@ -210,6 +219,13 @@
 
 <!-- 아이디 중복체크 -->
 <script>
+console.log($('#joinPlease'));
+
+document.querySelector("#joinPlease").addEventListener('click', function () {
+	$('#joinModal').modal('hide')
+	alert('회원가입완료');
+	console.log($('#joinPlease'));
+})
 
 $('#checkSome').click(function({
 	if($('input[name="id"]').val().length == 0){
