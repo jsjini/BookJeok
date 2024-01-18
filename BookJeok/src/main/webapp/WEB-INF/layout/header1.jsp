@@ -63,12 +63,12 @@
 					<!-- 오른쪽 아이콘 -->
 					<!-- 내서재 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="#" class="single-icon"><i class="fa fa-heart-o"
+						<a href="likeIt.do?memberNo=1" class="single-icon"><i class="fa fa-heart-o"
 							aria-hidden="true"></i></a>
 					</div>
 					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="#" class="single-icon"><i class="fa fa-user-circle-o"
+						<a href="likeIt.do?memberNo=1" class="single-icon"><i class="fa fa-user-circle-o"
 							aria-hidden="true"></i></a>
 					</div>
 					<!-- 장바구니 아이콘 -->
