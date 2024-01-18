@@ -19,9 +19,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 
 	<!-- StyleSheet -->
-
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="css/bootstrap.css">
+
 	<!-- Magnific Popup -->
 	<link rel="stylesheet" href="css/magnific-popup.min.css">
 	<!-- Font Awesome -->
@@ -47,7 +47,26 @@
 	<link rel="stylesheet" href="css/responsive.css">
 	<!-- 검색결과 관련 css -->
 	<link rel="stylesheet" href="css/search.css">
+	
+	<!-- Jquery -->
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.0.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	
+	<!-- Popper JS -->
+	<script src="js/popper.min.js"></script>
+	<!-- Color JS -->
+	<script src="js/colors.js"></script>
 
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+	
+	
+	
+	<!-- 검색어 JS -->
+	<script src="js/search.js"></script>
+	
 </head>
 
 <body class="js">
@@ -70,16 +89,8 @@
 	<tiles:insertAttribute name="footer" />
 	
 
-	<!-- Jquery -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/jquery-migrate-3.0.0.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
-	<!-- Popper JS -->
-	<script src="js/popper.min.js"></script>
-	<!-- Bootstrap JS -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Color JS -->
-	<script src="js/colors.js"></script>
+	
+	
 	<!-- Slicknav JS -->
 	<script src="js/slicknav.min.js"></script>
 	<!-- Owl Carousel JS -->
@@ -91,7 +102,7 @@
 	<!-- Countdown JS -->
 	<script src="js/finalcountdown.min.js"></script>
 	<!-- Nice Select JS -->
-	<script src="js/nicesellect.js"></script>
+	<!-- <script src="js/nicesellect.js"></script>  -->
 	<!-- Flex Slider JS -->
 	<script src="js/flex-slider.js"></script>
 	<!-- ScrollUp JS -->
@@ -103,8 +114,7 @@
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
 	
-	<!-- 검색어 JS -->
-	<script src="js/search.js"></script>
+	
 </body>
 
 </html>

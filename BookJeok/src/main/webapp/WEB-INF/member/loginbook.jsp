@@ -3,15 +3,15 @@
    
 <%  String id=(String)session.getAttribute("id");
   	if(id==null || id==""){
-		out.println("<script>alert('로그인되었습니다');</script>");
+		out.println("<script>alert('로그인이 필요한 서비스입니다.');</script>");
 	}	 %>
     
 <!-- 로그인하면 메인에서 로그아웃보이고 OOO님, 환영합니다 뜨게 -->
-  <form action="/main.do" method="post">
+ <form action="/main.do" method="post">
     <table class="table">
       <tbody>
         <tr>
-          <th colspan="2">북적북적 회원 로그인 해주세요
+          <th colspan="2">북적북적 회원 로그인 해주세요.
           <br> 회원이 아닌 손님은 회원가입을 진행해주세요 :)</th>         
         </tr>
         <tr>
@@ -28,4 +28,4 @@
         </tr>
       </tbody>
     </table>
-  </form>    
+  </form>   
