@@ -12,9 +12,9 @@
 	 result.forEach((item, idx) => {
 		 //console.log(item);
 		 if(idx < 5) {
-			 let span = document.createElement('span');
-			 span.innerHTML = ` ${item.keyword}  (${item.hit}회) `;
-			 document.querySelector('.search-popular').appendChild(span);
+			 let newSpan = document.createElement('span');
+			 newSpan.innerHTML = `${idx +1}위 ${item.keyword} `;
+			 document.querySelector('.search-popular').appendChild(newSpan);
 			 document.querySelector('.search-popular span').setAttribute('class', 'mx-2');
 		 }
 	 })
