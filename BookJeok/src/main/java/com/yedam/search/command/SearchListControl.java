@@ -26,6 +26,7 @@ public class SearchListControl implements Control {
 		
 		List<BookVO> result = svc.searchList(search); // 검색결과
 		req.setAttribute("resultVO", result);
+		req.setAttribute("keyword", search);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookSearchList.tiles");
 		try {
