@@ -11,11 +11,19 @@
 				<!-- Top Right (우측상단 메뉴)-->
 				<div class="right-content">
 					<ul class="list-main">
-
 						<c:choose>
 							<c:when test="${empty logId }">
-								<li><a class="login" data-toggle="modal" data-target="#loginModal" href="login.html#">로그인</a><li>
-								<li><a class="join" data-toggle="modal" data-target="#joinModal" href="join.html#">회원가입</a><li>
+								<li>! 로그인해주세요 →<li>
+							</c:when>
+							<c:otherwise>
+								<li>${logName }님, 좋은 하루 되세요:) <li>
+							</c:otherwise>
+						</c:choose>
+											
+						<c:choose>
+							<c:when test="${empty logId }">
+								<li><a class="login" data-toggle="modal" data-target="#loginModal" href="#">로그인</a><li>
+								<li><a class="join" data-toggle="modal" data-target="#joinModal" href="#">회원가입</a><li>
 							</c:when>
 							<c:otherwise>
 								<li><a class="logout" href="logout.do">로그아웃</a><li>
@@ -25,7 +33,6 @@
 					</ul>
 				</div>
 				<!-- End Top Right -->
-
 			</div>
 		</div>
 	</div>
@@ -63,19 +70,29 @@
 					<!-- 오른쪽 아이콘 -->
 					<!-- 내서재 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="#" class="single-icon"><i class="fa fa-heart-o"
+						<a href="likeIt.do?memberNo=1" class="single-icon"><i class="fa fa-heart-o"
 							aria-hidden="true"></i></a>
 					</div>
 					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="#" class="single-icon"><i class="fa fa-user-circle-o"
+						<a href="likeIt.do?memberNo=1" class="single-icon"><i class="fa fa-user-circle-o"
 							aria-hidden="true"></i></a>
 					</div>
 					<!-- 장바구니 아이콘 -->
-					<div class="sinlge-bar shopping">
-						<a href="cartList.do" class="single-icon"><i class="ti-bag"></i>
-							<span class="total-count">2</span></a>
-					</div>
+					<c:choose>
+						<c:when test="${empty logId }">
+							<div class="sinlge-bar shopping">
+								<a href="main.do" class="single-icon"><i class="ti-bag"></i>
+									<span class="total-count">2</span></a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="sinlge-bar shopping">
+								<a href="cartList.do?memberNo=${memberNo }" class="single-icon"><i class="ti-bag"></i>
+									<span class="total-count">2</span></a>
+							</div>
+						</c:otherwise>
+					</c:choose>
 					<!-- 오른쪽 아이콘 끝. -->
 				</div>
 			</div>
@@ -86,11 +103,10 @@
 <!-- 로그인모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 	aria-labelledby="loginModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
-				</button>
 			</div>
 			<div class="modal-body">
 				<form action="loginbook.do" method="post">
@@ -129,7 +145,7 @@
 <!-- 회원가입모달 -->
 <div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
 	aria-labelledby="joinModallabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
@@ -139,7 +155,7 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<th colspan="2">회원가입</th>
+								<th colspan="2" id="joinjoin">회원가입</th>
 							</tr>
 							<tr>
 								<th>아이디</th>
@@ -192,7 +208,7 @@
 							</tr>
 							<tr>
 								<td colspan="3" align="center"><input type="submit"
-									value="가입신청" class="btn btn-primary"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+									value="가입신청" class="btn btn-primary" id="joinsucc"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
 									<input type="reset" value="다시 입력" class="btn btn-warning">
 								</td>
 							</tr>
@@ -208,35 +224,67 @@
 	</div>
 </div>
 
-<!-- 아이디 중복체크 -->
-<script>
 
-$('#checkSome').click(function({
-	if($('input[name="id"]').val().length == 0){
-		alert("아이디를 입력하세요");
-		return;
-	}
+<!-- 회원가입 후 가입 완료 알림창. 가입 완료되고 메인이 다시 뜰 때 모달 알리기--> 
+<!--<div class="modal fade" id="joinendModal" tabindex="-1" role="dialog"
+	aria-labelledby="joinendModallabel" aria-hidden="true">
+	<div class="modal-dialog .modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+			</div>
+			<div class="modal-body">
+			<p>회원이 되신 걸 환영합니다. 로그인 해주세요.</p>
+			</div>		
+		</div>
+	</div>
+</div>-->
+
+<div>
+
+</div>
+
+
+	<!-- Jquery -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/jquery-migrate-3.0.0.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<!-- Popper JS -->
+	<script src="js/popper.min.js"></script>
+	<!-- Bootstrap JS -->
+	<script src="js/bootstrap.min.js"></script>
+		<!-- Color JS -->
+	<script src="js/colors.js"></script>
 	
-	$.ajax({
-			url: "idcheck.jsp",
-			data : { userid : $('input[name="id"]'.val())}
-	},
-	success : function(responseData){
-		alert('data:' + $.trim(responseData));
-		if($.trim(responseData) == 'YES'){
-			$('#id_message').html("<font color=blue>사용가능합니다</font>");
-			$('#id_message').show();
-			use = "possible";
-		}else{
-			$('#id_message').html("<font color=red>이미 사용중엔 ID입니다</font>");
-			$('#id_message').show();
-			use = "impossible";
-		}
-	}
-	});
-});
+<!-- 아이디 중복체크. ajax 아니고 페이지요청이라서 바꿔야됨.. -->
 
 
+<!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
+<script>
+/* if(#joinsucc){
+	document.querySelector('#joinsucc').addEventListener("click", function(){
+		alert("가입이 완료되었습니다. 로그인해주세요");
+	})
+	
+} */
 
+$('#joinsucc').on('click', function() {
+	alert("가입이 완료되었습니다. 로그인해주세요");
+})
+
+
+/*
+$('#joinmodal').$('#joinsucc').on("click",function(){
+	alert("가입이 완료되었습니다. 로그인해주세요");
+})
+*/
+
+/* 모달
+let msg = '${param.msg}'
+	if(msg != '')
+		$('#joinendModal').modal()
+*/
 </script>
+
+
+
 

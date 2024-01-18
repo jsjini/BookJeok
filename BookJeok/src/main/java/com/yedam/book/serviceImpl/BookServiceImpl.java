@@ -1,6 +1,7 @@
 package com.yedam.book.serviceImpl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,13 +33,24 @@ public class BookServiceImpl  implements BookService{
 		return mapper.selectNewList();
 	}
 
-
-	
 	@Override
 	public List<BookVO> bookGenreList(BookVO cat) {
-		return mapper.selectGenreList(cat);
+		// TODO Auto-generated method stub
+		return null;
 	}
-	
+
+	@Override
+	public List<BookVO> ListPaging(BookVO vo) {
+		return mapper.listPaging(vo);
+	}
+
+	@Override
+	public int countList() {
+		return mapper.countList();
+	}
+
+
+
 	
 
 }

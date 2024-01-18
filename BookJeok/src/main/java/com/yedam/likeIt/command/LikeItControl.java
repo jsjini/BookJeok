@@ -20,7 +20,7 @@ public class LikeItControl implements Control {
 		String memberNo = req.getParameter("memberNo");
 		
 		LikeItServiceImpl svc = new LikeItServiceImpl();
-		List<LikeItVO> LikeItInfo = svc.selectOne(Integer.parseInt(memberNo));
+		List<LikeItVO> LikeItInfo = svc.selectList(Integer.parseInt(memberNo));
 		
 		req.setAttribute("LikeItVO", LikeItInfo);
 		
