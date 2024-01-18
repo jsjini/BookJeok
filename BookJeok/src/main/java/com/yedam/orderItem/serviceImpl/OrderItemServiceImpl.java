@@ -29,4 +29,14 @@ public class OrderItemServiceImpl implements OrderItemService {
 		return mapper.updateOrderItem(vo) == 1;
 	}
 
+	@Override
+	public int addOrderItem(OrderItemVO vo) {
+		// 주문번호 중복체크 
+//		OrderItemVO checkOrderNo = mapper.checkOrderNo(vo.getOdNo());
+//		if (checkOrderNo != null) {
+//			return 2;
+//		}
+		return mapper.insertOrderItem(vo);
+	}
+
 }

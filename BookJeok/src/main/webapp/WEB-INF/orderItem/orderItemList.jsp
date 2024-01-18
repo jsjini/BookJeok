@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-	<script src="js2/orderItemList.js"></script>
+	
 	<style>
 		.topLine{
 			width: 110px;
@@ -32,7 +32,7 @@
 						padding: 27px;
 						color: rgb(71, 71, 66);
 					">
-							<h2>주문 / 결제</h2>
+							<h2 id="memberNumber" data-memberno="${sessionScope.memberNo}" data-odno="${odNo}">주문 / 결제</h2>
 						</div>
 					</div>
 				</div>
@@ -47,9 +47,6 @@
 					<div class="bread-inner">
 						<div>
 							<h5>주문도서내역</h5>
-						</div>
-						<div class="right">
-							<button class="moveCart">카트로 가기</button>
 						</div>
 					</div>
 				</div>
@@ -185,3 +182,9 @@
 		</div>
 	</div>
 	<!--/ End Shopping Cart -->
+
+<script>
+	var list = ${orders};
+	console.log(list);
+</script>
+	<script src="js2/orderItemList.js"></script>

@@ -3,7 +3,9 @@
  */
 
 
-let memberNo = 3;
+let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+let today = getToday();
+console.log(memberNo, today);
 showCart(memberNo);
 
 
@@ -91,24 +93,6 @@ function maketr(item) {
 	return newtbody;
 }
 
-
-
-function orderBtnEvent() {
-	document.querySelector("#orderBtn").addEventListener("click", function () {
-		let orders = [];
-		let checks = document.querySelectorAll('#cartList .selCheck');
-		checks.forEach(check => {
-			if (check.checked == true) {
-					let bookNo1 = check.dataset.bookno;
-					let quantity1 = check.dataset.quantity;
-					let order = {"bookNo": bookNo1, "quantity": quantity1}
-					orders.push(order);
-			}
-		})
-		console.log(orders);
-	})
-}
-
 // const form = {
 // 	memberNo: '${}',
 // 	bookNo: '${}',
@@ -183,6 +167,75 @@ function modifyCartEvent() {
 				}
 			}
 		})
+	})
+}
+
+// function addOrderItemEvent() {
+
+// 	let orderNo = 0;
+// 	let bookNum = 0;
+// 	let quan = 0;
+// 	fetch("addOrderItem.do?odNo=" + orderNo + "&bookNo=" + bookNum + "&quantity=" + quan)
+// 	.then(result => result.json())
+// 	.then(result => {
+// 		if(result.retCode == 'OK') {
+
+// 		}
+// 	})
+// }
+
+// function orderBtnEvent() {
+// 	let orderBtn = document.querySelector("#orderBtn");
+// 	orderBtn.addEventListener("click", function (e) {
+// 		e.preventDefault();
+// 		// let orders = [];
+// 		let odNoCheck = 1000;
+// 		let checks = document.querySelectorAll('#cartList .selCheck');
+// 		let orderNo = memberNo + odNoCheck;
+// 		checks.forEach(check => {
+// 			console.log(check);
+// 			if (check.checked == true) {
+// 				let bookNum = check.dataset.bookno;
+// 				let quan = check.dataset.quantity;
+// 				console.log(orderNo, bookNum, quan);
+// 				fetch("addOrderItem.do?odNo=" + orderNo + "&bookNo=" + bookNum + "&quantity=" + quan)
+// 					.then(result => result.json())
+// 					.then(result => {
+// 						if (result.retCode == "CK") {
+// 							odNoCheck++;
+// 						}
+// 					})
+// 				// let order = {"bookNo": bookNo1, "quantity": quantity1}
+// 				// orders.push(order);
+// 			}
+// 		})
+// 		fetch("orderItemList.do?odNo=" + orderNo);
+// 	})
+// }
+
+function orderBtnEvent() {
+	let orderBtn = document.querySelector("#orderBtn");
+	orderBtn.addEventListener("click", function (e) {
+		e.preventDefault();
+		let orders = [];
+		let order22 = '';
+		let checks = document.querySelectorAll('#cartList .selCheck');
+		checks.forEach(check => {
+			// console.log(check);
+			if (check.checked == true) {
+
+				let bookNo1 = check.dataset.bookno;
+				let quantity1 = check.dataset.quantity;
+				let order = { "bookNo": bookNo1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1 }
+				orders.push(order);
+				order22+= check.closest("tr").innerHTML;
+			}
+		})
+		console.log(order22);
+		let orders1 = JSON.stringify(orders);
+		// fetch("orderItemPageList.do?orders=" + orders1);
+		document.querySelector('#orders').value = orders1;
+		//formOrder.submit();
 	})
 }
 
@@ -271,4 +324,13 @@ function createOrderBtn() {
 		<a href="#" class="btn" id="orderBtn" style="font-weight: bold; font-size: larger;">주문하기</a> <a href="#" class="btn" style="font-weight: bold; font-size: larger;">쇼핑 계속하기</a>
 	</div>`
 	return createBtn;
+}
+
+function getToday() {
+	var date = new Date();
+	var year = date.getFullYear();
+	var month = ("0" + (1 + date.getMonth())).slice(-2);
+	var day = ("0" + date.getDate()).slice(-2);
+
+	return year + month + day;
 }

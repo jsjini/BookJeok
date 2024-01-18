@@ -23,4 +23,9 @@
   		insert into order_item values (order_item_seq.nextval, #{odNo}, #{bookNo}, #{quantity})
   	</insert>
   	
+  	<select id="checkOrderNo" resultType="orderItem" parameterType="int">
+    	select od_no from orders
+    	where od_no = #{odNo}
+	</select>
+  	
 </mapper> 

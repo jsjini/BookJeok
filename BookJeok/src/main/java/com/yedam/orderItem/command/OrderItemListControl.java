@@ -13,6 +13,8 @@ public class OrderItemListControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		String odNo = req.getParameter("odNo");
+		req.setAttribute("odNo", odNo);
 		RequestDispatcher rd = req.getRequestDispatcher("orderItem/orderItemList.tiles");
 		try {
 			rd.forward(req, resp);

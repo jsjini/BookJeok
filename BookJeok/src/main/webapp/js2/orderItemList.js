@@ -2,52 +2,53 @@
  * 
  */
 
-let odNo = 1;
-let memberNo = 3;
+let odNo = document.querySelector('#memberNumber').dataset.odno;
+let memberNo = document.querySelector('#memberNumber').dataset.memberno;
 showOrderItem(odNo);
 
 function showOrderItem() {
-    fetch("orderItemListJson.do?odNo=" + odNo)
-        .then(result => result.json())
-        .then(result => {
-            console.log(result);
-            result.forEach(item => {
-                console.log(item);
-                const newtbody = maketr(item);
-                orderItemList.insertAdjacentHTML("beforeend", newtbody);
-            });
+	fetch("orderItemListJson.do?odNo=" + odNo)
+		.then(result => result.json())
+		.then(result => {
+			console.log(result);
+			result.forEach(item => {
+				console.log(item);
+				const newtbody = maketr(item);
+				orderItemList.insertAdjacentHTML("beforeend", newtbody);
+			});
 
-            // 토탈 출력
-            makeTotal();
+			// 토탈 출력
+			makeTotal();
 
-            // 주문아이템 삭제 이벤트 등록
-            removeOrderItemEvent();
+			// 주문아이템 삭제 이벤트 등록
+			removeOrderItemEvent();
 
-            // 플러스, 마이너스 버튼 이벤트 등록
-            btnEvent();
+			// 플러스, 마이너스 버튼 이벤트 등록
+			btnEvent();
 
-            // 카트 수정 이벤트 등록
-            modifyOrderItemEvent();
+			// 카트 수정 이벤트 등록
+			modifyOrderItemEvent();
 
-            // 상품 체크박스 이벤트 등록
-            allCheckboxEvent();
-            selCheckboxEvent();
+			// 상품 체크박스 이벤트 등록
+			allCheckboxEvent();
+			selCheckboxEvent();
 
-            // 카트로 이동 버튼 이벤트 등록
-            moveCart();
-        })
+
+		})
 }
 
-function moveCart() {
-    let moveCart = document.querySelector(".moveCart");
-    moveCart.addEventListener("click", function () {
-        window.location.href = "cartList.do";
-    })
-}
+// function moveCart() {
+//     let moveCart = document.querySelector(".moveCart");
+//     moveCart.addEventListener("click", function () {
+//         window.location.href = "cartList.do";
+//     })
+// }
+
+
 
 function maketr(item) {
-    let totalPrice = item.price * item.quantity;
-    const newtbody = `<tr>
+	let totalPrice = item.price * item.quantity;
+	const newtbody = `<tr>
 			<td><input type="checkbox" class="selCheck" checked></td>
 			<td class="image" data-title="No"><img src="images/${item.img}"
 					alt="#"></td>
@@ -84,8 +85,10 @@ function maketr(item) {
 			<td class="action"><a href="#" class="remBtn" data-orderitemNo="${item.orderitemNo}"><i
 						class="ti-trash remove-icon"></i></a></td>
 		</tr>`
-    return newtbody;
+	return newtbody;
 }
+
+
 
 function modifyOrderItemEvent() {
 	let modOrderItems = document.querySelectorAll("#orderItemList .modBtn");
@@ -127,95 +130,95 @@ function removeOrderItemEvent() {
 		remOrderItem.addEventListener("click", function (e) {
 			console.log(remOrderItem);
 			e.preventDefault();
-            if(confirm("삭제하시겠습니까?")) {
-			let orderitemNo = remOrderItem.dataset.orderitemno;
-			console.log(orderitemNo);
-			fetch("remveOrderItem.do?orderitemNo=" + orderitemNo)
-				.then(result => result.json())
-				.then(result => {
-					if (result.retCode == "OK") {
-						alert('삭제됨.');
-						// remCart.closest("tr").remove();
-						// orderItemList.innerHTML = '';
-						// addPoint.innerHTML = '';
-						// totalAmount.innerHTML = '';
-						// showOrderItem(odNo);
-                        location.reload();
-					} else {
-						alert('삭제 중 오류발생.');
-					}
-				})
-            }
+			if (confirm("삭제하시겠습니까?")) {
+				let orderitemNo = remOrderItem.dataset.orderitemno;
+				console.log(orderitemNo);
+				fetch("remveOrderItem.do?orderitemNo=" + orderitemNo)
+					.then(result => result.json())
+					.then(result => {
+						if (result.retCode == "OK") {
+							alert('삭제됨.');
+							// remCart.closest("tr").remove();
+							// orderItemList.innerHTML = '';
+							// addPoint.innerHTML = '';
+							// totalAmount.innerHTML = '';
+							// showOrderItem(odNo);
+							location.reload();
+						} else {
+							alert('삭제 중 오류발생.');
+						}
+					})
+			}
 		})
 	})
 }
 
 function allCheckboxEvent() {
-    $('.main-hading').find(':input').on('click', function () {
-        $('#orderItemList').find(':checkbox').prop('checked', this.checked);
-        makeTotal();
-    });
+	$('.main-hading').find(':input').on('click', function () {
+		$('#orderItemList').find(':checkbox').prop('checked', this.checked);
+		makeTotal();
+	});
 
 }
 
 function selCheckboxEvent() {
-    let selChecks = document.querySelectorAll(".selCheck");
-    selChecks.forEach(selCheck => {
-        selCheck.addEventListener("change", function () {
-            makeTotal();
-        })
-    })
+	let selChecks = document.querySelectorAll(".selCheck");
+	selChecks.forEach(selCheck => {
+		selCheck.addEventListener("change", function () {
+			makeTotal();
+		})
+	})
 }
 
 function btnEvent() {
-    $(".plusBtn").on("click", function () {
-        let price = $(this).closest("tr").find(".price").find("span").text();
-        let quantity = $(this).parent("div").parent("div").find("input").val();
-        $(this).parent("div").parent("div").find("input").val(++quantity);
-        $(this).closest("td").next("td").find("span").text(price * quantity);
-        // makePoint();
-    });
+	$(".plusBtn").on("click", function () {
+		let price = $(this).closest("tr").find(".price").find("span").text();
+		let quantity = $(this).parent("div").parent("div").find("input").val();
+		$(this).parent("div").parent("div").find("input").val(++quantity);
+		$(this).closest("td").next("td").find("span").text(price * quantity);
+		// makePoint();
+	});
 
-    $(".minusBtn").on("click", function () {
-        let price = $(this).closest("td").prev().find("span").text();
-        let quantity = $(this).parent("div").parent("div").find("input").val();
-        if (quantity > 1) {
-            $(this).parent("div").parent("div").find("input").val(--quantity);
-        }
-        $(this).closest("td").next("td").find("span").text(price * quantity);
-        // makePoint();
-    });
+	$(".minusBtn").on("click", function () {
+		let price = $(this).closest("td").prev().find("span").text();
+		let quantity = $(this).parent("div").parent("div").find("input").val();
+		if (quantity > 1) {
+			$(this).parent("div").parent("div").find("input").val(--quantity);
+		}
+		$(this).closest("td").next("td").find("span").text(price * quantity);
+		// makePoint();
+	});
 }
 
 function makeTotal() {
-    let checks = document.querySelectorAll('#orderItemList .selCheck');
-    console.log(checks);
-    let totalPoint = 0;
-    let totalQuantity = 0;
-    let totalType = 0;
-    let deliveryPrice = "무료";
-    let totalPrice = 0;
-    checks.forEach(check => {
-        console.log(check);
-        if (check.checked == true) {
-            let sumPrice = check.closest("tr").querySelector(".total-amount");
-            totalPrice += parseInt(sumPrice.innerText);
+	let checks = document.querySelectorAll('#orderItemList .selCheck');
+	console.log(checks);
+	let totalPoint = 0;
+	let totalQuantity = 0;
+	let totalType = 0;
+	let deliveryPrice = "무료";
+	let totalPrice = 0;
+	checks.forEach(check => {
+		console.log(check);
+		if (check.checked == true) {
+			let sumPrice = check.closest("tr").querySelector(".total-amount");
+			totalPrice += parseInt(sumPrice.innerText);
 
-            let quantity = check.closest("tr").querySelector(".input-number");
-            totalQuantity += parseInt(quantity.value);
+			let quantity = check.closest("tr").querySelector(".input-number");
+			totalQuantity += parseInt(quantity.value);
 
-            let type = check.closest("tr").querySelector(".modBtn");
-            for (i = 1; i <= 100; i++) {
-                if (type.dataset.bookno == i) {
-                    totalType++;
-                }
-            }
-        }
-    })
-    totalPoint = totalPrice * 0.05;
-    document.querySelector(".totalPoint").innerText = totalPoint;
-    document.querySelector(".totalQuantity").innerText = totalQuantity;
-    document.querySelector(".totalType").innerText = totalType;
-    document.querySelector(".totalPrice").innerText = totalPrice;
-    document.querySelector(".deliveryPrice").innerText = deliveryPrice;
+			let type = check.closest("tr").querySelector(".modBtn");
+			for (i = 1; i <= 100; i++) {
+				if (type.dataset.bookno == i) {
+					totalType++;
+				}
+			}
+		}
+	})
+	totalPoint = totalPrice * 0.05;
+	document.querySelector(".totalPoint").innerText = totalPoint;
+	document.querySelector(".totalQuantity").innerText = totalQuantity;
+	document.querySelector(".totalType").innerText = totalType;
+	document.querySelector(".totalPrice").innerText = totalPrice;
+	document.querySelector(".deliveryPrice").innerText = deliveryPrice;
 }

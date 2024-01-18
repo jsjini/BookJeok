@@ -15,16 +15,16 @@ public class OrderItemVO {
 	private int price;
 	private String img;
 	
-	private int orderitemNo; // 기능 지울때 지우자.
 	//만들어 낼 값
 	private int totalPrice;
 	private int point;
 	private int totalPoint;
-	
 	
 	public void totalInfo() {
 		this.totalPrice = this.price * this.quantity;
 		this.point = (int)(this.price * 0.05);
 		this.totalPoint = (int)(this.totalPrice * 0.05);
 	}
+
+	
 }

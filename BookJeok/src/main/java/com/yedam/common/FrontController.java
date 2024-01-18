@@ -32,6 +32,7 @@ import com.yedam.orderItem.command.AddOrderItemControl;
 import com.yedam.orderItem.command.ModifyOrderItemControl;
 import com.yedam.orderItem.command.OrderItemListControl;
 import com.yedam.orderItem.command.OrderItemListJson;
+import com.yedam.orderItem.command.OrderItemPageListControl;
 import com.yedam.orderItem.command.RemoveOrderItemControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
@@ -96,13 +97,14 @@ public class FrontController extends HttpServlet {
 		map.put("/addCart.do", new AddCartControl());
 
 		// 주문 관련
+		map.put("/orderItemPageList.do", new OrderItemPageListControl());
 		map.put("/orderItemList.do", new OrderItemListControl());
-		map.put("/orderList.do", new OrderListControl());
 		map.put("/orderItemListJson.do", new OrderItemListJson());
 		map.put("/remveOrderItem.do", new RemoveOrderItemControl());
 		map.put("/modifyOrderItem.do", new ModifyOrderItemControl());
 		map.put("/addOrderItem.do", new AddOrderItemControl());
 		
+		map.put("/orderList.do", new OrderListControl());
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
 		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어
