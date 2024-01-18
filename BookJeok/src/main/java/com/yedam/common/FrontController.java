@@ -15,6 +15,7 @@ import com.yedam.book.command.BookDetailControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
+import com.yedam.book.command.PagingListJson;
 import com.yedam.cart.command.AddCartControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
@@ -61,13 +62,10 @@ public class FrontController extends HttpServlet {
 		
 		// 도서 관련
 		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
-		
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
-		 
 		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
-		
 		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
-		
+		//map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
 		// 목록 관련
