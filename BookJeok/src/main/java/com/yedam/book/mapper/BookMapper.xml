@@ -35,17 +35,25 @@
   </where>
 	</select>
 	<!-- 페이징 용 -->
-<select id="listPaging" resultType="book">
-	select * from(
-select rownum as r,b.*from
+<select id="selectPageList" resultType="book">
+	select b.* from(
+select rownum as r,a.*
+from
 (select *   
 from book
-order by book_no)b)
-   where r BETWEEN #{start} AND #{end}
+<where>
+<if test ='bookNo != null'>
+bookno = #{bookNo}
+</if>
+</where>
+order by 1)a)b
+  <![CDATA[
+  where b.r > (#{page}-1)*10  AND b.r <= #{page}*12
+  ]]> 
 
 </select>
 	<!-- 총 게시글 갯수 출력 -->
-<select id="countList" resultType="int">
+<select id="selectCount" resultType="int">
 	SELECT COUNT(*) FROM BOOK
 </select>
 </mapper>

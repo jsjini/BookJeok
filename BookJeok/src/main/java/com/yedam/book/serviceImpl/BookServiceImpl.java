@@ -34,19 +34,19 @@ public class BookServiceImpl  implements BookService{
 	}
 
 	@Override
-	public List<BookVO> bookGenreList(BookVO cat) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<BookVO> bookGenreList(BookVO cat) {	
+		return mapper.selectGenreList(cat);
+	}
+
+
+	@Override
+	public List<BookVO> booksPagingList(int bookNo, int page) {
+		return mapper.selectPageList(bookNo, page);
 	}
 
 	@Override
-	public List<BookVO> ListPaging(BookVO vo) {
-		return mapper.listPaging(vo);
-	}
-
-	@Override
-	public int countList() {
-		return mapper.countList();
+	public int totalCnt() {
+		return mapper.selectCount();
 	}
 
 
