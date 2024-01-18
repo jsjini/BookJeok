@@ -37,12 +37,12 @@ function showOrderItem() {
 		})
 }
 
-// function moveCart() {
-//     let moveCart = document.querySelector(".moveCart");
-//     moveCart.addEventListener("click", function () {
-//         window.location.href = "cartList.do";
-//     })
-// }
+function moveCart() {
+    let moveCart = document.querySelector(".moveCart");
+    moveCart.addEventListener("click", function () {
+        window.location.href = "cartList.do";
+    })
+}
 
 
 

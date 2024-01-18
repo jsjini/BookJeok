@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>	
-	<script src="js2/cartList.js"></script>
 	<!-- Breadcrumbs -->
 	<div class="breadcrumbs">
 		<div class="container">
