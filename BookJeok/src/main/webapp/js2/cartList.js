@@ -228,7 +228,7 @@ function orderBtnEvent() {
 				let quantity1 = check.dataset.quantity;
 				let order = { "bookNo": bookNo1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1 }
 				orders.push(order);
-				order22+= check.closest("tr").innerHTML;
+				order22+= "<tr>"+check.closest("tr").innerHTML +"</tr>";
 			}
 		})
 		console.log(order22);
