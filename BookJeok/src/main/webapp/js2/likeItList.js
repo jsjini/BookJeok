@@ -3,41 +3,23 @@
  */
 
 
-showCart();
 
 
-function showCart() {
-	fetch("likeItListJson.do?memberNo=1")
-		.then(result => result.json())
-		.then(result => {
-			console.log(result);
-			let lastPrice = 0;
-			let totalPoint = 0;
-			result.forEach(item => {
-				console.log(item);
-				lastPrice += item.price;
-				totalPoint += item.addPoint;
-				const newtbody = maketr(item);
-				likeItList.insertAdjacentHTML("beforeend", newtbody);
-			});
 
-			// 토탈 출력
-			makeTotal();
 
-			// 카트 삭제 이벤트 등록
-			removeCartEvent();
+			// 찜하기 삭제 이벤트 등록
+			//removeLikeItEvent();
 
-			// 플러스, 마이너스 버튼 이벤트 등록
-			btnEvent();
+			
 
 			// 카트 수정 이벤트 등록
-			modifyCartEvent();
+			//modifyCartEvent();
 
 			// 상품 체크박스 이벤트 등록
 			allCheckboxEvent();
 			selCheckboxEvent();
-		})
-}
+		
+
 
 function selCheckboxEvent() {
 	let selChecks = document.querySelectorAll(".selCheck");
@@ -108,6 +90,15 @@ function addCartEvent() {
 	})
 }
 
+//삭제버튼 함수
+// function trashBtnEvent(){
+// 	$("#ti-trash.remove-icon").on("click",function(){
+// 		console.log(event.target);
+// 	})
+// }
+
+// trashBtnEvent();
+
 function cartAlert(result) {
 	if (result == '0') {
 		alert("장바구니에 추가를 하지 못하였습니다.");
@@ -128,32 +119,31 @@ function allCheckboxEvent() {
 
 }
 
+//function removeLikeItEvent() {
+	console.log(remLikeIts);
+    let remLikeIts = document.querySelectorAll("#selectList .remBtn");
+    remLikeIts.forEach(remLikeIt => {
+        remLikeIt.addEventListener("click", function (e) {
+            console.log(remLikeIt);
+            e.preventDefault();
+            let bookNo = remLikeIt.dataset.bookNo; // dataset.bookNo로 수정
+            console.log(bookNo);
+            fetch("removeLikeIt.do?bookNo=" + bookNo)
+                .then(result => result.json())
+                .then(result => {
+                    if (result.retCode == "OK") {
+                        alert('삭제됨.');
+                        // 서버에서 삭제 후 목록을 다시 불러와서 갱신
+                        refreshLikeItList();
+                    } else {
+                        alert('삭제 중 오류 발생.');
+                    }
+                });
+        });
+    });
+//}
 
-function removeCartEvent() {
-	let remCarts = document.querySelectorAll("#cartList .remBtn");
-	remCarts.forEach(remCart => {
-		remCart.addEventListener("click", function (e) {
-			console.log(remCart);
-			e.preventDefault();
-			let cartNo = remCart.dataset.cartno;
-			console.log(cartNo);
-			fetch("removeCart.do?cartNo=" + cartNo)
-				.then(result => result.json())
-				.then(result => {
-					if (result.retCode == "OK") {
-						alert('삭제됨.');
-						// remCart.closest("tr").remove();
-						cartList.innerHTML = '';
-						addPoint.innerHTML = '';
-						totalAmount.innerHTML = '';
-						showCart();
-					} else {
-						alert('삭제 중 오류발생.');
-					}
-				})
-		})
-	})
-}
+
 
 
 
@@ -188,42 +178,11 @@ function selCheckEvent() {
 }
 
 
-function makeTotal() {
-	let checks = document.querySelectorAll('#cartList .selCheck');
-	console.log(checks);
-	let totalPoint = 0;
-	let totalQuantity = 0;
-	let totalType = 0;
-	let deliveryPrice = "무료";
-	let totalPrice = 0;
-	checks.forEach(check => {
-		console.log(check);
-		if (check.checked == true) {
-			let sumPrice = check.closest("tr").querySelector(".total-amount");
-			totalPrice += parseInt(sumPrice.innerText);
-
-			let quantity = check.closest("tr").querySelector(".input-number");
-			totalQuantity += parseInt(quantity.value);
-
-			let type = check.closest("tr").querySelector(".modBtn");
-			for (i = 1; i <= 100; i++) {
-				if (type.dataset.bookno == i) {
-					totalType++;
-				}
-			}
-		}
-	})
-	totalPoint = totalPrice * 0.05;
-	document.querySelector(".totalPoint").innerText = totalPoint;
-	document.querySelector(".totalQuantity").innerText = totalQuantity;
-	document.querySelector(".totalType").innerText = totalType;
-	document.querySelector(".totalPrice").innerText = totalPrice;
-	document.querySelector(".deliveryPrice").innerText = deliveryPrice;
 
 	// const totalAmo = ``;
 	// return totalAmo;
 
-}
+
 
 
 

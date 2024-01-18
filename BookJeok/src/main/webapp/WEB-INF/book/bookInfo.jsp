@@ -9,7 +9,7 @@
 			<!-- 좌측 이미지 -->
 			<div class="col-md-6">
 				<!-- img -->
-				<img scr="images/${vo.img }">이미지
+				<img src="images/${vo.img }">
 			</div>
 			<!-- 우측 정보 -->
 			<div class="col-md-6">
@@ -22,7 +22,7 @@
 					</p>
 					<!-- heading (책제목) -->
 					<div class="pb-2">
-						<h1 class="py-3">
+						<h4 class="py-3">
 							<p class="text-left">${vo.name }</p>
 						</h1>
 					</div>

@@ -15,8 +15,13 @@ public class LikeItServiceImpl implements LikeItService{
 	LikeItMapper mapper = session.getMapper(LikeItMapper.class);
 
 	@Override
-	public List<LikeItVO> selectOne(int memberNo) {
-		return mapper.selectOne(memberNo);
+	public List<LikeItVO> selectList(int memberNo) {
+		return mapper.selectList(memberNo);
+	}
+
+	@Override
+	public boolean remLikeIt(int bookNo, int memberNo) {
+		return mapper.deleteLikeIt(bookNo, memberNo) == 1;
 	}
 	
 

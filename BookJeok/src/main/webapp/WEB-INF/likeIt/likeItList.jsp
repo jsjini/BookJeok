@@ -1,12 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
 <!-- <script src="js2/likeItList.js"></script> -->
 <!-- Breadcrumbs -->
-<h3>${LikeItVO }</h3>
 <div class="breadcrumbs">
 	<div class="container">
 		<div class="row">
@@ -40,18 +39,31 @@
 							<th class="text-center"><i class="ti-trash remove-icon"></i></th>
 						</tr>
 					</thead>
-					
-					<tbody id="cartList" style="text-align: center;">
-					<!-- forEach 반복문 추가해야됨. -->
-							<td><input type="checkbox" class="selCheck"></td>
+
+					<tbody id="selectList" style="text-align: center;">
+						<!-- forEach 반복문 추가해야됨. -->
+						<c:forEach var="likeIt" items="${LikeItVO}">
+						<tr>
+						<td><input type="checkbox" class="selCheck"></td>
+						<td><a href="bookDetail.do?bookNo=${likeIt.bookNo }"><img src="images/${likeIt.img }" alt="#"></a></td>
+						<td><a href="bookDetail.do?bookNo=${likeIt.bookNo }">${likeIt.name }</a></td>
+						<td>${likeIt.author }</td>
+						<td>${likeIt.comp }</td>
+						<td>${likeIt.price }</td>
+						<td class="action"><button class="remBtn" data-bookNo="${likeIt.bookNo }"><i class="ti-trash remove-icon"></i></button></td>
+						</tr>
+						</c:forEach>
+
+
+						<%-- <td><input type="checkbox" class="selCheck"></td>
 							<td><img src="${LikeItVO[1].img}" alt="#"></td>
 							<td>${LikeItVO[1].name }</td>							
 							<td>${LikeItVO[1].author }</td>
 							<td>${LikeItVO[1].comp }</td>							
 							<td>${LikeItVO[1].price }</td>
-							<td class="action"><a href="#" class="remBtn" data-cartno=""><i	class="ti-trash remove-icon"></i></a></td>
-					<!-- cartList.js랑 비교해서 데이터 db에서 삭제하는 기능 추가해야됨. -->
-							
+							<td class="action"><a href="#" class="remBtn" data-cartno=""><i	class="ti-trash remove-icon"></i></a></td> --%>
+						<!-- 바로 윗줄. cartList.js랑 비교해서 데이터 db에서 삭제하는 기능 추가해야됨. -->
+
 						</tr>
 					</tbody>
 				</table>
@@ -63,6 +75,11 @@
 	<!--/ End Shopping Cart -->
 
 </div>
-	<script>
-		
-	</script>
+<script>
+	document.querySelector('#selectList').addEventListener("click", function(){
+	    
+	    if(event.target.nodeName == "TR"){ //tag 이름은 무조건 대문자
+	        //event.target.
+	    }
+	})
+</script>
