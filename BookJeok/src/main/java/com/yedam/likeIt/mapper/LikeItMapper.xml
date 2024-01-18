@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.yedam.likeIt.mapper.LikeItMapper">
-	<select id="selectOne" parameterType="int" resultType="likeIt">
+	<select id="selectList" parameterType="int" resultType="likeIt">
 		select member_no,			   
 	           l.book_no,	    
 	           b.img,
@@ -15,10 +15,11 @@
 		from book b, like_it l
 		where member_no=${memberNo}
 		and b.book_no=l.book_no
-
-
-
 	</select>
+	
+	<delete id="deleteLikeIt" parameterType="int">
+  		delete from like_it where book_no = #{bookNo} and member_no = #{memberNo}
+  	</delete>
 
 
 </mapper>  

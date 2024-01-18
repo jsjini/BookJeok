@@ -30,10 +30,10 @@
 				<h1></h1>
 				<c:choose>
 					<c:when test="${empty logId }">
-						<a href="loginbook.do">장바구니</a>
+						<a href="#">장바구니</a>
 					</c:when>
 					<c:otherwise>
-						<a href="addCart.do?bookNo=${vo.bookNo }&memberNo=${memberNo }">장바구니</a>
+						<a href="addCart.do?memberNo=${memberNo }" id="goCart">장바구니</a>
 					</c:otherwise>				
 				</c:choose>
 				</button>
@@ -47,5 +47,18 @@
 </div>
 
 <script>
-
+	document.querySelector('#noCart').addEventListener('click', function () {
+		alert("로그인이 필요합니다.");
+	})
+	
+	// 로그인 후 장바구니 클릭 시 fetch 사용하기
+	/*
+	document.querySelector('#goCart').addEventListener('click', function () {
+		fetch('addCart.do', {
+			headers: {
+			      'Content-Type': 'application/x-www-form-urlencoded',
+			    },
+		})
+	}
+	*/
 </script>

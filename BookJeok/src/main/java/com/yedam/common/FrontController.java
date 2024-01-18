@@ -15,6 +15,7 @@ import com.yedam.book.command.BookDetailControl;
 import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
+import com.yedam.book.command.PagingListJson;
 import com.yedam.cart.command.AddCartControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
@@ -22,6 +23,8 @@ import com.yedam.cart.command.ModifyCartControl;
 import com.yedam.cart.command.RemoveCartControl;
 import com.yedam.likeIt.command.LikeItControl;
 import com.yedam.likeIt.command.LikeItListJson;
+import com.yedam.likeIt.command.RemoveLikeItControl;
+import com.yedam.member.command.AlertMsgControl;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.LoginIdCheck;
@@ -60,13 +63,10 @@ public class FrontController extends HttpServlet {
 		
 		// 도서 관련
 		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
-		
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
-		 
 		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
-		
 		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
-		
+		//map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
 		// 목록 관련
@@ -79,10 +79,12 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
 		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
-
+		map.put("/alert.do", new AlertMsgControl()); //가입완료메시지
+		
 		// 찜하기
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
 		map.put("/likeItListJson.do", new LikeItListJson());
+		map.put("/removeLikeIt.do", new RemoveLikeItControl());
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
 		//map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃

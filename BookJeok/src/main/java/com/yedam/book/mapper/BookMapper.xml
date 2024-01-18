@@ -7,7 +7,7 @@
 	<select id="selectList" resultType="book">
 		select * from book order by 1
 	</select>
-	
+	<!-- 베스트셀러 출력 -->
 	<select id="selectBestList" resultType="book">
 	select cnt ,b.* 
 	from (
@@ -18,11 +18,13 @@
    ) o,book b  
    where b.book_no = o.book_no
 	</select>
+	<!-- 신간 출력 -->
 	<select id="selectNewList" resultType="book">
 	select * from book
 	where dt > '2023-12-31'
 	order by dt desc
 	</select>
+	<!-- 장르별 출력 -->
 	<select id="selectGenreList" resultType="book" parameterType="book">
 	select * from book
 	<where>
@@ -32,8 +34,20 @@
     </foreach>
   </where>
 	</select>
-	
-	
+	<!-- 페이징 용 -->
+<select id="listPaging" resultType="book">
+	select * from(
+select rownum as r,b.*from
+(select *   
+from book
+order by book_no)b)
+   where r BETWEEN #{start} AND #{end}
+
+</select>
+	<!-- 총 게시글 갯수 출력 -->
+<select id="countList" resultType="int">
+	SELECT COUNT(*) FROM BOOK
+</select>
 </mapper>
 
 <!-- 닫으면 에러 없어짐.. -->
