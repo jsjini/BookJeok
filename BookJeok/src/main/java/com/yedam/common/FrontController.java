@@ -94,19 +94,16 @@ public class FrontController extends HttpServlet {
 		//마이페이지
 		
 		// 장바구니
-		map.put("/cartList.do", new CartListControl());
-		map.put("/cartListJson.do", new CartListJson());
-		map.put("/removeCart.do", new RemoveCartControl());
-		map.put("/modifyCart.do", new ModifyCartControl());
-		map.put("/addCart.do", new AddCartControl());
+		map.put("/cartList.do", new CartListControl()); // 카트페이지이동
+		map.put("/cartListJson.do", new CartListJson()); // 카트페이지에 정보넘기는 기능
+		map.put("/removeCart.do", new RemoveCartControl()); // 카트삭제
+		map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
+		map.put("/addCart.do", new AddCartControl()); // 카트추가
 
-		// 주문 관련
-		map.put("/orderItemPageList.do", new OrderItemPageListControl());
-		map.put("/orderItemList.do", new OrderItemListControl());
-		map.put("/orderItemListJson.do", new OrderItemListJson());
-		map.put("/remveOrderItem.do", new RemoveOrderItemControl());
-		map.put("/modifyOrderItem.do", new ModifyOrderItemControl());
-		map.put("/addOrderItem.do", new AddOrderItemControl());
+		// 주문페이지 관련
+		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
+		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
+		map.put("/addOrderItem.do", new AddOrderItemControl()); // 현재 사용안함.
 		
 		map.put("/orderList.do", new OrderListControl());
 		// 검색 관련

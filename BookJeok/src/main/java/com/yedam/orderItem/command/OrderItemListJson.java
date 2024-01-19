@@ -18,14 +18,16 @@ public class OrderItemListJson implements Control {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		resp.setContentType("text/json;charset=utf-8");
-		String odNo = req.getParameter("odNo");
-
+		String memberNo = req.getParameter("memberNo");
+		
+		
 		OrderItemService svc = new OrderItemServiceImpl();
-		List<OrderItemVO> list = svc.orderItemList(Integer.parseInt(odNo));
+		OrderItemVO vo = svc.orderItemList(Integer.parseInt(memberNo));
+	
 		Gson gson = new GsonBuilder().create();
 
 		try {
-			resp.getWriter().print(gson.toJson(list));
+			resp.getWriter().print(gson.toJson(vo));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

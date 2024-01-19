@@ -5,10 +5,9 @@
   
 <mapper namespace="com.yedam.orderItem.mapper.OrderItemMapper">
 	<select id="selectList" resultType="orderItem" parameterType="int">
-  		select oi.orderitem_no, oi.od_no, oi.book_no, oi.quantity, b.name, b.price, b.img
-		from order_item oi join book b on oi.book_no = b.book_no
-		where od_no = #{odNo}
-		order by 1
+  		select m_name, phone, adress
+		from member
+		where member_no = #{memberNo}
   	</select>
 
 	<delete id="deleteOrderItem" parameterType="int">
