@@ -32,7 +32,9 @@ import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.member.command.MyPage;
+import com.yedam.order.command.AddOrderControl;
 import com.yedam.order.command.OrderListControl;
+import com.yedam.order.command.OrderListJson;
 import com.yedam.orderItem.command.AddOrderItemControl;
 import com.yedam.orderItem.command.OrderItemListJson;
 import com.yedam.orderItem.command.OrderItemPageListControl;
@@ -103,9 +105,11 @@ public class FrontController extends HttpServlet {
 		// 주문페이지 관련
 		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
 		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
+		map.put("/addOrder.do", new AddOrderControl()); // 현재 사용안함.
 		map.put("/addOrderItem.do", new AddOrderItemControl()); // 현재 사용안함.
 		
 		map.put("/orderList.do", new OrderListControl());
+		map.put("/orderListJson.do", new OrderListJson());
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
 		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어
