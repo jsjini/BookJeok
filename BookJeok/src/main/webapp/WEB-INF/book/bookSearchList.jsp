@@ -64,8 +64,8 @@
 			let memberNum = event.target.dataset.memberno;
 			let bookNum = event.target.dataset.bookno;
 			
-			if (event.target.className == "btn mb-3 addCartBtn"){ // 1. 장바구니 (로그인O)
-				// alert('클릭됨');
+			if (event.target.classList.contains("addCartBtn")){ // 1. 장바구니 (로그인O)
+				alert('클릭됨');
 				
 				// fetch 함수
 				fetch('addCart.do?memberNo=' + memberNum + '&bookNo=' + bookNum)

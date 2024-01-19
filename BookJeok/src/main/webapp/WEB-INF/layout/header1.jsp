@@ -22,6 +22,7 @@
 							</c:otherwise>
 						</c:choose>
 
+
 						<c:choose>
 							<c:when test="${empty logId }">
 								<li><a class="login" data-toggle="modal"
@@ -260,6 +261,7 @@
 </div>-->
 
 <div></div>
+
 
 <!-- 검색창 관련 JS -->
 <script>
