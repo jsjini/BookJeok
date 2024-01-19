@@ -4,7 +4,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-md-12 col-12">
-						<!--  -->
 					</div>
 					<div class="col-lg-7 col-md-12 col-12">
 						<!-- Top Right (우측상단 메뉴)-->
@@ -247,6 +246,17 @@
 
 		<!-- 검색창 관련 JS -->
 		<script>
+		/*
+		console.log(login);
+		
+		let msg= '${message}';
+		if(msg != null) { // 메세지가 있으면
+			
+		} else { // 메세지가 없으면
+			alert(msg)
+		}
+		*/
+		
 			const searchInput = document.querySelector('input[type=search]');
 
 			document.querySelector('#searchForm').addEventListener('submit', function (e) {
