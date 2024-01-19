@@ -15,28 +15,8 @@ public class OrderItemServiceImpl implements OrderItemService {
 	OrderItemMapper mapper = session.getMapper(OrderItemMapper.class);
 
 	@Override
-	public List<OrderItemVO> orderItemList(int odNo) {
-		return mapper.selectList(odNo);
-	}
-
-	@Override
-	public boolean remOrderItem(int orderitemNo) {
-		return mapper.deleteOrderItem(orderitemNo) == 1;
-	}
-
-	@Override
-	public boolean modOrderItem(OrderItemVO vo) {
-		return mapper.updateOrderItem(vo) == 1;
-	}
-
-	@Override
-	public int addOrderItem(OrderItemVO vo) {
-		// 주문번호 중복체크 
-//		OrderItemVO checkOrderNo = mapper.checkOrderNo(vo.getOdNo());
-//		if (checkOrderNo != null) {
-//			return 2;
-//		}
-		return mapper.insertOrderItem(vo);
+	public OrderItemVO orderItemList(int memberNo) {
+		return mapper.selectList(memberNo);
 	}
 
 }

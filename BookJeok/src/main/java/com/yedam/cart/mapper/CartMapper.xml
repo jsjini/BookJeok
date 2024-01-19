@@ -12,7 +12,7 @@
   	</select>
 	
 	<insert id="insertCart" parameterType="cart">
-  		insert into cart values (cart_seq.nextval, #{quantity}, #{memberNo}, #{bookNo})
+  		insert into cart values (cart_seq.nextval, #{quantity}, #{bookNo}, #{memberNo})
   	</insert>
   	
   	<delete id="deleteCart" parameterType="int">
