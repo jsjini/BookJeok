@@ -28,16 +28,14 @@ import com.yedam.likeIt.command.RemoveLikeItControl;
 import com.yedam.member.command.AlertMsgControl;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.member.command.MyPage;
 import com.yedam.order.command.OrderListControl;
 import com.yedam.orderItem.command.AddOrderItemControl;
-import com.yedam.orderItem.command.ModifyOrderItemControl;
-import com.yedam.orderItem.command.OrderItemListControl;
 import com.yedam.orderItem.command.OrderItemListJson;
 import com.yedam.orderItem.command.OrderItemPageListControl;
-import com.yedam.orderItem.command.RemoveOrderItemControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
@@ -90,7 +88,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
-		map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
+		map.put("/idcheck.do", new LoginIdCheck()); //회원가입시 아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
     
 		//마이페이지

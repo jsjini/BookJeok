@@ -9,6 +9,7 @@
 					<div class="col-lg-7 col-md-12 col-12">
 						<!-- Top Right (우측상단 메뉴)-->
 						<div class="right-content">
+						
 							<ul class="list-main">
 								<c:choose>
 									<c:when test="${empty logId }">
@@ -167,15 +168,15 @@
 									</tr>
 									<tr>
 										<th>이름</th>
-										<td><input type="text" name="mName" id="name"></td>
+										<td><input type="text" name="mName" id="name" required /></td>
 									</tr>
 									<tr>
 										<th>비밀번호</th>
-										<td><input type="password" name="pw" id="pw"></td>
+										<td><input type="password" name="pw" id="pw" required /></td>
 									</tr>
 									<tr>
 										<th>이메일주소</th>
-										<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email"></td>
+										<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email" required /></td>
 									</tr>
 									<tr>
 										<th>연령대(선택)</th>
@@ -190,11 +191,11 @@
 									</tr>
 									<tr>
 										<th>휴대폰번호</th>
-										<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111"></td>
+										<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required /></td>
 									</tr>
 									<tr>
-										<th>관심분야(중복가능)</th>
-										<td><input type="checkbox" name="likes" id="social" checked>없음</td>
+										<th required />관심분야(중복가능)</th>
+										<td><input type="checkbox" name="likes" id="social">없음</td>
 										<td><input type="checkbox" name="likes" id="social">인문/사회</td>
 										<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
 										<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
@@ -210,7 +211,8 @@
 									</tr>
 									<tr>
 										<td colspan="3" align="center"><input type="submit" value="가입신청" class="btn btn-primary"
-												id="joinsucc" onClick="return check()"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+												id="joinsucc" onClick="return check()"> 
+												<!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
 											<input type="reset" value="다시 입력" class="btn btn-warning">
 										</td>
 									</tr>
@@ -219,8 +221,7 @@
 						</form>
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">회원가입
-							취소</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">회원가입취소</button>
 					</div>
 				</div>
 			</div>
@@ -228,7 +229,7 @@
 
 
 		<!-- 회원가입 후 가입 완료 알림창. 가입 완료되고 메인이 다시 뜰 때 모달 알리기-->
-		<!--<div class="modal fade" id="joinendModal" tabindex="-1" role="dialog"
+		<div class="modal fade" id="joinendModal" tabindex="-1" role="dialog"
 	aria-labelledby="joinendModallabel" aria-hidden="true">
 	<div class="modal-dialog .modal-sm" role="document">
 		<div class="modal-content">
@@ -239,7 +240,7 @@
 			</div>		
 		</div>
 	</div>
-</div>-->
+</div>
 
 		<div>
 
@@ -279,6 +280,7 @@
 			})
 			*/
 
+			/*
 			if(joinjoin.id.value == ""){ 
 				alert("사용하실 아이디를 입력해주세요");
 				joinjoin.id.focus();
@@ -308,12 +310,30 @@
 				joinjoin.phone.focus(); 
 				return false;
 			}
+			*/
 			
-			
-			
-			/* 모달... 하다하다 안되면 그냥 모달로 살려야할듯.....
+						
 			let msg = '${param.msg}'
 				if(msg != '')
 					$('#joinendModal').modal()
-			*/
+							
+			/*
+			let msg2 = '${message }'
+				if (msg2 === 1){
+					console.log("1통과");
+				} else if (msg === 0) */
+					
+			document.addEventListener("DOMContentLoaded",function(){
+				let msg2 = 0;
+			            if(msg === ''){
+			                console.log("main.do")
+			            }else if (msg === 0){
+			                alert('${message }')
+			            }else{
+			                console.log("main.do")
+			            }
+			        });		
+					
+					
+		
 		</script>

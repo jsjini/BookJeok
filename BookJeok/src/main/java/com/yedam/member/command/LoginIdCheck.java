@@ -39,10 +39,10 @@ public class LoginIdCheck implements Control {
 			MemberService svc = new MemberServiceImpl();
 			try {
 				if (svc.joinMember(vo)) {
-					resp.sendRedirect("main.do"); 
+					resp.sendRedirect("main.do");
 					req.setAttribute("message", "환영합니다");
 				} else {
-					resp.sendRedirect("loginBook.do");
+					resp.sendRedirect("loginbook.do"); //"idcheck.do"
 				}
 
 			} catch (IOException e) {
