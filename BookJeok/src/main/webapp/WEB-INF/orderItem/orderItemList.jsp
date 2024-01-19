@@ -210,11 +210,11 @@
 				console.log(item.bookImg, item.bookName, item.bookNo, item.bookPirce);
 				let totalPrice = item.bookPirce * item.quantity;
 				const newtbody1 = `<tr>
-				<td class="image" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><img src="images/\${item.bookImg}"
-					alt="#"></td>
+				<td class="image" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.bookImg}"
+					alt="#"></a></td>
 				<td>
 				<p class="product-name">
-					<a href="#">\${item.bookName}</a>
+					<a href="bookDetail.do?bookNo=\${item.bookNo}">\${item.bookName}</a>
 				</p>
 				</td>
 				<td class="product-des" data-title="Description">
@@ -286,21 +286,11 @@
 					})
 			}
 
-			function makeMessage() {
-				const message = `<select id="deliveryMessageInfo">
-				<option value="option1">부재시 경비실에 맡겨주세요.</option>
-				<option value="option2">문 앞에 두고가세요.</option>
-				<option value="option3">오실 때 연락주세요.</option>
-				</select>`
-				return message;
-			}
-
 			function deliveryMessageEvent() {
 				let deliveryMessage = document.querySelector("#deliveryMessage");
 				deliveryMessage.addEventListener("mouseenter", function () {
 					console.log('마우스 올라감');
-					const message = makeMessage();
-					deliveryMessage.insertAdjacentHTML("beforeend", message);
+					
 				})
 				deliveryMessage.addEventListener("mouseleave", function () {
 
@@ -311,6 +301,10 @@
 
 
 
+
+
+
+			
 
 
 
