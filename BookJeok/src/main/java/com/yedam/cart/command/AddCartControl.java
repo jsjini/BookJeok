@@ -18,6 +18,7 @@ public class AddCartControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		resp.setContentType("text/json;charset=utf-8");
 		// memberNo, bookNo, quantity
 		String memberNo = req.getParameter("memberNo");
 		String bookNo = req.getParameter("bookNo");
