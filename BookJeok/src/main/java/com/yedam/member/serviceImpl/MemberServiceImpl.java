@@ -19,6 +19,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public MemberVO loginBook(String id, String pw) {
+		// 여기서 로그인 없는 기본상태를 체크하자
 		return mapper.selectMember(id, pw);
 	}
 

@@ -7,7 +7,7 @@
 
   <insert id="insertMember" parameterType="member">
   	insert into member
-  	values (MEMBER_SEQUENCE.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
+  	values (member_seq.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
   </insert>
   
   <select id="selectMember" resultType="member">

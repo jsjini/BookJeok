@@ -28,16 +28,16 @@ import com.yedam.likeIt.command.RemoveLikeItControl;
 import com.yedam.member.command.AlertMsgControl;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.member.command.MyPage;
+import com.yedam.order.command.AddOrderControl;
 import com.yedam.order.command.OrderListControl;
+import com.yedam.order.command.OrderListJson;
 import com.yedam.orderItem.command.AddOrderItemControl;
-import com.yedam.orderItem.command.ModifyOrderItemControl;
-import com.yedam.orderItem.command.OrderItemListControl;
 import com.yedam.orderItem.command.OrderItemListJson;
 import com.yedam.orderItem.command.OrderItemPageListControl;
-import com.yedam.orderItem.command.RemoveOrderItemControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
@@ -90,7 +90,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
-		map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
+		map.put("/idcheck.do", new LoginIdCheck()); //회원가입시 아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
     
 		//마이페이지
@@ -105,9 +105,11 @@ public class FrontController extends HttpServlet {
 		// 주문페이지 관련
 		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
 		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
+		map.put("/addOrder.do", new AddOrderControl()); // 현재 사용안함.
 		map.put("/addOrderItem.do", new AddOrderItemControl()); // 현재 사용안함.
 		
 		map.put("/orderList.do", new OrderListControl());
+		map.put("/orderListJson.do", new OrderListJson());
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
 		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어

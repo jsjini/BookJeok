@@ -52,7 +52,7 @@ public class JoinControl implements Control {
 			MemberService svc = new MemberServiceImpl();
 			try {
 				if (svc.joinMember(vo)) {
-					resp.sendRedirect("main.do"); //Joinresult.do
+					resp.sendRedirect("main.do?msg=1"); //Joinresult.do
 					req.setAttribute("message", "환영합니다");
 				} else {
 					resp.sendRedirect("memberJoin.do");
