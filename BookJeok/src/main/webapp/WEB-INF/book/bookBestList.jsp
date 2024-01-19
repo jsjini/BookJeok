@@ -29,7 +29,7 @@
 											<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a>
 										</div>
 										<div class="product-action-2">
-											<a title="Add to cart" href="#" onclick="addToCart(${sessionScope.memberNo},${vo.bookNo})">장바구니에 담기</a>
+											<a title="Add to cart" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에 담기</a>
 										</div>
 									</div>
 								</div>

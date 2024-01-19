@@ -70,7 +70,7 @@
 				<div class="d-flex justify-content-center">
 					<div class="col-xxl-4 col-lg-4 col-md-5 col-5 d-grid">
 						<!-- button -->
-						<button type="button" class="btn">
+						<button type="button" class="btn" id="infoCart">
 							<i class="feather-icon icon-shopping-bag me-2"></i>카트추가
 						</button>
 					</div>
@@ -90,6 +90,7 @@
 		<!-- 우측 정보 끝. -->
 
 	</section>
+	
 
 
 	<!-- 하단 탭 메뉴(상세정보 및 리뷰) -->
@@ -153,3 +154,11 @@
 	<!-- 하단 탭 메뉴(상세정보 및 리뷰) 끝. -->
 </div>
 <!-- 상세페이지 끝. -->
+
+
+<!-- 카트 추가 작업중 -->
+<script>
+	document.querySelector('#infoCart').addEventListener('click', function(){
+		fetch()
+	})
+</script>

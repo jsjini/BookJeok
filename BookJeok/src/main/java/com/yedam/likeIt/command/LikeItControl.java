@@ -23,6 +23,7 @@ public class LikeItControl implements Control {
 		List<LikeItVO> LikeItInfo = svc.selectList(Integer.parseInt(memberNo));
 		
 		req.setAttribute("LikeItVO", LikeItInfo);
+		req.setAttribute("memberNo", memberNo);
 		
 		RequestDispatcher rd = req.getRequestDispatcher("likeIt/likeItList.tiles");
 		try {

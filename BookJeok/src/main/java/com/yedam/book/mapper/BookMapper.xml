@@ -43,7 +43,7 @@ from
 from book
 <where>
 <if test ='bookNo != null'>
-bookno = #{bookNo}
+book_No = #{bookNo}
 </if>
 </where>
 order by 1)a)b

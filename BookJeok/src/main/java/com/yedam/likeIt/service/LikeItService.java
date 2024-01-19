@@ -8,6 +8,10 @@ public interface LikeItService {
 	//찜 목록
 	public List<LikeItVO> selectList(int memberNo);
 	
+	//찜 추가
+	public int addLikeIt(LikeItVO vo);
+	
+		
 	//찜 삭제
 	public boolean remLikeIt(int bookNo, int memberNo);
 }

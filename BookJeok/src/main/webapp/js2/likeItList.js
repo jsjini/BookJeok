@@ -7,24 +7,24 @@
 
 
 
-			// 찜하기 삭제 이벤트 등록
-			//removeLikeItEvent();
+// 찜하기 삭제 이벤트 등록
+removeLikeItEvent();
 
-			
 
-			// 카트 수정 이벤트 등록
-			//modifyCartEvent();
 
-			// 상품 체크박스 이벤트 등록
-			allCheckboxEvent();
-			selCheckboxEvent();
-		
+// 카트 수정 이벤트 등록
+//modifyCartEvent();
+
+// 상품 체크박스 이벤트 등록
+allCheckboxEvent();
+selCheckboxEvent();
+
 
 
 function selCheckboxEvent() {
 	let selChecks = document.querySelectorAll(".selCheck");
 	selChecks.forEach(selCheck => {
-		selCheck.addEventListener("change", function () {
+		selCheck.addEventListener("change", function() {
 			makeTotal();
 		})
 	})
@@ -77,13 +77,13 @@ const form = {
 	quantity: ''
 }
 function addCartEvent() {
-	$(".add_cart").on("click", function () {
+	$(".add_cart").on("click", function() {
 		form.quantity = $(".quantity_input").val();
 		$.ajax({
 			url: 'addCart.do',
 			type: 'POST',
 			data: form,
-			success: function (result) {
+			success: function(result) {
 				cartAlert(result);
 			}
 		})
@@ -112,36 +112,37 @@ function cartAlert(result) {
 }
 
 function allCheckboxEvent() {
-	$('.main-hading').find(':input').on('click', function () {
+	$('.main-hading').find(':input').on('click', function() {
 		$('#cartList').find(':checkbox').prop('checked', this.checked);
 		makeTotal();
 	});
 
 }
 
-//function removeLikeItEvent() {
-	console.log(remLikeIts);
-    let remLikeIts = document.querySelectorAll("#selectList .remBtn");
-    remLikeIts.forEach(remLikeIt => {
-        remLikeIt.addEventListener("click", function (e) {
-            console.log(remLikeIt);
-            e.preventDefault();
-            let bookNo = remLikeIt.dataset.bookNo; // dataset.bookNo로 수정
-            console.log(bookNo);
-            fetch("removeLikeIt.do?bookNo=" + bookNo)
-                .then(result => result.json())
-                .then(result => {
-                    if (result.retCode == "OK") {
-                        alert('삭제됨.');
-                        // 서버에서 삭제 후 목록을 다시 불러와서 갱신
-                        refreshLikeItList();
-                    } else {
-                        alert('삭제 중 오류 발생.');
-                    }
-                });
-        });
-    });
-//}
+function removeLikeItEvent() {
+	let remLikeIts = document.querySelectorAll("#selectList .remBtn");
+	remLikeIts.forEach(remLikeIt => {
+		remLikeIt.addEventListener("click", function(e) {
+			console.log(remLikeIt);
+			e.preventDefault();
+			if (confirm("삭제하시겠습니까?")) {
+				let bookNo = remLikeIt.dataset.bookno;
+				let memberNo = remLikeIt.dataset.memberno;
+				console.log(bookNo);
+				fetch("removeLikeIt.do?bookNo=" + bookNo+"&memberNo="+memberNo)
+					.then(result => result.json())
+					.then(result => {
+						if (result.retCode == "OK") {
+							alert('삭제됨.');
+							location.reload();
+						} else {
+							alert('삭제 중 오류 발생.');
+						}
+					});
+			}
+		});
+	});
+}
 
 
 
