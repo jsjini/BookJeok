@@ -133,9 +133,9 @@
 								</div>
 								<input type="text" id="order_add1">
 								<input type="text" id="order_add2"> -->
-								<input type="text" id="sample4_postcode" placeholder="우편번호">
+								<input type="text" id="sample4_postcode" placeholder="우편번호" readonly>
 								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" readonly>
 								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
 								<span id="guide" style="color:#999;display:none"></span>
 								<input type="text" id="sample4_detailAddress" placeholder="상세주소">
@@ -147,7 +147,8 @@
 								배송요청사항
 							</th>
 							<td>
-								<input type="text" id="deliveryMessage">
+								<input type="text" id="deliveryMessage" maxlength="80"
+									placeholder="택배기사님께 전달할 메시지를 남겨주세요.">
 								<div>
 									<span style="font-size: smaller;"> * 북적북적 요청사항이 아닌 택배사 송장에 표기되는 메시지입니다.</span>
 								</div>
@@ -174,7 +175,7 @@
 											style="font-weight: bold; font-size: larger;"></span></li>
 								</ul>
 								<div class="button5">
-									<a href="#" class="btn" style="font-weight: bold; font-size: larger;">결제하기</a>
+									<a href="#" class="btn" id="addOrderBtn" style="font-weight: bold; font-size: larger;">결제하기</a>
 								</div>
 
 							</div>
@@ -183,12 +184,12 @@
 					<!--/ End Total Amount -->
 				</div>
 			</div>
-
 		</div>
 		<!--/ End Shopping Cart -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		<script>
 			let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+			let today = getToday();
 			var list = ${ orders };
 			console.log(list);
 
@@ -290,7 +291,7 @@
 				let deliveryMessage = document.querySelector("#deliveryMessage");
 				deliveryMessage.addEventListener("mouseenter", function () {
 					console.log('마우스 올라감');
-					
+
 				})
 				deliveryMessage.addEventListener("mouseleave", function () {
 
@@ -298,13 +299,24 @@
 
 			}
 
+			function addOrderBtnEvent() {
+				let addOrderBtn = document.querySelector
+			}
+
+			function getToday() {
+				var date = new Date();
+				var year = date.getFullYear();
+				var month = ("0" + (1 + date.getMonth())).slice(-2);
+				var day = ("0" + date.getDate()).slice(-2);
+
+				return year + month + day;
+			}
 
 
 
 
 
 
-			
 
 
 
