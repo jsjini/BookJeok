@@ -1674,7 +1674,7 @@
 					<div class="content">
 						<p>Reviewer's Collectons</p>
 						<h3>평론가가 선택한 올해의 책</h3>
-						<a href="#">View Now</a>
+						<a href="bookDetail.do?bookNo=77">View Now</a>
 					</div>
 				</div>
 			</div>

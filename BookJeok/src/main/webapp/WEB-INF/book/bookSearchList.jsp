@@ -42,7 +42,7 @@
 									<button type="button" class="btn mb-3 noLike">내 서재</button>
 								</c:when>
 								<c:otherwise>
-									<button type="button" class="btn mb-3 mt-5 addPurchase">바로구매</button>
+									<button type="button" class="btn mb-3 mt-5 addPurchase" data-bookimg="${vo.img }" data-bookname="${vo.name }" data-bookpirce="${vo.price }" data-bookno="${vo.bookNo }">바로구매</button>
 									<button type="button" class="btn mb-3 addCartBtn" data-bookno="${vo.bookNo }" data-memberno="${memberNo }">장바구니</button>
 									<button type="button" class="btn mb-3 addLike">내 서재</button>
 								</c:otherwise>
@@ -55,7 +55,7 @@
 
 			</div>
 		</c:forEach>
-
+		<form id="formOrder" action="orderItemPageList.do" method="post"><input type="hidden" name="orders" id="orders"></form>
 	</div>
 
 	<script>		
@@ -90,7 +90,17 @@
 			
 			} else if(event.target.className == "btn mb-3 mt-5 addPurchase") { // 2. 바로구매 (로그인O)
 				alert('바로구매');
+				let bookNo = event.target.dataset.bookno;
+				let bookImg = event.target.dataset.bookimg;
+				let bookName = event.target.dataset.bookname;
+				let bookPirce = event.target.dataset.bookpirce;
+				let quantity = 1; // 책 한권만 넘어감
 				
+				let orders = [{ "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity }];
+				
+				let orders1 = JSON.stringify(orders);
+				document.querySelector('#orders').value = orders1;
+				formOrder.submit();
 	
 			} else if (event.target.className == "btn mb-3 addLike") { // 3. 내서재	(로그인O)
 				alert("내서재");
