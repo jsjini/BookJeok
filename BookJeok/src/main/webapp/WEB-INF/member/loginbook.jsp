@@ -6,8 +6,8 @@
 		out.println("<script>alert('로그인이 필요한 서비스입니다.');</script>");
 	}	 %>
     
-<!-- 로그인하면 메인에서 로그아웃보이고 OOO님, 환영합니다 뜨게 -->
- <form action="/main.do" method="post">
+<!-- 로그인하면 메인에서 로그아웃보이고 이름보이게 완료. -->
+ <form action="main.do" method="post">
     <table class="table">
       <tbody>
         <tr>

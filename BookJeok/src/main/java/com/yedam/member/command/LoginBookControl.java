@@ -41,7 +41,8 @@ public class LoginBookControl implements Control {
 		} else {
 			req.setAttribute("message", "아이디와 비밀번호를 확인하세요.");
 			try {
-				req.getRequestDispatcher("WEB-INF/member/loginbook.jsp").forward(req, resp);
+				//req.setAttribute("id", "pw");
+				req.getRequestDispatcher("WEB-INF/member/idcheck.jsp").forward(req, resp);
 			} catch (ServletException | IOException e) {
 				e.printStackTrace();
 			}

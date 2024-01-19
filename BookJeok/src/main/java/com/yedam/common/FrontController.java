@@ -16,7 +16,6 @@ import com.yedam.book.command.BookGenreListControl;
 import com.yedam.book.command.BookListControl;
 import com.yedam.book.command.BookNewListControl;
 import com.yedam.book.command.PagingListControl;
-import com.yedam.book.command.PagingListJson;
 import com.yedam.cart.command.AddCartControl;
 import com.yedam.cart.command.CartListControl;
 import com.yedam.cart.command.CartListJson;
@@ -31,6 +30,7 @@ import com.yedam.member.command.LoginBookControl;
 import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
+import com.yedam.member.command.MyPage;
 import com.yedam.order.command.OrderListControl;
 import com.yedam.orderItem.command.AddOrderItemControl;
 import com.yedam.orderItem.command.ModifyOrderItemControl;
@@ -79,15 +79,16 @@ public class FrontController extends HttpServlet {
 		// 회원 관련
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
-		map.put("/loginBook.do", new LoginBookControl()); //로그인화면
+		//map.put("/loginBook.do", new LoginBookControl()); //로그인화면
 		map.put("/alert.do", new AlertMsgControl()); //가입완료메시지
+		map.put("/mypage.do", new MyPage()); //마이페이지
 		
 		// 찜하기
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
 		map.put("/likeItListJson.do", new LikeItListJson());
 		map.put("/removeLikeIt.do", new RemoveLikeItControl());
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
-		//map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
+		map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
     
 		//마이페이지
