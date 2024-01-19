@@ -11,6 +11,7 @@
 			<div class="col-12">
 				<div class="section-title">
 					<h2>신간도서</h2>
+					<span>새로 출간된 도서들을 만나보세요!</span>
 				</div>
 			</div>
 		</div>

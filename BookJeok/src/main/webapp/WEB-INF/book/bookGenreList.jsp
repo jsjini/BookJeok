@@ -6,6 +6,7 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
+
 <script src="js2/bookList.js"></script>
 <!-- 아직 건들이지 못함. 화면 출력안됨 -->
 <div class="product-area section">
@@ -41,8 +42,7 @@
 													</a>
 													<div class="button-head">
 														<div class="product-action">
-															<a data-toggle="modal" data-target="#exampleModal"
-																title="Quick View" href="#"><i class=" ti-eye"></i><span>상세보기</span></a>
+
 															<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a>
 														</div>
 														<div class="product-action-2">

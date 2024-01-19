@@ -2,24 +2,9 @@
  * bookList.js
  */
 
- 
+ //장바구니에 담기 
 function addToCart(memberNo,bookNo){
-  event.preventDefault();
-	
-	/* //const addAjax = new XMLHttpRequest();
-	//frontcontroller 에 AddReplyJson.do 만들기 
-	addAjax.open('post','addCart.do');
-	addAjax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	addAjax.send('quantity='+1+'&memberNo='+memberNo+'&bookNo='+bookNo);
-	addAjax.onload = function(){
-		let result = JSON.parse(addAjax.responseText);
-		if(result.retCode == 'OK'){
-			alert("장바구니에 담았습니다");
-		}else if(result.retCode == 'NG'){
-			alert("수량이 부족합니다");
-		}
-	}//end of onload */
-	
+  event.preventDefault();	
 	if(memberNo ==''){
 		alert('로그인이 필요합니다')
 		return;
@@ -36,25 +21,58 @@ function addToCart(memberNo,bookNo){
 			console.log(result)
 			if(result.retCode == 'OK'){
 				alert("장바구니에 담았습니다");
-			} else if (result == 'CK') {
-				alert("장바구니에 이미 추가되어져 있습니다.");		
+				checkCart(memberNo,bookNo);
+				
+				
+			} else if (result.retCode == 'CK') {
+				alert("장바구니에 이미 담겨있는 상품입니다.");		
+			}
+			
+		})
+	}
+	//모달?? 집에서 연습용 수정하고 정리해놓기 
+function checkCart(memberNo,bookNo){
+	console.log(memberNo)
+		Swal.fire({
+		  text: "장바구니에 담았습니다!",
+		  showCancelButton: true,
+		  confirmButtonText: '계속 둘러보기',
+		  cancelButtonText: `<a href="cartList.do?memberNo=${memberNo}&bookNo=${bookNo}">장바구니로 이동</a>`
+		}).then((result) => {
+		  if (result.value) {
+              //"삭제" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
+		  }
+		})
+	}
+
+	//찜하기 담기
+	function addLikeIt(memberNo,bookNo){
+	event.preventDefault();	
+	if(memberNo ==''){
+		alert('로그인이 필요합니다')
+		return;
+		}
+	fetch('addLikeIt.do',{
+		method:"post",
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: '&memberNo='+memberNo+'&bookNo='+bookNo 
+	})
+		.then(result => result.json())
+		.then(result => {
+			console.log(result)
+			if(result.retCode == 'OK'){
+				checkCart();
+			} else if (result.retCode == 'CK') {
+				alert("이미 찜이 되어있습니다!");		
 			}
 			
 		})
 	}
 	
-	//목록 페이징
-	 
-	//페이지 클릭 시 페이지의 데이터 보여주도록 (a tag 클릭하면 이벤트 발생하도록 함수 생성-pageList()로 대체함)
-	let pageInfo = 1; 
-	function pageList(e){ //클릭할 때마다 이벤트 발생 
-		e.preventDefault(); //클릭시 전체 페이지가 이동하지 않도록 이벤트 막아주기 
-		pageInfo = this.getAttribute("href");	//this->이벤트 받는 대상 = a <tag>	
-		showList(pageInfo); //중복되는 기능 함수로 만들어 대체하기
-		//페이지 생성하는 함수 호출
-		pagingList(pageInfo); //페이지 그려질 때마다 새로 보여주는 기능
-	}
 	
+	//페이징용
 	function showList(bookNo,page){
 	fetch('pagingList.do',{
 		method: 'post',
@@ -65,10 +83,7 @@ function addToCart(memberNo,bookNo){
 	})
 	.then(str => str.json())
 	.then(result => {
-			result.forEach(book=> {
-				let li = makeLi(book);
-				ul.appendChild(li);
-			})
+		console.log(result);
 		})
 		.catch(reject => console.log(reject));
 	}
