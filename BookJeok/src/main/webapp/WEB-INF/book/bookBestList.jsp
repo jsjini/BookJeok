@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<script src="js2/addBookToCart.js"></script>
+<script src="js2/bookList.js"></script>
 <div class="product-area section">
 	<div class="container">
 		<div class="row">
