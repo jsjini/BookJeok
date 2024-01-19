@@ -90,7 +90,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
-		map.put("/idcheck.do", new LoginIdCheck()); //아이디중복확인?
+		map.put("/idcheck.do", new LoginIdCheck()); //회원가입시 아이디중복확인?
 		map.put("/logout.do", new LogoutBookControl());//로그아웃
     
 		//마이페이지

@@ -39,7 +39,7 @@ public class LoginBookControl implements Control {
 				e.printStackTrace();
 			}
 		} else {
-			req.setAttribute("message", "아이디와 비밀번호를 확인하세요.");
+			req.setAttribute("message2", "아이디 또는 비밀번호를 확인해주세요");		
 			try {
 				//req.setAttribute("id", "pw");
 				req.getRequestDispatcher("main.do").forward(req, resp);

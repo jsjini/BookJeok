@@ -14,7 +14,7 @@ public class MyPage implements Control {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		// 내정보 추가..?, 내 서재, 주문내역
 		try {
-			req.getRequestDispatcher("member/mypage.jsp").forward(req, resp);
+			req.getRequestDispatcher("member/mypage.tiles").forward(req, resp);
 		} catch (ServletException | IOException e) {
 			e.printStackTrace();
 		}

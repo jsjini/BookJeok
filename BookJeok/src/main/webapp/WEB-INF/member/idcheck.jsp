@@ -3,7 +3,7 @@
     
 <%  String id=(String)session.getAttribute("id");
   	if(id==null || id==""){
-		out.println("<script>alert('아이디 또는 비밀번호를 확인해주세요.');</script>");
+		out.println("<script>alert('아이디 또는 비밀번호를 확인해주세요!');</script>");
 	}	 %>
 
 <!-- 아이디나 비밀번호 틀리면 확인하라는 문구도 떠야함 -->
