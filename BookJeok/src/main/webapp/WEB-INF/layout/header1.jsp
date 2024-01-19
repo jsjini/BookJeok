@@ -153,7 +153,7 @@
 						<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
 					</div>
 					<div class="modal-body">
-						<form action="memberJoin.do" method="post">
+						<form action="memberJoin.do" method="post" name="joinjoin">
 							<table class="table">
 								<tbody>
 									<tr>
@@ -161,21 +161,21 @@
 									</tr>
 									<tr>
 										<th>아이디</th>
-										<td><input type="text" name="id" id="id" required />
+										<td><input type="text" name="id" id="id">
 											<input type="button" id="confirmId" class="checkSome" value="중복 확인">
 										</td>
 									</tr>
 									<tr>
 										<th>이름</th>
-										<td><input type="text" name="mName" id="name" required /></td>
+										<td><input type="text" name="mName" id="name"></td>
 									</tr>
 									<tr>
 										<th>비밀번호</th>
-										<td><input type="password" name="pw" id="pw" required /></td>
+										<td><input type="password" name="pw" id="pw"></td>
 									</tr>
 									<tr>
 										<th>이메일주소</th>
-										<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email" required /></td>
+										<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email"></td>
 									</tr>
 									<tr>
 										<th>연령대(선택)</th>
@@ -190,10 +190,11 @@
 									</tr>
 									<tr>
 										<th>휴대폰번호</th>
-										<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required /></td>
+										<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111"></td>
 									</tr>
 									<tr>
 										<th>관심분야(중복가능)</th>
+										<td><input type="checkbox" name="likes" id="social" checked>없음</td>
 										<td><input type="checkbox" name="likes" id="social">인문/사회</td>
 										<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
 										<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
@@ -209,7 +210,7 @@
 									</tr>
 									<tr>
 										<td colspan="3" align="center"><input type="submit" value="가입신청" class="btn btn-primary"
-												id="joinsucc"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+												id="joinsucc" onClick="return check()"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
 											<input type="reset" value="다시 입력" class="btn btn-warning">
 										</td>
 									</tr>
@@ -259,10 +260,6 @@
 
 		</script>
 
-
-		<!-- 아이디 중복체크. ajax 아니고 페이지요청이라서 바꿔야됨.. -->
-
-
 		<!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
 		<script>
 			/* if(#joinsucc){
@@ -272,10 +269,9 @@
 				
 			} */
 
-			$('#joinsucc').on('click', function () {
+			/*$('#joinsucc').on('click', function () {
 				alert("가입이 완료되었습니다. 로그인해주세요");
-			})
-
+			}) */
 
 			/*
 			$('#joinmodal').$('#joinsucc').on("click",function(){
@@ -283,7 +279,39 @@
 			})
 			*/
 
-			/* 모달
+			if(joinjoin.id.value == ""){ 
+				alert("사용하실 아이디를 입력해주세요");
+				joinjoin.id.focus();
+				return false;
+			}
+			
+			if(joinjoin.mName.value == ""){ 
+				alert("이름을 입력해주세요");
+				joinjoin.mName.focus();
+				return false;
+			}
+			
+			if(joinjoin.password.value.length == 0){
+				alert("사용하실 비밀번호를 입력해주세요");
+				joinjoin.password.focus();
+				return false;
+			}
+			
+			if(joinjoin.email.value == ""){ 
+				alert("사용하고 계신 이메일을 입력해주세요");
+				joinjoin.email.focus();
+				return false;
+			}
+			
+			if(joinjoin.phone.value == ""){ 
+				alert("사용하고 계신 이메일을 입력해주세요");
+				joinjoin.phone.focus(); 
+				return false;
+			}
+			
+			
+			
+			/* 모달... 하다하다 안되면 그냥 모달로 살려야할듯.....
 			let msg = '${param.msg}'
 				if(msg != '')
 					$('#joinendModal').modal()
