@@ -54,7 +54,7 @@ function selCheckboxEvent() {
 function maketr(item) {
 	let totalPrice = item.price * item.quantity;
 	const newtbody = `<tr>
-			<td><input type="checkbox" class="selCheck" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" checked></td>
+			<td><input type="checkbox" class="selCheck" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-img="${item.img}" data-name="${item.name}" data-price="${item.price}" checked></td>
 			<td class="image" data-title="No"><img src="images/${item.img}"
 					alt="#"></td>
 			<td>
@@ -184,58 +184,31 @@ function modifyCartEvent() {
 // 	})
 // }
 
-// function orderBtnEvent() {
-// 	let orderBtn = document.querySelector("#orderBtn");
-// 	orderBtn.addEventListener("click", function (e) {
-// 		e.preventDefault();
-// 		// let orders = [];
-// 		let odNoCheck = 1000;
-// 		let checks = document.querySelectorAll('#cartList .selCheck');
-// 		let orderNo = memberNo + odNoCheck;
-// 		checks.forEach(check => {
-// 			console.log(check);
-// 			if (check.checked == true) {
-// 				let bookNum = check.dataset.bookno;
-// 				let quan = check.dataset.quantity;
-// 				console.log(orderNo, bookNum, quan);
-// 				fetch("addOrderItem.do?odNo=" + orderNo + "&bookNo=" + bookNum + "&quantity=" + quan)
-// 					.then(result => result.json())
-// 					.then(result => {
-// 						if (result.retCode == "CK") {
-// 							odNoCheck++;
-// 						}
-// 					})
-// 				// let order = {"bookNo": bookNo1, "quantity": quantity1}
-// 				// orders.push(order);
-// 			}
-// 		})
-// 		fetch("orderItemList.do?odNo=" + orderNo);
-// 	})
-// }
-
 function orderBtnEvent() {
 	let orderBtn = document.querySelector("#orderBtn");
 	orderBtn.addEventListener("click", function (e) {
 		e.preventDefault();
 		let orders = [];
-		let order22 = '';
+		// let order22 = '';
 		let checks = document.querySelectorAll('#cartList .selCheck');
 		checks.forEach(check => {
 			// console.log(check);
 			if (check.checked == true) {
-
-				let bookNo1 = check.dataset.bookno;
+				let bookNo = check.dataset.bookno;
+				let bookImg = check.dataset.img;
+				let bookName = check.dataset.name;
+				let bookPirce = check.dataset.price;
 				let quantity1 = check.dataset.quantity;
-				let order = { "bookNo": bookNo1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1, "quantity": quantity1 }
+				let order = { "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity1 }
 				orders.push(order);
-				order22+= "<tr>"+check.closest("tr").innerHTML +"</tr>";
+				// order22+= "<tr>"+check.closest("tr").innerHTML +"</tr>";
 			}
 		})
-		console.log(order22);
+		// console.log(order22);
 		let orders1 = JSON.stringify(orders);
 		// fetch("orderItemPageList.do?orders=" + orders1);
 		document.querySelector('#orders').value = orders1;
-		//formOrder.submit();
+		formOrder.submit();
 	})
 }
 
