@@ -5,21 +5,7 @@
  
 function addToCart(memberNo,bookNo){
   event.preventDefault();
-	
-	/* //const addAjax = new XMLHttpRequest();
-	//frontcontroller 에 AddReplyJson.do 만들기 
-	addAjax.open('post','addCart.do');
-	addAjax.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	addAjax.send('quantity='+1+'&memberNo='+memberNo+'&bookNo='+bookNo);
-	addAjax.onload = function(){
-		let result = JSON.parse(addAjax.responseText);
-		if(result.retCode == 'OK'){
-			alert("장바구니에 담았습니다");
-		}else if(result.retCode == 'NG'){
-			alert("수량이 부족합니다");
-		}
-	}//end of onload */
-	
+
 	if(memberNo ==''){
 		alert('로그인이 필요합니다')
 		return;
