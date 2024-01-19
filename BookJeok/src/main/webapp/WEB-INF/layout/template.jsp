@@ -85,8 +85,7 @@
 	<tiles:insertAttribute name="body" />
 
 
-	<!-- Start Footer Area -->
-	<tiles:insertAttribute name="footer" />
+	
 	
 
 	
@@ -113,6 +112,9 @@
 	<script src="js/easing.js"></script>
 	<!-- Active JS -->
 	<script src="js/active.js"></script>
+	
+	<!-- Start Footer Area -->
+	<tiles:insertAttribute name="footer" />
 	
 	
 </body>
