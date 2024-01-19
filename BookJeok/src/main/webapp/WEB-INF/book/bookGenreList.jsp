@@ -2,27 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<style>
-.pagination {
-	display: inline-block;
-}
-
-.pagination a {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-}
-
-.pagination a.active {
-	background-color: #4CAF50;
-	color: white;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
-}
-</style>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
+	crossorigin="anonymous">
 <script src="js2/bookList.js"></script>
 <!-- 아직 건들이지 못함. 화면 출력안됨 -->
 <div class="product-area section">
@@ -63,8 +46,10 @@
 															<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a>
 														</div>
 														<div class="product-action-2">
-															
-															<a title="Add to cart" href="#" onclick="addToCart(${sessionScope.memberNo},${vo.bookNo})">장바구니에 넣기</a>
+
+															<a title="Add to cart" href="#"
+																onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에
+																넣기</a>
 														</div>
 													</div>
 												</div>
@@ -79,7 +64,29 @@
 											</div>
 										</div>
 									</c:forEach>
-									<div id="paging" class="pagination"></div>
+								</div>
+								
+								<div id="paging">
+								${dto}
+								<input type="hidden" name="pageNum" value="${dto.currPage}">
+								<nav aria-label="Page navigation example">
+									<ul class="pagination justify-content-center">
+										<c:if test="${dto.prev}">
+										<li class="page-item disabled"><a class="page-link" href="pagingList.do?page=${dto.startPage -1}" aria-label="Previous"> 
+										<span aria-hidden="true">&laquo;</span></a>
+										</li>
+										</c:if>
+										<li class="page-item">
+										<c:forEach var="i" begin="${dto.startPage}" end="${dto.lastPage}">
+										<li class="page-item"><a class="page-link" href="pagingList.do?page=${i}">${i}</a></li>
+										</c:forEach>
+										<c:if test="${dto.next}">
+										<li class="page-item"><a class="page-link" href="pagingList.do?page=${dto.lastPage +1}" aria-label="Next"> 
+										<span aria-hidden="true">&raquo;</span></a>
+										</li>
+										</c:if>
+									</ul>
+								</nav>
 								</div>
 							</div>
 						</div>
@@ -89,3 +96,4 @@
 		</div>
 	</div>
 </div>
+

@@ -4,7 +4,7 @@
 
  
 function addToCart(memberNo,bookNo){
-
+  event.preventDefault();
 	
 	/* //const addAjax = new XMLHttpRequest();
 	//frontcontroller 에 AddReplyJson.do 만들기 
@@ -20,12 +20,16 @@ function addToCart(memberNo,bookNo){
 		}
 	}//end of onload */
 	
+	if(memberNo ==''){
+		alert('로그인이 필요합니다')
+		return;
+	}
 	fetch('addCart.do',{
 		method:"post",
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded'
 		},
-		body: 'quantity='+1+'&memberNo='+memberNo+'&bookNo='+bookNo //addAjax.send(에 들어가는것이 body)
+		body: 'quantity='+1+'&memberNo='+memberNo+'&bookNo='+bookNo 
 	})
 		.then(result => result.json())
 		.then(result => {
@@ -34,8 +38,6 @@ function addToCart(memberNo,bookNo){
 				alert("장바구니에 담았습니다");
 			} else if (result == 'CK') {
 				alert("장바구니에 이미 추가되어져 있습니다.");		
-			}else if(result.retCode == 'NG'){
-				alert("로그인이 필요합니다.");
 			}
 			
 		})
@@ -53,7 +55,7 @@ function addToCart(memberNo,bookNo){
 		pagingList(pageInfo); //페이지 그려질 때마다 새로 보여주는 기능
 	}
 	
-	function showList(page){
+	function showList(bookNo,page){
 	fetch('pagingList.do',{
 		method: 'post',
 		headers:{
@@ -73,47 +75,4 @@ function addToCart(memberNo,bookNo){
 	showList(pageInfo);
 	
 	
-	//페이지 생성 
-	//페이지 계산 
-	let paging = document.querySelector('#paging');
-	pagingList();
 	
-	function pagingList(page = 1){
-		paging.innerHTML = '';
-		let pagingAjax = new XMLHttpRequest();
-		pagingAjax.open('get','pagingList.do=bookno='+bookNo+'&page='+page);
-		pagingAjax.send();
-		pagingAjax.onload= function(){
-			let result = JSON.parse(pagingAjax.responseText);
-			//이전
-			//보여지는 페이지 이전의 페이지   -> '이전' 6 7
-			if(result.prev){
-				let aTag = document.createElement('a');
-				aTag.href = result.startPage -1;
-				aTag.innerText = '이전';
-				aTag.addEventListener('click',pageList);
-				paging.appendChild(aTag);
-			}
-			//페이지 목록 
-			for(let p = result.startPage; p <= result.lastPage;p++){
-				let aTag = document.createElement('a');
-				if(p == page){
-					aTag.setAttribute('class','active');
-				}
-				aTag.href = p;
-				aTag.innerText = p;
-				aTag.addEventListener('click',pageList);
-				paging.appendChild(aTag);
-			}
-			//다음
-			//보여지는 페이지 이후의 페이지 1 2 3 4 5 '다음'<--  
-			if(result.next){
-				let aTag = document.createElement('a');
-				aTag.href = result.lastPage +1;
-				aTag.innerText = '다음';
-				aTag.addEventListener('click',pageList);
-				paging.appendChild(aTag);
-				
-			}
-		}
-	}//end of pagingList
