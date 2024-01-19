@@ -4,7 +4,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"
 	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
 	crossorigin="anonymous"></script>
-<!-- <script src="js2/likeItList.js"></script> -->
+
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
 	<div class="container">
@@ -41,7 +41,6 @@
 					</thead>
 
 					<tbody id="selectList" style="text-align: center;">
-						<!-- forEach 반복문 추가해야됨. -->
 						<c:forEach var="likeIt" items="${LikeItVO}">
 						<tr>
 						<td><input type="checkbox" class="selCheck"></td>
@@ -50,19 +49,10 @@
 						<td>${likeIt.author }</td>
 						<td>${likeIt.comp }</td>
 						<td>${likeIt.price }</td>
-						<td class="action"><button class="remBtn" data-bookNo="${likeIt.bookNo }"><i class="ti-trash remove-icon"></i></button></td>
+						<td class="action"><button class="remBtn" data-bookno="${likeIt.bookNo }" data-memberno="${memberNo}"><i class="ti-trash remove-icon"></i></button></td>
 						</tr>
 						</c:forEach>
 
-
-						<%-- <td><input type="checkbox" class="selCheck"></td>
-							<td><img src="${LikeItVO[1].img}" alt="#"></td>
-							<td>${LikeItVO[1].name }</td>							
-							<td>${LikeItVO[1].author }</td>
-							<td>${LikeItVO[1].comp }</td>							
-							<td>${LikeItVO[1].price }</td>
-							<td class="action"><a href="#" class="remBtn" data-cartno=""><i	class="ti-trash remove-icon"></i></a></td> --%>
-						<!-- 바로 윗줄. cartList.js랑 비교해서 데이터 db에서 삭제하는 기능 추가해야됨. -->
 
 						</tr>
 					</tbody>
@@ -75,6 +65,8 @@
 	<!--/ End Shopping Cart -->
 
 </div>
+<script src="js2/likeItList.js"></script>
+<form id="formOrder" action="orderItemPageList.do" method="post"><input type="hidden" name="orders" id="orders"></form>
 <script>
 	document.querySelector('#selectList').addEventListener("click", function(){
 	    
