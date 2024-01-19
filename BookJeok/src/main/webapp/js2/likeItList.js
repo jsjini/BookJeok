@@ -113,7 +113,7 @@ function cartAlert(result) {
 
 function allCheckboxEvent() {
 	$('.main-hading').find(':input').on('click', function() {
-		$('#cartList').find(':checkbox').prop('checked', this.checked);
+		$('#likeItList').find(':checkbox').prop('checked', this.checked);
 		makeTotal();
 	});
 
