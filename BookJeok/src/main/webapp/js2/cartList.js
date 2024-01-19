@@ -55,11 +55,11 @@ function maketr(item) {
 	let totalPrice = item.price * item.quantity;
 	const newtbody = `<tr>
 			<td><input type="checkbox" class="selCheck" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-img="${item.img}" data-name="${item.name}" data-price="${item.price}" checked></td>
-			<td class="image" data-title="No"><img src="images/${item.img}"
-					alt="#"></td>
+			<td data-title="No"><a href="bookDetail.do?bookNo=${item.bookNo}"><img src="images/${item.img}"
+					alt="#"></a></td>
 			<td>
 				<p class="product-name">
-					<a href="#">${item.name}</a>
+					<a href="bookDetail.do?bookNo=${item.bookNo}">${item.name}</a>
 				</p>
 			</td>
 			<td class="product-des" data-title="Description">
@@ -128,7 +128,6 @@ function allCheckboxEvent() {
 		$('#cartList').find(':checkbox').prop('checked', this.checked);
 		makeTotal();
 	});
-
 }
 
 function modifyCartEvent() {
