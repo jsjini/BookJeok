@@ -106,7 +106,7 @@
 			</div>
 			<div>
 				<h3>배송지 정보<span></span></h3>
-				<table>
+				<table class="table">
 					<tbody>
 						<tr>
 							<th>이름</th>
@@ -157,7 +157,27 @@
 					</tbody>
 				</table>
 			</div>
-
+			<div class="col-12">
+				<div class="row">
+					<div class="col-11">
+						<div class="right">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th>보유 포인트</th>
+										<td><span id="memberPoint"></span><span>&nbsp;P</span></td>
+									</tr>
+									<tr>
+										<th>사용 포인트</th>
+										<td><input id="usePoint" value=0><button
+												id="fullUseBtn">전액사용</button></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
 			<div class="col-12" id="totalAmount" style=":hover background-color: yellow;">
 				<!-- Total Amount -->
 				<div class="total-amount">
@@ -166,16 +186,21 @@
 						<div class="col-11">
 							<div class="right">
 								<ul>
+									<li>주문도서 금액<span>&nbsp;원</span><span class="sumPrice"
+											style="font-weight: bold;"></span></li>
 									<li>주문도서 수량<span>권)</span><span class="totalQuantity"
 											style="font-size: small;"></span><span>(</span><span
 											style="font-weight: bold;">&nbsp;종</span><span class="totalType"
 											style="font-weight: bold;"></span></li>
 									<li>배송비<span class="deliveryPrice" style="font-weight: bold;"></span></li>
-									<li class="last">주문 합계 금액<span>&nbsp;원</span><span class="totalPrice"
+									<li>사용 포인트<span>&nbsp;P</span><span class="usePoint"
+											style="font-weight: bold;"></span></li>
+									<li class="last">최종 결제 금액<span>&nbsp;원</span><span class="totalPrice"
 											style="font-weight: bold; font-size: larger;"></span></li>
 								</ul>
 								<div class="button5">
-									<a href="#" class="btn" id="addOrderBtn" style="font-weight: bold; font-size: larger;">결제하기</a>
+									<a href="#" class="btn" id="addOrderBtn"
+										style="font-weight: bold; font-size: larger;">결제하기</a>
 								</div>
 
 							</div>
@@ -187,25 +212,65 @@
 		</div>
 		<!--/ End Shopping Cart -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 		<script>
-			let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+			let memberNo1 = document.querySelector('#memberNumber').dataset.memberno;
 			let today = getToday();
+			let orderToday = today.slice(2);
+			let orderNos = today.split('/');
+			let orderNo = parseInt(orderNos.join('') + memberNo1);
 			var list = ${ orders };
+			let userPoint = 0;
 			console.log(list);
-
 			list.forEach(item => {
 				console.log(item);
 				const newtbody = maketr(item);
 				orderItemList.insertAdjacentHTML("beforeend", newtbody);
 			});
 
-			makeTotal();
 
 			moveCart();
 
 			memberInfo();
 
+			fullUseBtnEvent();
+
 			deliveryMessageEvent();
+
+			makeTotal();
+
+			usePointChange();
+
+			addOrderBtnEvent();
+
+			function usePointChange() {
+				let totalPrice = document.querySelector(".totalPrice").innerText;
+				let totalPayment = 0;
+				let useInput = document.querySelector("#usePoint");
+				useInput.addEventListener("focusout", function () {
+					const maxPoint = parseInt(document.querySelector("#memberPoint").innerText);
+					let usePoint = parseInt(document.querySelector("#usePoint").value);
+					if(usePoint < 0) {
+						document.querySelector("#usePoint").value = 0;
+					} else if (usePoint > maxPoint) {
+						document.querySelector("#usePoint").value = maxPoint;
+					}
+					totalPayment = parseInt(totalPrice) - parseInt(usePoint);
+					document.querySelector(".usePoint").innerText = usePoint;
+					document.querySelector(".totalPrice").innerText = totalPayment;
+				})
+			}
+
+			function fullUseBtnEvent() {
+				document.querySelector('#fullUseBtn').addEventListener("click", function () {
+					const memberPoint = document.querySelector("#memberPoint").innerText;
+					let totalPrice = document.querySelector(".totalPrice").innerText;
+					let totalPayment = parseInt(totalPrice) - parseInt(memberPoint);
+					document.querySelector("#usePoint").value = memberPoint;
+					document.querySelector(".usePoint").innerText = memberPoint;
+					document.querySelector(".totalPrice").innerText = totalPayment;
+				})
+			}
 
 			function maketr(item) {
 				console.log(item.bookImg, item.bookName, item.bookNo, item.bookPirce);
@@ -238,6 +303,8 @@
 				let totalType = 0;
 				let deliveryPrice = "무료";
 				let totalPrice = 0;
+				let usePoint = 0;
+				let totalPayment = 0;
 				images.forEach(image => {
 					totalPrice += parseInt(image.dataset.totalprice);
 
@@ -249,12 +316,16 @@
 						}
 					}
 				})
+				usePoint = document.querySelector("#usePoint").value;
 				totalPoint = totalPrice * 0.05;
+				totalPayment = totalPrice - usePoint;
 				document.querySelector(".totalPoint").innerText = totalPoint;
 				document.querySelector(".totalQuantity").innerText = totalQuantity;
 				document.querySelector(".totalType").innerText = totalType;
-				document.querySelector(".totalPrice").innerText = totalPrice;
+				document.querySelector(".totalPrice").innerText = totalPayment;
 				document.querySelector(".deliveryPrice").innerText = deliveryPrice;
+				document.querySelector(".sumPrice").innerText = totalPrice;
+				document.querySelector(".usePoint").innerText = usePoint;
 			}
 
 			function moveCart() {
@@ -266,12 +337,12 @@
 			}
 
 			function memberInfo() {
-				fetch("orderItemListJson.do?memberNo=" + memberNo)
+				fetch("orderItemListJson.do?memberNo=" + memberNo1)
 					.then(result => result.json())
 					.then(result => {
-						console.log(result);
+						userPoint = result.point;
+						document.querySelector('#memberPoint').innerText = userPoint;
 						let memberInfo = document.querySelector('#membetInfo');
-						console.log(memberInfo);
 						memberInfo.addEventListener("click", function (e) {
 							e.preventDefault();
 							let phones = result.phone.split('-');
@@ -282,7 +353,6 @@
 							document.querySelector('#order_phone03').value = phones[2];
 							// document.querySelector('#order_add1').value = ;
 							// document.querySelector('#order_add1').value = ;
-
 						})
 					})
 			}
@@ -300,16 +370,109 @@
 			}
 
 			function addOrderBtnEvent() {
-				let addOrderBtn = document.querySelector
+				let addOrderBtn = document.querySelector("#addOrderBtn");
+				addOrderBtn.addEventListener("click", function (e) {
+					e.preventDefault();
+					let memberName = document.querySelector("#memberName").value;
+					let memberaddress1 = document.querySelector("#sample4_roadAddress").value;
+					let memberaddress2 = document.querySelector("#sample4_detailAddress").value;
+					let memberaddress = memberaddress1 + " " + memberaddress2;
+					let orderStatus = "주문완료";
+					let orderPrice = parseInt(document.querySelector(".sumPrice").innerText);
+					let point = parseInt(document.querySelector(".usePoint").innerText);
+					let totalPayment = parseInt(document.querySelector(".totalPrice").innerText);
+					let phone1 = document.querySelector("#order_phone01").value;
+					let phone2 = document.querySelector("#order_phone02").value;
+					let phone3 = document.querySelector("#order_phone03").value;
+					let userPhone = phone1 + "-" + phone2 + "-" + phone3;
+					let images = document.querySelectorAll('#orderItemList .image');
+					let memberPoint = parseInt(document.querySelector('#memberPoint').innerText);
+					let remainPoint = memberPoint - point;
+					console.log(orderNo);
+					if (memberName != '' && memberaddress1 != '' && memberaddress2 != '' && phone1 != '' && phone2 != '' && phone3 != '') {
+						fetch("checkOrderNo.do?memberNo=" + memberNo1)
+							.then(result => result.json())
+							.then(result => {
+								console.log(result);
+								orderNo = result + 1;
+								console.log(orderNo);
+								let orderInfo = {
+									method: "POST",
+									headers: {
+										'Content-Type': 'application/x-www-form-urlencoded'
+									},
+									body:
+										'odNo=' + orderNo + '&odTg=' + memberName
+										+ '&odAd=' + memberaddress + '&odt=' + orderToday
+										+ '&odStatus=' + orderStatus + '&odPrice=' + orderPrice
+										+ '&usePoint=' + point + '&odTotal=' + totalPayment
+										+ '&memberNo=' + memberNo1 + '&phone=' + userPhone
+										+ '&remainPoint=' + remainPoint
+								};
+								fetch("addOrder.do", orderInfo)
+									.then(result => result.json())
+									.then(result => {
+										if (result.retCode == "OK") {
+											images.forEach(image => {
+												let bookNumber = image.dataset.bookno;
+												let quanti = image.dataset.quantity;
+												const orderItemInfo = {
+													method: "POST",
+													headers: {
+														'Content-Type': 'application/x-www-form-urlencoded'
+													},
+													body:
+														'odNo=' + result.odNo + '&bookNo=' + bookNumber
+														+ '&quantity=' + quanti
+												};
+												const pointInfo = {
+													method: "POST",
+													headers: {
+														'Content-Type': 'application/x-www-form-urlencoded'
+													},
+													body:
+														'remainPoint=' + result.point + '&memberNo=' + memberNo1
+												}
+												fetch("addOrderItem.do", orderItemInfo);
+												fetch("modifyPoint.do", pointInfo);
+											})
+											Swal.fire({
+												text: "결제가 완료되었습니다!",
+												confirmButtonText: `<a href="orderList.do">확인</a>`
+											})
+										} else {
+											Swal.fire({
+												text: "결제 실패. 다시 시도해주세요.",
+												confirmButtonText: `확인`
+											})
+										}
+									})
+							})
+					} else {
+						alert("모든 정보를 입력해주세요.")
+					}
+				})
 			}
+			// function checkCart(memberNo, bookNo) {
+			// 	console.log(memberNo)
+			// 	Swal.fire({
+			// 		text: "결제가 완료되었습니다!",
+			// 		showCancelButton: true,
+			// 		confirmButtonText: '추가상품 구매하기',
+			// 		cancelButtonText: `<a href="cartList.do?memberNo=${memberNo}&bookNo=${bookNo}">주문내역 페이지로 이동</a>`
+			// 	}).then((result) => {
+			// 		if (result.value) {
+			// 			//"삭제" 버튼을 눌렀을 때 작업할 내용을 이곳에 넣어주면 된다. 
+			// 		}
+			// 	})
+			// }
 
 			function getToday() {
-				var date = new Date();
-				var year = date.getFullYear();
-				var month = ("0" + (1 + date.getMonth())).slice(-2);
-				var day = ("0" + date.getDate()).slice(-2);
-
-				return year + month + day;
+				let date = new Date();
+				let year = date.getFullYear();
+				let month = ("0" + (1 + date.getMonth())).slice(-2);
+				let day = ("0" + date.getDate()).slice(-2);
+				return year + "/" + month + "/" + day;
 			}
 
 

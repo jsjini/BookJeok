@@ -3,7 +3,7 @@
  */
 
 let memberNo = document.querySelector('#memberNumber').dataset.memberno;
-
+console.log(memberNo);
 showOrder(memberNo);
 
 function showOrder() {
@@ -13,30 +13,29 @@ function showOrder() {
 			console.log(result);
 			result.forEach(item => {
 				console.log(item);
-				// const newtbody = maketr(item);
-				// orderList.insertAdjacentHTML("beforeend", newtbody);
+				const newtbody = maketr(item);
+				orderList.insertAdjacentHTML("beforeend", newtbody);
 			});
 		})
 }
 
 function maketr(item) {
-	console.log(item.bookImg, item.bookName, item.bookNo, item.bookPirce);
-	const newtbody1 = `<tr>
-	<td class="image" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.bookImg}"
-		alt="#"></a></td>
-	<td>
-	<p class="product-name">
-		<a href="bookDetail.do?bookNo=\${item.bookNo}">\${item.bookName}</a>
-	</p>
-	</td>
-	<td class="product-des" data-title="Description">
-	<p class="product-des">내일 수령</p>
-	</td>
-	<td class="price" data-title="\${item.bookPirce}"><span>\${item.bookPirce}</span></td>
-	<td class="qty" data-title="Qty">
-		<p class="qty-value">\${item.quantity}</p>
-	</td>
-	<td class="total-amount" data-title="Total"><span>\${totalPrice}</span></td>
-	</tr>`
+	let odt = item.odt.split(' ')[0];
+	const newtbody1 = 
+	`
+	<tr>
+		<th scope="row" style="padding: 0px 0px 10px 0px; font-size: 17px;">${item.odStatus}</th>
+		<td class="right"><a href="#" class="remBtn" data-odno="${item.odNo}"><i class="ti-trash remove-icon" style="font-size: 20px;"></i></a></td>
+	</tr>
+	<tr>
+		<th scope="row"><img src="images/8901276534_2.jpg" alt="#"></th>
+		<td style="padding: 0px 0px 0px 80px;">
+			<div style="padding: 0px 7px 10px 7px; font-size: 15px;"><span>${odt}&nbsp;&nbsp;결제</span></div>
+			<div style="padding: 7px; font-size: 20px;"><span>혼자 공부하는 자바</span><span style="padding: 7px 7px 7px 20px;"> 총 2건</span></div>
+			<div style="padding: 7px; font-size: 20px;"><span>${item.odTotal}&nbsp;&nbsp;원</span></div>
+			<div style="padding: 7px 7px 0px 7px; font-size: 17px;"><a href=""><span style="color: rgb(3, 202, 136);">주문상세></span></a></div>
+		</td>
+	</tr>
+	`
 	return newtbody1;
 }

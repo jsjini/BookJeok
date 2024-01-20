@@ -17,7 +17,7 @@ function showCart() {
 			result.forEach(item => {
 				console.log(item);
 				const newtbody = maketr(item);
-				cartList.insertAdjacentHTML("beforeend", newtbody);
+				cartList.insertAdjacentHTML("afterbegin", newtbody);
 			});
 
 			const createBtn = createOrderBtn();

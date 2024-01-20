@@ -33,6 +33,8 @@ import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.member.command.MyPage;
 import com.yedam.order.command.AddOrderControl;
+import com.yedam.order.command.CheckOrderNoControl;
+import com.yedam.order.command.ModifyPointControl;
 import com.yedam.order.command.OrderListControl;
 import com.yedam.order.command.OrderListJson;
 import com.yedam.orderItem.command.AddOrderItemControl;
@@ -105,11 +107,13 @@ public class FrontController extends HttpServlet {
 		// 주문페이지 관련
 		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
 		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
-		map.put("/addOrder.do", new AddOrderControl()); // 현재 사용안함.
-		map.put("/addOrderItem.do", new AddOrderItemControl()); // 현재 사용안함.
+		map.put("/addOrderItem.do", new AddOrderItemControl()); // 오더아이템 테이블에 추가.
 		
-		map.put("/orderList.do", new OrderListControl());
-		map.put("/orderListJson.do", new OrderListJson());
+		map.put("/orderList.do", new OrderListControl()); // 주문 목록으로 이동
+		map.put("/orderListJson.do", new OrderListJson()); // 주문 목록 페이지에 정보넘기는 기능
+		map.put("/addOrder.do", new AddOrderControl()); // 주문 추가
+		map.put("/checkOrderNo.do", new CheckOrderNoControl()); // 주문번호 체크
+		map.put("/modifyPoint.do", new ModifyPointControl()); // 회원 포인트 수정
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
 		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어
