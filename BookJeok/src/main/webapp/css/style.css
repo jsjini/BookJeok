@@ -257,7 +257,7 @@ Version:1.0
 /* Dropdown Menu */
 .header .nav li .dropdown {
 	background: #fff;
-	width: 220px;
+	width: 100%;
 	position: absolute;
 	top: 100%;
 	z-index: 999;
@@ -271,7 +271,7 @@ Version:1.0
 	transition: all 0.3s ease 0s;
 	opacity: 0;
 	visibility: hidden;
-	padding: 10px;
+	/* padding: 10px; */
 	left: 0;
 	margin: 0;
 }
@@ -920,7 +920,7 @@ Version:1.0
 	position: relative;
 }
 .header.shop .nav li {
-	margin-right:5px;
+	margin-right:0px;
 	position: relative;
 	float: none;
 }
@@ -948,8 +948,8 @@ Version:1.0
 	color: #fff;
 	text-transform: capitalize;
 	font-size: 15px;
-	padding: 20px 15px;
-	margin-right: 50px;
+	padding: 20px 30px;
+	/*margin-right: 50px;*/
 	font-weight: 500;
 	display: block;
 	position: relative;
@@ -1747,6 +1747,12 @@ Version:1.0
 	border-color:transparent;
 }
 /* Sinlge Product */
+/* 상품 이미지 크기 적용 */
+.new-img-size {
+	max-height: calc((100% - 2px) * 1.618 - 10px);
+	object-fit: cover;
+}
+
 .single-product{
 	margin-top:50px;
 }
@@ -1824,14 +1830,14 @@ Version:1.0
 .single-product .product-img .product-action {
 	display: inline-block;
 	position: absolute;
-	right: 0;
+	right: 10px; /* 오른쪽 찜 아이콘 위치 */
 	bottom: 0;
 	z-index: 99;
 	border-radius: 3px;
 }
 .single-product .product-img .product-action a {
 	background-color: transparent;
-	color: #333;
+	color: #fff;
 	display: block;
 	font-size: 16px;
 	display: inline-block;
@@ -1886,7 +1892,7 @@ Version:1.0
 .single-product .product-img .product-action a:hover span {
   visibility: visible;
   opacity: 1;
-  color:#333;
+  color:#fff;
   background:#fff;
   margin-top: -12px;
 }
@@ -1903,7 +1909,7 @@ Version:1.0
 }
 .single-product .product-img .product-action-2 {
 	position: absolute;
-	left: 0;
+	left: 10px; /* 왼쪽 장바구니 아이콘 위치 */
 	bottom: 0;
 	text-align: left;
 	z-index: 99;
@@ -1914,7 +1920,7 @@ Version:1.0
 .single-product .product-img .product-action-2 a {
 	display: block;
 	background-color: transparent;
-	color: #333;
+	color: #fff;
 	text-align: left;
 	font-size: 12px;
 	font-weight: 600;
@@ -1931,7 +1937,7 @@ Version:1.0
 	height: 40px;
 	width: 100%;
 	position: absolute;
-	left: 0;
+	left: 0px;
 	bottom: -50px;
 	z-index: 9;
 	height: 50px;
@@ -1939,9 +1945,11 @@ Version:1.0
 	-webkit-transition:all 0.4s ease;
 	-moz-transition:all 0.4s ease;
 	transition:all 0.4s ease;
+	
 }
 .single-product:hover .button-head{
 	bottom:0;
+	background-color: rgba(0, 0, 0, 0.726);
 }
 .single-product .product-img .shop-list-quickview {
   position: absolute;

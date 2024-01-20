@@ -28,6 +28,7 @@ import com.yedam.likeIt.command.RemoveLikeItControl;
 import com.yedam.member.command.AlertMsgControl;
 import com.yedam.member.command.JoinControl;
 import com.yedam.member.command.LoginBookControl;
+import com.yedam.member.command.LoginCheckControl;
 import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
@@ -70,18 +71,19 @@ public class FrontController extends HttpServlet {
 		map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
-		// 목록 관련
 		
 		//상세페이지
 		map.put("/bookDetail.do", new BookDetailControl()); // 도서 상세페이지
 		map.put("/review.do", new ReviewControl()); // 리뷰
 
 		// 회원 관련
+		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
+		map.put("/loginCheck.do", new LoginCheckControl()); // 로그인 실패 처리
+		map.put("/idcheck.do", new LoginIdCheck()); //회원가입시 아이디중복확인?
+		map.put("/logout.do", new LogoutBookControl());//로그아웃
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
-		//map.put("/loginBook.do", new LoginBookControl()); //로그인화면
 		map.put("/alert.do", new AlertMsgControl()); //가입완료메시지
-		map.put("/mypage.do", new MyPage()); //마이페이지
 		
 		// 찜하기
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
@@ -89,11 +91,8 @@ public class FrontController extends HttpServlet {
 		map.put("/removeLikeIt.do", new RemoveLikeItControl());
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
-		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
-		map.put("/idcheck.do", new LoginIdCheck()); //회원가입시 아이디중복확인?
-		map.put("/logout.do", new LogoutBookControl());//로그아웃
-    
 		//마이페이지
+		map.put("/mypage.do", new MyPage()); //마이페이지
 		
 		// 장바구니
 		map.put("/cartList.do", new CartListControl()); // 카트페이지이동
@@ -110,6 +109,7 @@ public class FrontController extends HttpServlet {
 		
 		map.put("/orderList.do", new OrderListControl());
 		map.put("/orderListJson.do", new OrderListJson());
+		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록
 		map.put("/searchKeyword.do", new SearchKeywordControl()); // 인기검색어
