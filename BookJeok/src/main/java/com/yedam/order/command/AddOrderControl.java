@@ -43,7 +43,7 @@ public class AddOrderControl implements Control {
 		vo.setMemberNo(Integer.parseInt(memberNo));
 		vo.setPhone(phone);
 		vo.setPoint(Integer.parseInt(point));
-
+		
 		OrderService svc = new OrderServiceImpl();
 		Map<String, Object> map = new HashMap<>();
 

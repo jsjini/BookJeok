@@ -39,7 +39,7 @@
 	</style>
 
 	<!-- Breadcrumbs -->
-	<div class="breadcrumbs">
+	<div class="breadcrumbs" style="padding-bottom: 0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
@@ -48,11 +48,10 @@
 						border: 1px solid #aaa;
 						border-radius: 15px;
 						padding: 27px;
-						color: rgb(71, 71, 66);
+						color: rgb(71, 71, 66); text-align: center;"
 					">
 							<h2 id="memberNumber" data-memberno="${sessionScope.memberNo}" data-odno="${odNo}">주문 / 결제
 							</h2>
-							<div><button class="btn" id="moveCart">카트로 이동</button></div>
 						</div>
 					</div>
 				</div>
@@ -60,13 +59,14 @@
 		</div>
 	</div>
 	<!-- End Breadcrumbs -->
-	<div class="breadcrumbs">
+	<div class="breadcrumbs" style="padding-bottom: 0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
 					<div class="bread-inner">
 						<div>
-							<h5>주문도서내역</h5>
+							
+							<div style="float: right;"><button class="btn" id="moveCart">카트로 이동</button></div>
 						</div>
 					</div>
 				</div>
@@ -74,10 +74,11 @@
 		</div>
 	</div>
 	<!-- Shopping Cart -->
-	<div class="shopping-cart section">
+	<div class="shopping-cart section" style="padding-top: 0px;">
 		<div class="container">
 			<div class="row">
 				<div class="col-12">
+					<h4 style="padding: 15px;">주문도서내역</h4>
 					<!-- Shopping Summery -->
 					<table class="table shopping-summery">
 						<thead>
@@ -105,7 +106,7 @@
 				</div>
 			</div>
 			<div>
-				<h3>배송지 정보<span></span></h3>
+				<h4 style="padding: 15px;">배송지 정보</h4>
 				<table class="table">
 					<tbody>
 						<tr>
@@ -142,7 +143,7 @@
 								<input type="hidden" id="sample4_extraAddress" placeholder="참고항목">
 							</td>
 						</tr>
-						<tr>
+						<!-- <tr>
 							<th>
 								배송요청사항
 							</th>
@@ -153,7 +154,7 @@
 									<span style="font-size: smaller;"> * 북적북적 요청사항이 아닌 택배사 송장에 표기되는 메시지입니다.</span>
 								</div>
 							</td>
-						</tr>
+						</tr> -->
 					</tbody>
 				</table>
 			</div>
@@ -169,8 +170,9 @@
 									</tr>
 									<tr>
 										<th>사용 포인트</th>
-										<td><input id="usePoint" value=0><button
-												id="fullUseBtn">전액사용</button></td>
+										<td><input id="usePoint" value=0 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"><button class="pointUseBtn pointUseBtn_Y"
+												data-state="Y">모두사용</button><button class="pointUseBtn pointUseBtn_N"
+												data-state="N" style="display: none;">사용취소</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -234,8 +236,9 @@
 			memberInfo();
 
 			fullUseBtnEvent();
+			emptyUseBtnEvent();
 
-			deliveryMessageEvent();
+			// deliveryMessageEvent();
 
 			makeTotal();
 
@@ -250,25 +253,54 @@
 				useInput.addEventListener("focusout", function () {
 					const maxPoint = parseInt(document.querySelector("#memberPoint").innerText);
 					let usePoint = parseInt(document.querySelector("#usePoint").value);
-					if(usePoint < 0) {
+					if (usePoint < 0 || document.querySelector("#usePoint").value == '') {
 						document.querySelector("#usePoint").value = 0;
+						document.querySelector(".usePoint").innerText = 0;
+						totalPayment = parseInt(totalPrice) - parseInt(document.querySelector(".usePoint").innerText);
+						document.querySelector(".totalPrice").innerText = totalPayment;
 					} else if (usePoint > maxPoint) {
 						document.querySelector("#usePoint").value = maxPoint;
+						document.querySelector(".usePoint").innerText = maxPoint;
+						totalPayment = parseInt(totalPrice) - parseInt(document.querySelector(".usePoint").innerText);
+						document.querySelector(".totalPrice").innerText = totalPayment;
+						document.querySelector(".pointUseBtn_N").style.display = "inline-block";
+						document.querySelector(".pointUseBtn_Y").style.display = "none";
+					} else {
+						document.querySelector(".usePoint").innerText = usePoint;
+						totalPayment = parseInt(totalPrice) - parseInt(document.querySelector(".usePoint").innerText);
+						document.querySelector(".totalPrice").innerText = totalPayment;
 					}
-					totalPayment = parseInt(totalPrice) - parseInt(usePoint);
-					document.querySelector(".usePoint").innerText = usePoint;
-					document.querySelector(".totalPrice").innerText = totalPayment;
 				})
 			}
 
 			function fullUseBtnEvent() {
-				document.querySelector('#fullUseBtn').addEventListener("click", function () {
+				document.querySelector('.pointUseBtn_Y').addEventListener("click", function () {
 					const memberPoint = document.querySelector("#memberPoint").innerText;
-					let totalPrice = document.querySelector(".totalPrice").innerText;
-					let totalPayment = parseInt(totalPrice) - parseInt(memberPoint);
+					let sumPrice = document.querySelector(".sumPrice").innerText;
+					let totalPayment = 0;
+					document.querySelector("#usePoint").value = 0;
+					document.querySelector(".usePoint").innerText = 0;
+					document.querySelector(".totalPrice").innerText = sumPrice;
 					document.querySelector("#usePoint").value = memberPoint;
 					document.querySelector(".usePoint").innerText = memberPoint;
+					totalPayment = parseInt(sumPrice) - parseInt(memberPoint);
 					document.querySelector(".totalPrice").innerText = totalPayment;
+					document.querySelector(".pointUseBtn_N").style.display = "inline-block";
+					document.querySelector(".pointUseBtn_Y").style.display = "none";
+				})
+			}
+
+			function emptyUseBtnEvent() {
+				document.querySelector('.pointUseBtn_N').addEventListener("click", function () {
+					const memberPoint = document.querySelector("#memberPoint").innerText;
+					let sumPrice = document.querySelector(".sumPrice").innerText;
+					let totalPayment = 0;
+					document.querySelector("#usePoint").value = 0;
+					document.querySelector(".usePoint").innerText = 0;
+					totalPayment = parseInt(sumPrice);
+					document.querySelector(".totalPrice").innerText = totalPayment;
+					document.querySelector(".pointUseBtn_Y").style.display = "inline-block";
+					document.querySelector(".pointUseBtn_N").style.display = "none";
 				})
 			}
 
@@ -276,7 +308,7 @@
 				console.log(item.bookImg, item.bookName, item.bookNo, item.bookPirce);
 				let totalPrice = item.bookPirce * item.quantity;
 				const newtbody1 = `<tr>
-				<td class="image" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.bookImg}"
+				<td class="image" data-cartno="\${item.cartNo}" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.bookImg}"
 					alt="#"></a></td>
 				<td>
 				<p class="product-name">
@@ -387,8 +419,9 @@
 					let userPhone = phone1 + "-" + phone2 + "-" + phone3;
 					let images = document.querySelectorAll('#orderItemList .image');
 					let memberPoint = parseInt(document.querySelector('#memberPoint').innerText);
-					let remainPoint = memberPoint - point;
-					console.log(orderNo);
+					let totalPoint = parseInt(document.querySelector(".totalPoint").innerText);
+					let remainPoint = memberPoint - point + totalPoint;
+					console.log(remainPoint);
 					if (memberName != '' && memberaddress1 != '' && memberaddress2 != '' && phone1 != '' && phone2 != '' && phone3 != '') {
 						fetch("checkOrderNo.do?memberNo=" + memberNo1)
 							.then(result => result.json())
@@ -416,6 +449,7 @@
 											images.forEach(image => {
 												let bookNumber = image.dataset.bookno;
 												let quanti = image.dataset.quantity;
+												let cartNumber = image.dataset.cartno;
 												const orderItemInfo = {
 													method: "POST",
 													headers: {
@@ -425,17 +459,26 @@
 														'odNo=' + result.odNo + '&bookNo=' + bookNumber
 														+ '&quantity=' + quanti
 												};
-												const pointInfo = {
+												const cartInfo = {
 													method: "POST",
 													headers: {
 														'Content-Type': 'application/x-www-form-urlencoded'
 													},
 													body:
-														'remainPoint=' + result.point + '&memberNo=' + memberNo1
+													'cartNo=' + cartNumber
 												}
 												fetch("addOrderItem.do", orderItemInfo);
-												fetch("modifyPoint.do", pointInfo);
+												fetch("removeCart.do", cartInfo);
 											})
+											const pointInfo = {
+												method: "POST",
+												headers: {
+													'Content-Type': 'application/x-www-form-urlencoded'
+												},
+												body:
+													'remainPoint=' + result.point + '&memberNo=' + memberNo1
+											}
+											fetch("modifyPoint.do", pointInfo);
 											Swal.fire({
 												text: "결제가 완료되었습니다!",
 												confirmButtonText: `<a href="orderList.do">확인</a>`

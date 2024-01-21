@@ -2,17 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="com.yedam.orderItem.mapper.OrderItemMapper">
-	<select id="selectMemberInfo" resultType="orderItem" parameterType="int">
-  		select m_name, phone, point
+	<select id="selectMemberInfo" resultType="orderItem"
+		parameterType="int">
+		select m_name, phone, point
 		from member
 		where member_no = #{memberNo}
-  	</select>
-	
-  	<insert id="insertOrderItem" parameterType="orderItemPage">
-  		insert into order_item values (order_item_seq.nextval, #{odNo}, #{bookNo}, #{quantity})
-  	</insert>
-  	
-  	
+	</select>
+
+	<insert id="insertOrderItem" parameterType="orderItemPage">
+		insert into order_item values (order_item_seq.nextval, #{odNo}, #{bookNo},
+		#{quantity})
+	</insert>
+
+	<select id="selectList" resultType="orderItemPage"
+		parameterType="int">
+		select b.book_no, b.img, b.name, b.price, oi.quantity
+		from order_item oi join book b
+		on b.book_no = oi.book_no
+		where od_no = #{odNo}
+	</select>
+
 </mapper> 

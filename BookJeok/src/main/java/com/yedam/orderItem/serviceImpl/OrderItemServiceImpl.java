@@ -1,5 +1,7 @@
 package com.yedam.orderItem.serviceImpl;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import com.yedam.common.DataSource;
@@ -21,6 +23,11 @@ public class OrderItemServiceImpl implements OrderItemService {
 	@Override
 	public boolean addOrderItem(OrderItemPageVO vo) {
 		return mapper.insertOrderItem(vo) == 1;
+	}
+
+	@Override
+	public List<OrderItemPageVO> orderItemList(int odNo) {
+		return mapper.selectList(odNo);
 	}
 
 }

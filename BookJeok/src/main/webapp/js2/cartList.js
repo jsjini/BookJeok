@@ -54,7 +54,7 @@ function selCheckboxEvent() {
 function maketr(item) {
 	let totalPrice = item.price * item.quantity;
 	const newtbody = `<tr>
-			<td><input type="checkbox" class="selCheck" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-img="${item.img}" data-name="${item.name}" data-price="${item.price}" checked></td>
+			<td><input type="checkbox" class="selCheck" data-cartno="${item.cartNo}" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-img="${item.img}" data-name="${item.name}" data-price="${item.price}" checked></td>
 			<td data-title="No"><a href="bookDetail.do?bookNo=${item.bookNo}"><img src="images/${item.img}"
 					alt="#"></a></td>
 			<td>
@@ -193,13 +193,15 @@ function orderBtnEvent() {
 		checks.forEach(check => {
 			// console.log(check);
 			if (check.checked == true) {
+				let cartNo = check.dataset.cartno;
 				let bookNo = check.dataset.bookno;
 				let bookImg = check.dataset.img;
 				let bookName = check.dataset.name;
 				let bookPirce = check.dataset.price;
 				let quantity1 = check.dataset.quantity;
-				let order = { "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity1 }
+				let order = { "cartNo": cartNo, "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity1 }
 				orders.push(order);
+				console.log(order);
 				// order22+= "<tr>"+check.closest("tr").innerHTML +"</tr>";
 			}
 		})
