@@ -22,5 +22,10 @@ public class MemberServiceImpl implements MemberService{
 		// 여기서 로그인 없는 기본상태를 체크하자
 		return mapper.selectMember(id, pw);
 	}
+	
+	//마이페이지
+	public MemberVO selectPage(int memberNo) {
+		return mapper.selectPage(memberNo);
+	}
 
 }

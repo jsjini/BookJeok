@@ -93,7 +93,7 @@
 					</c:choose>
 					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="likeIt.do?memberNo=1" class="single-icon"><i
+						<a href="mypage.do?memberNo=${memberNo }" class="single-icon"><i
 							class="fa fa-user-circle-o" aria-hidden="true"></i></a>
 					</div>
 					<!-- 장바구니 아이콘 -->

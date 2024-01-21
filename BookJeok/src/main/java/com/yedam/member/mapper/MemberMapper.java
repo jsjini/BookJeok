@@ -8,4 +8,5 @@ public interface MemberMapper {
 
 	public int insertMember(MemberVO vo);
 	public MemberVO selectMember(@Param("id") String id, @Param("pw") String pw);
+	public MemberVO selectPage(int memberNo); 
 }

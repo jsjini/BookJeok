@@ -81,7 +81,8 @@ public class FrontController extends HttpServlet {
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
 		//map.put("/loginBook.do", new LoginBookControl()); //로그인화면
 		map.put("/alert.do", new AlertMsgControl()); //가입완료메시지
-		map.put("/mypage.do", new MyPage()); //마이페이지
+		map.put("/mypage.do", new MyPage()); //마이페이지(내 정보 먼저 보임)
+		
 		
 		// 찜하기
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
