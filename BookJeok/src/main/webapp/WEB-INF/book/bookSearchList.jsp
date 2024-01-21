@@ -33,11 +33,15 @@
 						<li class="list-group-item py-4">${vo.author } 저 | ${vo.comp } | ${vo.dt }</li>
 						<li class="list-group-item py-4 text-danger font-weight-bold h6">${vo.price }원</li>
 					</ul>
-					<div class="col-2 float-left">
-						<input type="checkbox">
-						<input type="number" value="1">
+					<div class="col-2 float-left btns">
+						<div class="input-group mb-5">
+							<input type="checkbox" class="checkBook">
+							<button>-</button>
+							<input type="number" value="1" class="quantity" size="3">
+							<button>+</button>
+						</div>
 						<div class="btn-group-vertical float-right btns">
-							<button type="button" class="btn mb-3 mt-5 addPurchase" data-bookimg="${vo.img }" data-bookname="${vo.name }" data-bookpirce="${vo.price }" data-bookno="${vo.bookNo }">바로구매</button>
+							<button type="button" class="btn mb-3 addPurchase" data-bookimg="${vo.img }" data-bookname="${vo.name }" data-bookpirce="${vo.price }" data-bookno="${vo.bookNo }">바로구매</button>
 							<button type="button" class="btn mb-3 addCartBtn" data-bookno="${vo.bookNo }">장바구니</button>
 							<button type="button" class="btn mb-3 addLike" data-bookno="${vo.bookNo }" >내 서재</button>
 						</div>
@@ -57,7 +61,7 @@
 			let logId = '${sessionScope.logId}';
 			let bookNo = event.target.dataset.bookno;
 			
-			if(logId == null){
+			if(logId == ''){
 				alert('로그인이 필요합니다.');
 			} else{
 				if (event.target.classList.contains("addCartBtn")){ // 1. 장바구니 (로그인O)
@@ -88,7 +92,7 @@
 					let bookImg = event.target.dataset.bookimg;
 					let bookName = event.target.dataset.bookname;
 					let bookPirce = event.target.dataset.bookpirce;
-					let quantity = 1; // 책 한권만 넘어감
+					let quantity =  document.querySelector('.quantity').value;
 					
 					let orders = [{ "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity }];
 					
