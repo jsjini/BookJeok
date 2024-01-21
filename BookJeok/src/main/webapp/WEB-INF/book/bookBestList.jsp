@@ -2,9 +2,12 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script> 
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+	crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js2/bookList.js"></script>
 
 <div class="product-area section">
@@ -25,16 +28,19 @@
 						<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 							<div class="single-product">
 								<div class="product-img">
-									<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img class="default-img"
-										src="images/${vo.img}">
+									<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
+										class="default-img" src="images/${vo.img}">
 									</a>
 									<div class="button-head">
 										<div class="product-action">
-											<a title="Wishlist" href="#" onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>찜하기</span></a>
-										<a title="Wishlist" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>모달테스트용</span></a>
+											<a title="Wishlist" href="#"
+												onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
+												class=" ti-heart "></i><span>찜하기</span></a>
 										</div>
 										<div class="product-action-2">
-											<a title="Add to cart" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에 담기</a>
+											<a title="Add to cart" href="#"
+												onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에
+												담기</a>
 										</div>
 									</div>
 								</div>

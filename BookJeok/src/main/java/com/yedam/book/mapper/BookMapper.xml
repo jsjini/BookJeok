@@ -21,9 +21,15 @@
 	</select>
 	<!-- 신간 출력 -->
 	<select id="selectNewList" resultType="book">
-	select * from book
-	where dt > sysdate-7
-	order by dt desc
+	select * from(
+		select rownum as rank,b.*from
+		(select *   
+		from book
+		where dt > sysdate-7
+		order by dt desc)b)
+		 <![CDATA[
+		where rank >(1-1) and rank <= 10
+		  ]]> 
 	</select>
 	<!-- 장르별 출력 -->
 	<select id="selectGenreList" resultType="book" parameterType="book">

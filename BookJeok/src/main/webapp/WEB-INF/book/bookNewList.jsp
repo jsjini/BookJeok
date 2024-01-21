@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js2/bookList.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 <!--  템플릿만 분리해서 들고옴- body와 href 링크 연결시킴. 목록 출력 안됨 -->
@@ -33,7 +34,9 @@
 							</a>
 							<div class="button-head">
 								<div class="product-action">
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a> 
+										<a title="Wishlist" href="#"
+												onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
+												class=" ti-heart "></i><span>찜하기</span></a>
 								</div>
 								<div class="product-action-2">
 									<a title="Add to cart" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에 담기</a>
