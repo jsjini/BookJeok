@@ -36,13 +36,13 @@
           <th>휴대폰번호</th><td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required/></td>
         </tr>
         <tr>
-          <th>관심분야(중복가능)</th><td><input type="checkbox" name="likes" id="social">인문/사회</td>
-          <td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
-          <td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
-          <td><input type="checkbox" name="likes" value="drama">영화/드라마</td>
-          <td><input type="checkbox" name="likes" value="mystery">미스터리/스릴러</td>
-          <td><input type="checkbox" name="likes" value="kid">가정/육아</td>
-          <td><input type="checkbox" name="likes" value="economy">경제/경영</td>
+          <th>관심분야(중복가능)</th><td><input type="checkbox" name="인문/사회" id="social">인문/사회</td>
+          <td><input type="checkbox" name="likes" value=" 컴퓨터/IT">컴퓨터/IT</td>
+          <td><input type="checkbox" name="likes" value="자연과학/공학">자연과학/공학</td>
+          <td><input type="checkbox" name="likes" value="영화/드라마">영화/드라마</td>
+          <td><input type="checkbox" name="likes" value="미스터리/스릴러">미스터리/스릴러</td>
+          <td><input type="checkbox" name="likes" value="가정/육아">가정/육아</td>
+          <td><input type="checkbox" name="likes" value="경제/경영">경제/경영</td>
         </tr>
         <tr>
           <th>SMS알림수신동의</th><td><input type="radio" name="sms" value="yes" checked>동의함</td>

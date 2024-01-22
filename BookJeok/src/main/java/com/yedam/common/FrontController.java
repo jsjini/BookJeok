@@ -32,7 +32,7 @@ import com.yedam.member.command.LoginCheckControl;
 import com.yedam.member.command.LoginIdCheck;
 import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
-import com.yedam.member.command.MyPage;
+import com.yedam.member.command.MyPageControl;
 import com.yedam.order.command.AddOrderControl;
 import com.yedam.order.command.CheckOrderNoControl;
 import com.yedam.order.command.ModifyPointControl;
@@ -90,7 +90,7 @@ public class FrontController extends HttpServlet {
 		map.put("/memberJoin.do", new JoinControl()); //회원가입, 회원등록처리
 		map.put("/Joinresult.do", new MemberJoinResultControl()); //가입완료페이지
 		map.put("/alert.do", new AlertMsgControl()); //가입완료메시지
-		map.put("/mypage.do", new MyPage()); //마이페이지(내 정보 먼저 보임)
+		map.put("/mypage.do", new MyPageControl()); //마이페이지(내 정보 먼저 보임)
 
 		
 		// 찜하기
@@ -100,7 +100,7 @@ public class FrontController extends HttpServlet {
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
 		//마이페이지
-		map.put("/mypage.do", new MyPage()); //마이페이지
+		map.put("/mypage.do", new MyPageControl()); //마이페이지
 		
 		// 장바구니
 		map.put("/cartList.do", new CartListControl()); // 카트페이지 이동
