@@ -427,15 +427,20 @@
 							.then(result => result.json())
 							.then(result => {
 								console.log(result);
-								orderNo = result + 1;
-								console.log(orderNo);
+								let addOrderNo = 0;
+								if(result == null){
+									addOrderNo = orderNo;
+								} else {
+									addOrderNo = parseInt(result) + 1;
+								}
+								console.log(addOrderNo);
 								let orderInfo = {
 									method: "POST",
 									headers: {
 										'Content-Type': 'application/x-www-form-urlencoded'
 									},
 									body:
-										'odNo=' + orderNo + '&odTg=' + memberName
+										'odNo=' + addOrderNo + '&odTg=' + memberName
 										+ '&odAd=' + memberaddress + '&odt=' + orderToday
 										+ '&odStatus=' + orderStatus + '&odPrice=' + orderPrice
 										+ '&usePoint=' + point + '&odTotal=' + totalPayment

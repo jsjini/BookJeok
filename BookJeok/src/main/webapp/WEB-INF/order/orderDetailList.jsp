@@ -17,7 +17,7 @@
     <div class="shopping-cart section">
         <div class="container">
             <div class="row">
-                <div class="col-10 outside1" style="margin: auto;">
+                <div class="col-9 outside1" style="margin: auto;">
                     <table class="table shopping-summery" id="memberNumber" data-memberno="${sessionScope.memberNo}">
 
                         <!-- <thead> -->
@@ -32,6 +32,7 @@
 
                         </tbody>
                     </table>
+
                     <!-- Shopping Summery -->
                     <!-- <table id="memberNumber" data-memberno="${sessionScope.memberNo}">
                         <colgroup>
@@ -59,7 +60,8 @@
 
         showOrderDetailList();
 
-        function showOrderDetailList() {
+
+        function showOrderDetailList(callback) {
             fetch("orderDetailListJson.do?odNo=" + details.odNo)
                 .then(result => result.json())
                 .then(result => {
@@ -67,8 +69,9 @@
                         const newtbody = maketr(item);
                         makeList.insertAdjacentHTML("afterbegin", newtbody);
                     });
-                })
 
+                    addReviewBtn();
+                })
         }
 
         function maketr(item) {
@@ -86,14 +89,23 @@
                     <td>
                         <div><span>주문수량 : </span><span>\${item.quantity}&nbsp;&nbsp;권</span></div>
                     </td>
-                    <td><button>재구매</button></td>
+                    <td><button>재구매</button><br><button class="addReview">리뷰쓰기</button></td>
                 </tr>
                 `
             return newtbody1;
         }
-        // <tr>
-        //             <td><div style="padding: 7px 7px 0px 7px; font-size: 17px;"><a href="orderItemPageList.do?memberNo=\${memberNo1}" class="orderDetail">
-        //                 <span style="color: rgb(3, 202, 136);">재구매></span></a></div></td>
-        //         </tr> 
 
+        function addReviewBtn() {
+            let addReviewBtns = document.querySelectorAll("#makeList .addReview");
+            console.log(addReviewBtns);
+            addReviewBtns.forEach(ReviewBtn => {
+                console(ReviewBtn);
+                // addReviewBtn.addEventListener("click", function (e) {
+                //     e.preventDefault();
+                // })
+            })
+        }
+
+        
     </script>
+    <script src="js2/orderDetailList.js"></script>

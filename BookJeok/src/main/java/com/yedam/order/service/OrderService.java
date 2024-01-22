@@ -9,7 +9,7 @@ public interface OrderService {
 	public List<OrderVO> orderList(int memberNo);
 	
 	// 주문번호 중복체크
-	public int checkOdNo(int memberNo);
+	public String checkOdNo(int memberNo);
 	
 	// 주문 추가
 	public int addOrder(OrderVO vo);

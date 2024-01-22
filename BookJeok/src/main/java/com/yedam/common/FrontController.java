@@ -116,6 +116,7 @@ public class FrontController extends HttpServlet {
 		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세페이지 이동
 		map.put("/orderDetailListJson.do", new OrderDetailListJson()); // 주문상세페이지에 정보넘기는 기능
 		
+		
 		map.put("/orderList.do", new OrderListControl()); // 주문목록페이지 이동
 		map.put("/orderListJson.do", new OrderListJson()); // 주문목록페이지에 정보넘기는 기능
 		map.put("/addOrder.do", new AddOrderControl()); // 주문등록

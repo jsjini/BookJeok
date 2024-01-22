@@ -20,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Override
-	public int checkOdNo(int memberNo) {
+	public String checkOdNo(int memberNo) {
 		return mapper.checkOrderNo(memberNo);
 	}
 
