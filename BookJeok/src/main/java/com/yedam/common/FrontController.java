@@ -39,10 +39,12 @@ import com.yedam.order.command.ModifyPointControl;
 import com.yedam.order.command.OrderListControl;
 import com.yedam.order.command.OrderListJson;
 import com.yedam.orderItem.command.AddOrderItemControl;
+import com.yedam.orderItem.command.CheckReviewControl;
 import com.yedam.orderItem.command.OrderDetailListControl;
 import com.yedam.orderItem.command.OrderDetailListJson;
 import com.yedam.orderItem.command.OrderItemListJson;
 import com.yedam.orderItem.command.OrderItemPageListControl;
+import com.yedam.review.command.AddReviewControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
@@ -115,6 +117,9 @@ public class FrontController extends HttpServlet {
 		map.put("/addOrderItem.do", new AddOrderItemControl()); // 주문상세등록
 		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세페이지 이동
 		map.put("/orderDetailListJson.do", new OrderDetailListJson()); // 주문상세페이지에 정보넘기는 기능
+		map.put("/checkReview.do", new CheckReviewControl()); // 리뷰 존재 체크
+		map.put("/addReview.do", new AddReviewControl()); // 리뷰 등록
+		
 		
 		
 		map.put("/orderList.do", new OrderListControl()); // 주문목록페이지 이동
