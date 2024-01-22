@@ -26,8 +26,8 @@ public class PagingListControl implements Control {
 		BookService svc = new BookServiceImpl();
 		BookVO vo = new BookVO();
 		vo.setCategories(cat);
-		//List<BookVO> list = svc.bookGenreList(vo);
-		List<BookVO> pageList = svc.booksPagingList( vo,Integer.parseInt(page));
+		//List<BookVO> list = svc.bookGenreList(vo,Integer.parseInt(page));
+		List<BookVO> pageList = svc.booksPagingList(vo,Integer.parseInt(page));
 		int total = svc.totalCnt(vo);
 		int totalPage = (int)Math.ceil(total/12.0);
 		

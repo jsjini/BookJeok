@@ -34,7 +34,6 @@
 		where rank >(1-1) and rank <= 10
 		  ]]> 
 	</select>
-	
 	<!-- 장르별 출력 -->
 	<select id="selectGenreList" resultType="book" parameterType="book">
 	select * from book
@@ -45,7 +44,6 @@
     </foreach>
   </where>
 	</select>
-	
 	<!-- 페이징 용 -->
 <select id="selectPageList" resultType="book" >
 	select b.* from(
@@ -64,7 +62,6 @@ order by 1)a)b
   where b.r > (#{page}-1)*10  AND b.r <= #{page}*12
   ]]> 
 </select>
-
 	<!-- 총 게시글 갯수 출력 -->
 <select id="selectCount" resultType="int" parameterType="book">
 	SELECT COUNT(*) FROM BOOK
@@ -75,7 +72,6 @@ order by 1)a)b
     </foreach>
   </where>
 </select>
-
 </mapper>
 
 <!-- 닫으면 에러 없어짐.. -->

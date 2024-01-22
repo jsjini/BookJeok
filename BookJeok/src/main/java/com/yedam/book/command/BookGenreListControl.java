@@ -20,10 +20,12 @@ public class BookGenreListControl implements Control {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
 		String[] cat= req.getParameterValues("categories");
+		String page = req.getParameter("page");
+		page = (page == null || page.equals(""))? "1" : page;
 		BookVO vo = new BookVO();
 		vo.setCategories(cat);
 		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.bookGenreList(vo);
+		List<BookVO> list = svc.bookGenreList(vo, Integer.parseInt(page));
 		
 		req.setAttribute("bookGenreList", list);
 		

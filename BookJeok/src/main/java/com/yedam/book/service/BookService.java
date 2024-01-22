@@ -10,8 +10,8 @@ public interface BookService {
 	public List<BookVO> bookList();
 	public List<BookVO> bookBestList();
 	public List<BookVO> bookNewList();
-	public List<BookVO> bookGenreList(BookVO cat);
-	public List<BookVO> booksPagingList(BookVO cat, int page);
+	public List<BookVO> bookGenreList(BookVO cat, int page);
+	public List<BookVO> booksPagingList(BookVO vo, int page);
 	public int totalCnt(BookVO cat);
 
 
