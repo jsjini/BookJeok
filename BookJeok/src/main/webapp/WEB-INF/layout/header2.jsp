@@ -34,7 +34,7 @@
 												<li><a href="bookGenreList.do?categories=외국어">외국어</a></li>
 											</ul>
 										</li>
-										<li><a href="mypage.do">마이페이지<i class="mypage"></i></a>
+										<li><a href="mypage.do">마이페이지</a>
 											<ul class="dropdown">
 												<li><a href="#">내 서재</a></li>
 												<li><a href="orderList.do">주문내역</a></li>
