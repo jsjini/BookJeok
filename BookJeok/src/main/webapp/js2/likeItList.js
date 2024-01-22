@@ -4,16 +4,18 @@
 
 
 
+let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+/*let today = getToday();*/
+/*console.log(memberNo, today);*/
 
 
 
 // 찜하기 삭제 이벤트 등록
 removeLikeItEvent();
+//체크박스 선택 삭제 이벤트
+delCheckEvent();
 
 
-
-// 카트 수정 이벤트 등록
-//modifyCartEvent();
 
 // 상품 체크박스 이벤트 등록
 allCheckboxEvent();
@@ -25,7 +27,7 @@ function selCheckboxEvent() {
 	let selChecks = document.querySelectorAll(".selCheck");
 	selChecks.forEach(selCheck => {
 		selCheck.addEventListener("change", function() {
-			makeTotal();
+
 		})
 	})
 }
@@ -71,54 +73,18 @@ function maketr(item) {
 	return newtbody;
 }
 
-const form = {
-	memberNo: '${}',
-	bookNo: '${}',
-	quantity: ''
-}
-function addCartEvent() {
-	$(".add_cart").on("click", function() {
-		form.quantity = $(".quantity_input").val();
-		$.ajax({
-			url: 'addCart.do',
-			type: 'POST',
-			data: form,
-			success: function(result) {
-				cartAlert(result);
-			}
-		})
-	})
-}
 
-//삭제버튼 함수
-// function trashBtnEvent(){
-// 	$("#ti-trash.remove-icon").on("click",function(){
-// 		console.log(event.target);
-// 	})
-// }
 
-// trashBtnEvent();
-
-function cartAlert(result) {
-	if (result == '0') {
-		alert("장바구니에 추가를 하지 못하였습니다.");
-	} else if (result == '1') {
-		alert("장바구니에 추가되었습니다.");
-	} else if (result == '2') {
-		alert("장바구니에 이미 추가되어져 있습니다.");
-	} else if (result == '5') {
-		alert("로그인이 필요합니다.");
-	}
-}
-
+//체크박스 전체 선택/해제
 function allCheckboxEvent() {
 	$('.main-hading').find(':input').on('click', function() {
-		$('#likeItList').find(':checkbox').prop('checked', this.checked);
-		makeTotal();
+		console.log(this);
+		$('#selectList').find(':checkbox').prop('checked', this.checked);
 	});
-
 }
 
+
+//단품 삭제
 function removeLikeItEvent() {
 	let remLikeIts = document.querySelectorAll("#selectList .remBtn");
 	remLikeIts.forEach(remLikeIt => {
@@ -129,11 +95,11 @@ function removeLikeItEvent() {
 				let bookNo = remLikeIt.dataset.bookno;
 				let memberNo = remLikeIt.dataset.memberno;
 				console.log(bookNo);
-				fetch("removeLikeIt.do?bookNo=" + bookNo+"&memberNo="+memberNo)
+				fetch("removeLikeIt.do?bookNo=" + bookNo + "&memberNo=" + memberNo)
 					.then(result => result.json())
 					.then(result => {
 						if (result.retCode == "OK") {
-							alert('삭제됨.');
+							alert('삭제완료');
 							location.reload();
 						} else {
 							alert('삭제 중 오류 발생.');
@@ -144,48 +110,40 @@ function removeLikeItEvent() {
 	});
 }
 
-
-
-
-
-function selCheckEvent() {
-
-	let checks = document.querySelectorAll('#cartList .selCheck');
-	console.log(checks);
-	let totalPrice = 0;
-	let totalType = 0;
-	let totalQuantity = 0;
-	checks.forEach(check => {
-		console.log(check);
-		if (check.checked == true) {
-			let sumPrice = check.closest("tr").querySelector(".total-amount");
-			totalPrice += parseInt(sumPrice.innerText);
-
-			let quantity = check.closest("tr").querySelector(".input-number");
-			totalQuantity += parseInt(quantity.value);
-
-			let type = check.closest("tr").querySelector(".modBtn");
-			for (i = 1; i <= 100; i++) {
-				if (type.dataset.bookno == i) {
-					totalType++;
-				}
-			}
+// 체크박스 선택 전체 삭제
+function delCheckEvent() {
+	$('#delChecked').on('click', async function() {
+		let checkedItems = document.querySelectorAll('#selectList .selCheck:checked');
+		if (checkedItems.length === 0) {
+			alert('삭제할 항목을 선택해주세요.');
+			return;
 		}
-	})
-	document.querySelector(".totalPoint").innerText = totalPrice * 0.05;
-	document.querySelector(".totalQuantity").innerText = totalQuantity;
-	document.querySelector(".totalType").innerText = totalType;
-	document.querySelector(".totalPrice").innerText = totalPrice;
+		if (confirm('선택한 항목을 삭제하시겠습니까?')) {
+			let deletePromises = [];
+			checkedItems.forEach(checkedItem => {
+				let bookNo = checkedItem.closest('tr').querySelector('.remBtn').dataset.bookno;
+				let memberNo = checkedItem.closest('tr').querySelector('.remBtn').dataset.memberno;
+				let deletePromise = fetch(`removeLikeIt.do?bookNo=${bookNo}&memberNo=${memberNo}`, {
+					method: 'GET'
+				})
+					.then(result => result.json())
+					.then(result => {
+						if (result.retCode !== 'OK') {
+							console.error('삭제 중 오류 발생:', result.errorMessage);
+						}
+					})
+					.catch(error => {
+						console.error('삭제 중 오류 발생:', error);
+					});
+				deletePromises.push(deletePromise);
+			});
+			// 모든 삭제 작업이 완료될 때까지 기다림
+			await Promise.all(deletePromises);
+			// 화면에서 삭제
+			checkedItems.forEach(checkedItem => {
+				checkedItem.closest('tr').remove();
+			});
+			alert('삭제완료');
+		}
+	});
 }
-
-
-
-	// const totalAmo = ``;
-	// return totalAmo;
-
-
-
-
-
-
-

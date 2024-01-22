@@ -5,7 +5,7 @@
 <!-- 상세페이지 시작 -->
 <div class="container text-center">
 	<section class="mt-8">
-		<div class="row">
+		<div class="row my-5">
 			<!-- 좌측 이미지 -->
 			<div class="col-md-6">
 				<!-- img -->
@@ -93,64 +93,53 @@
 	</section>
 
 
-
 	<!-- 하단 탭 메뉴(상세정보 및 리뷰) -->
 	<section class="mt-lg-14 mt-8">
 		<hr class="my-6">
-
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
 					<!-- nav item -->
-					<li class="nav-item" role="presentation">
-						<!-- btn (상세정보 탭) -->
-						<button class="btn" id="product-tab" data-bs-toggle="tab"
-							data-bs-target="#product-tab-pane" type="button" role="tab"
-							aria-controls="product-tab-pane" aria-selected="true"
-							tabindex="-1">상세정보</button>
-					</li>
-					<!-- nav item : (리뷰 탭) -->
-					<li class="nav-item" role="presentation">
-						<!-- btn -->
-						<button class="btn" id="details-tab" data-bs-toggle="tab"
-							data-bs-target="#details-tab-pane" type="button" role="tab"
-							aria-controls="details-tab-pane" aria-selected="true"
-							tabindex="-1">도서리뷰</button>
-					</li>
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+						<li class="nav-item" role="presentation">
+							<button class="btn" id="home-tab" data-toggle="tab"
+								data-target="#home" type="button" role="tab"
+								aria-controls="home" aria-selected="true">상세정보</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="btn" id="profile-tab" data-toggle="tab"
+								data-target="#profile" type="button" role="tab"
+								aria-controls="profile" aria-selected="false">도서리뷰</button>
+						</li>
+					</ul>
 
-				</ul>
-				<!-- tab content -->
-				<div class="tab-content" id="myTabContent">
-					<!-- tab pane -->
-					<div class="tab-pane fade show active" id="product-tab-pane"
-						role="tabpanel" aria-labelledby="product-tab" tabindex="0">
-						<div class="my-8">
+	<!-- 하단탭 내용  -->
+					<div class="tab-content" id="myTabContent" style="width: 90%">
+						<div class="tab-pane fade show active" id="home" role="tabpanel"
+							aria-labelledby="home-tab">
 							<div class="mb-5">
 								<!-- text -->
 								<h4 class="mb-1">책 소개</h4>
+								<br>
 								<p class="mb-0">${vo.about }</p>
 							</div>
 						</div>
-						<div class="my-8">
+						
+						<div class="tab-pane fade" id="profile" role="tabpanel"
+							aria-labelledby="profile-tab">
 							<div class="mb-5">
 								<!-- text -->
 								<h4 class="mb-1">책 리뷰</h4>
+								<br>
 								<c:forEach var="review" items="${reviewVO }">
-									<p class="mb-3">${review.reviewNo}.${review.mname}:
-										${review.contents} (${review.rdt})</p>
-
+								<p class="mb-3">
+									${review.reviewNo}. ${review.mname}:
+										${review.contents} (${review.rdt})
+								</p>
 								</c:forEach>
-
-
-
-
-
 							</div>
 						</div>
 					</div>
-					<!-- tab pane -->
-
-				</div>
 			</div>
 	</section>
 	<!-- 하단 탭 메뉴(상세정보 및 리뷰) 끝. -->
@@ -170,7 +159,7 @@
 		var bookNo = $(this).data('bookno');
 
 		if (memberNo == '') {
-			alert('로그인이 필요합니다');
+			loginModal();
 			return;
 		}
 
@@ -185,9 +174,9 @@
 			.then(result => {
 				console.log(result);
 				if (result.retCode == 'OK') {
-					alert('장바구니에 담았습니다');
+					cartOkModal(memberNo)
 				} else if (result.retCode == 'CK') {
-					alert('장바구니에 이미 추가되어져 있습니다.');
+					cartCKModal();
 				}
 			});
 	});
@@ -201,7 +190,7 @@
 		var bookNo = $(this).data('bookno');
 
 		if (memberNo == '') {
-			alert('로그인이 필요합니다');
+			loginModal();
 			return;
 		}
 
@@ -216,9 +205,9 @@
 			.then(result => {
 				console.log(result);
 				if (result.retCode == 'OK') {
-					alert('찜목록에 추가했습니다');
+					likeItOkModal(memberNo);
 				} else if (result.retCode == 'CK') {
-					alert('찜목록에 이미 추가되어져 있습니다.');
+					likeItCKModal();
 				}
 			});
 	});
