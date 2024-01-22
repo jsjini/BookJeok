@@ -4,14 +4,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- bootstrap@4.6.2의 css -->
 <link href="css2/bootstrap4_6_2.css">
-
-<!-- 
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-	crossorigin="anonymous">
--->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js2/bookList.js"></script>
 <!-- 아직 건들이지 못함. 화면 출력안됨 -->
 <div class="product-area section">
@@ -86,7 +78,8 @@ ${dto}
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a>
 												</li>
 											</c:if>
-											<li class="page-item"><c:forEach var="i"
+											<li class="page-item">
+											<c:forEach var="i"
 													begin="${dto.startPage}" end="${dto.lastPage}">
 													<li class="page-item"><a class="page-link"
 														href="pagingList.do?page=${i}">${i}</a></li>

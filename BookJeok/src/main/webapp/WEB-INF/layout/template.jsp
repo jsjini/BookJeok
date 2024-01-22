@@ -62,7 +62,8 @@
 	<!-- Bootstrap JS -->
 	<script src="js/bootstrap.min.js"></script>
 	
-	
+	<!-- sweetAlert 모달창 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.3/dist/sweetalert2.all.min.js"></script>
 	
 	<!-- 검색어 JS -->
 	<script src="js/search.js"></script>

@@ -1684,7 +1684,7 @@
 					<img src="images/recommand.jpg" alt="#">
 					<div class="content">
 						
-						<a href="bookDetail.do?bookNo=77" class="btn">Shop Now</a>
+						<a href="bookDetail.do?bookNo=76" class="btn">Shop Now</a>
 					</div>
 				</div>
 			</div>
