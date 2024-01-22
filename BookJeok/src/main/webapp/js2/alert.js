@@ -4,6 +4,26 @@
 
 // 알림창 공통 모달
 
+// 형식1_알림 및 이동
+function commonAlert(alertText, cacel, confirm){
+	Swal.fire({
+		icon: "info",
+		text: alertText,
+		cancelButtonColor: "#568A35",
+    	confirmButtonColor: "#badc58",
+		cancelButtonText: cacel,
+		confirmButtonText: confirm
+	})
+}
+// 형식2_경고
+function warningAlert(warningText){
+	Swal.fire({
+      icon: 'warning',
+      text: warningText,
+    });
+}
+
+
 // '로그인 필요' 모달. 
 function loginModal() {
 	Swal.fire({

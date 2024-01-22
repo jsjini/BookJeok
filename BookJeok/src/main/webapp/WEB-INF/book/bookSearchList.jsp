@@ -33,14 +33,10 @@
 						<li class="list-group-item py-4">${vo.author } 저 | ${vo.comp } | ${vo.dt }</li>
 						<li class="list-group-item py-4 text-danger font-weight-bold h6">${vo.price }원</li>
 					</ul>
-					<div class="col-2 float-left btns">
-						<div class="input-group mb-5">
-							<input type="checkbox" class="checkBook">
-							<button>-</button>
-							<input type="number" value="1" class="quantity" size="3">
-							<button>+</button>
-						</div>
-						<div class="btn-group-vertical float-right btns">
+					<div class="col-2 float-left text-center">
+						<!-- 수량 버튼 및 바로구매, 장바구니, 내서재 -->						
+						<div class="row-2 btn-group-vertical float-right btns">
+							<input type="number" name="" class="input-number text-center m-3 p-2" value="1" style="width: 100px;">
 							<button type="button" class="btn mb-3 addPurchase" data-bookimg="${vo.img }" data-bookname="${vo.name }" data-bookpirce="${vo.price }" data-bookno="${vo.bookNo }">바로구매</button>
 							<button type="button" class="btn mb-3 addCartBtn" data-bookno="${vo.bookNo }">장바구니</button>
 							<button type="button" class="btn mb-3 addLike" data-bookno="${vo.bookNo }" >내 서재</button>
@@ -54,80 +50,74 @@
 		<form id="formOrder" action="orderItemPageList.do" method="post"><input type="hidden" name="orders" id="orders"></form>
 	</div>
 
-	<script>		
-		// 바로구매, 장바구니, 내서재 버튼 전체에 클릭 그룹이벤트
-		$('.btns').on('click', function () {
-			let memberNo = '${sessionScope.memberNo}';
-			let logId = '${sessionScope.logId}';
-			let bookNo = event.target.dataset.bookno;
-			
-			if(logId == ''){
-				alert('로그인이 필요합니다.');
-			} else{
-				if (event.target.classList.contains("addCartBtn")){ // 1. 장바구니 (로그인O)
-					//alert('클릭됨');
-					
-					// fetch 함수
-					fetch('addCart.do?memberNo=' + memberNo + '&bookNo=' + bookNo)
-					.then(str => str.json())
-					.then(result => {
-						console.log(result);
-						
-						if (result.retCode == 'NG') {
-							alert("장바구니에 추가를 하지 못하였습니다.");
-						} else if (result.retCode == 'OK') {
-							if(confirm("장바구에 추가되었습니다. 장바구니로 이동하시겠습니까?")){
-								location.href = 'cartList.do';							
-							}
-						} else if (result.retCode == 'CK') {
-							alert("장바구니에 이미 추가된 상품입니다.");
-						}
-						
-					})
-					.catch(err => console.error(err));
-				
-				} else if(event.target.classList.contains("addPurchase")) { // 2. 바로구매 (로그인O)
-					// alert('바로구매');
-					let bookNo = event.target.dataset.bookno;
-					let bookImg = event.target.dataset.bookimg;
-					let bookName = event.target.dataset.bookname;
-					let bookPirce = event.target.dataset.bookpirce;
-					let quantity =  document.querySelector('.quantity').value;
-					
-					let orders = [{ "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity }];
-					
-					let orders1 = JSON.stringify(orders);
-					document.querySelector('#orders').value = orders1;
-					formOrder.submit();
+<script>
+
+	//바로구매, 장바구니, 내서재 버튼 전체에 클릭 그룹이벤트
+	$('.btns').on('click', function () {
+		let memberNo = '${sessionScope.memberNo}';
+		let logId = '${sessionScope.logId}';
+		let bookNo = event.target.dataset.bookno;
 		
-				} else if (event.target.classList.contains("addLike")) { // 3. 내서재	(로그인O)
-					alert("내서재");
-					let bookNo = event.target.dataset.bookno;
-					console.log(memberNo, bookNo)
-					// fetch 함수
-					fetch('addLikeIt.do?memberNo=' + memberNo + '&bookNo=' + bookNo)
-					.then(str => str.json())
-					.then(result => {
-						console.log(result);
-						
-						if (result.retCode == 'NG') {
-							alert("내서재에 추가를 하지 못하였습니다.");
-						} else if (result.retCode == 'OK') {
-							if(confirm("내서재에 추가되었습니다. 내서재로 이동하시겠습니까?")){
-								location.href = 'likeIt.do?memberNo=' + memberNo;							
-							}
-						} else if (result.retCode == 'CK') {
-							alert("내서재에 이미 추가된 상품입니다.");
-						}
-						
-					})
-					.catch(err => console.error(err));
+		if(logId == ''){
+			loginModal(); // 로그인 필요 알림 모달
+		} else{
+			if (event.target.classList.contains("addCartBtn")){ // 1. 장바구니 (로그인O)
+				//alert('클릭됨');
 				
-				}
+				// fetch 함수
+				fetch('addCart.do?memberNo=' + memberNo + '&bookNo=' + bookNo)
+				.then(str => str.json())
+				.then(result => {
+					// console.log(result);
+					
+					if (result.retCode == 'NG') {
+						warningAlert("장바구니에 추가를 하지 못하였습니다.");
+					} else if (result.retCode == 'OK') {
+						cartOkModal(memberNo);
+					} else if (result.retCode == 'CK') {
+						cartCKModal();
+					}
+					
+				})
+				.catch(err => console.error(err));
+			
+			} else if(event.target.classList.contains("addPurchase")) { // 2. 바로구매 (로그인O)
+
+				let bookNo = event.target.dataset.bookno;
+				let bookImg = event.target.dataset.bookimg;
+				let bookName = event.target.dataset.bookname;
+				let bookPirce = event.target.dataset.bookpirce;
+				let quantity =  $(event.target).parent().find('input').val() ;
+				
+				let orders = [{ "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity }];
+				
+				let orders1 = JSON.stringify(orders);
+				document.querySelector('#orders').value = orders1;
+				formOrder.submit();
+	
+			} else if (event.target.classList.contains("addLike")) { // 3. 내서재	(로그인O)
+				alert("내서재");
+				let bookNo = event.target.dataset.bookno;
+				// console.log(memberNo, bookNo);
+				
+				// fetch 함수
+				fetch('addLikeIt.do?memberNo=' + memberNo + '&bookNo=' + bookNo)
+				.then(str => str.json())
+				.then(result => {
+					// console.log(result);
+					
+					if (result.retCode == 'NG') {
+						warningAlert("내 서재에 추가하지 못했습니다.");
+					} else if (result.retCode == 'OK') {
+						likeItOkModal(memberNo);
+					} else if (result.retCode == 'CK') {
+						likeItCKModal();
+					}
+					
+				})
+				.catch(err => console.error(err));
+			
 			}
-			
-			
-			
-			
-		})
-	</script>
+		}
+	})
+</script>

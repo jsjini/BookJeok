@@ -1,5 +1,5 @@
 /**
- * search.js
+ * searchKeyword.js
  */
 
 // ajax로 인기검색어 출력하기
