@@ -1,5 +1,37 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	
+	<style>
+/*
+#loginModal {
+    max-width: 500px; 
+    margin: 0 auto;
+}
+*/
+
+.modal-dialog {
+    width: 100%;
+    max-width: 500px; 
+}
+
+.modal-content {
+    width: 100%;
+    height: 100%;
+}
+
+.modal-body {   
+    overflow-y: hidden;
+}
+
+.modal-dialog {
+    margin-top: 50vh;
+    transform: translateY(-50%);
+}
+
+
+
+	</style>
+	
 		<div class="topbar">
 			<div class="container">
 				<div class="row">
@@ -97,7 +129,7 @@
 
 <!-- 로그인모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-	aria-labelledby="loginModalLabel" aria-hidden="true">
+	aria-labelledby="loginModalLabel"  aria-hidden="true">
 	<div class="modal-dialog modal-sm" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -188,7 +220,7 @@
 							</tr>
 							<tr>
 								<th required />관심분야(중복가능)</th>
-								<td><input type="checkbox" name="likes" id="social">없음</td>
+								<td><input type="checkbox" name="likes" id="none">없음</td>
 								<td><input type="checkbox" name="likes" id="social">인문/사회</td>
 								<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
 								<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
