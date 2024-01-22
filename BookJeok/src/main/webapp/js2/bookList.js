@@ -68,6 +68,24 @@ function likeItModal(memberNo) {
 	})
 }//end of cartOkModal
 
+//HOT SPAN 판매기준 출력 // 적용 어떻게??
+fetch('bookBestList.do', {
+ })
+ .then(result => result.json())
+ .then(result => {
+	 //console.log(result);
+	 
+	 result.forEach((item, idx) => {
+		 console.log(item);
+		 if(idx < 2) {
+			 let newSpan = document.createElement('span');
+			 newSpan.innerHTML = `Hot`;
+			 document.querySelector('.default-img new-img-size').appendChild(newSpan);
+			 document.querySelector('.default-img new-img-size span').setAttribute('class', 'out-of-stock');
+		 }
+	 })
+ })
+
 /*
 fetch('https://www.aladin.co.kr/home/welcome.aspx')
 .then (res=>res.json())

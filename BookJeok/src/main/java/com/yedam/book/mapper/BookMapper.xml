@@ -34,6 +34,7 @@
 		where rank >(1-1) and rank <= 10
 		  ]]> 
 	</select>
+	
 	<!-- 장르별 출력 -->
 	<select id="selectGenreList" resultType="book" parameterType="book">
 	select * from book
@@ -44,26 +45,35 @@
     </foreach>
   </where>
 	</select>
+	
 	<!-- 페이징 용 -->
-<select id="selectPageList" resultType="book">
+<select id="selectPageList" resultType="book" >
 	select b.* from(
 select rownum as r,a.*
 from
 (select *   
 from book
 <where>
-<if test ='bookNo != null'>
-book_No = #{bookNo}
-</if>
-</where>
+    <foreach item="item" index="index" collection="categories"
+        open="category in (" separator="," close=")" nullable="true">
+          #{item}
+    </foreach>
+  </where>
 order by 1)a)b
   <![CDATA[
   where b.r > (#{page}-1)*10  AND b.r <= #{page}*12
   ]]> 
 </select>
+
 	<!-- 총 게시글 갯수 출력 -->
-<select id="selectCount" resultType="int">
+<select id="selectCount" resultType="int" parameterType="book">
 	SELECT COUNT(*) FROM BOOK
+	<where>
+    <foreach item="item" index="index" collection="categories"
+        open="category in (" separator="," close=")" nullable="true">
+          #{item}
+    </foreach>
+  </where>
 </select>
 
 </mapper>

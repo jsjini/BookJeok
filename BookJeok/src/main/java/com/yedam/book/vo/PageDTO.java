@@ -25,6 +25,9 @@ public class PageDTO {
 		System.out.println(realLast+","+this.lastPage);
 		this.lastPage = this.lastPage > realLast ? realLast : this.lastPage;
 		this.startPage = this.lastPage -pageSize+1;
+		if(this.startPage <1) {
+			this.startPage = 1;
+		}
 		
 		this.prev = this.startPage > 1; 
 		this.next = this.lastPage < realLast; 

@@ -18,18 +18,21 @@ public class PagingListControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String bookno= req.getParameter("bookno");
+		String[] cat= req.getParameterValues("categories");
 		String page = req.getParameter("page");
 		page = (page == null || page.equals(""))? "1" : page;
 		
 		System.out.println(page);
 		BookService svc = new BookServiceImpl();
-		List<BookVO> pageList = svc.booksPagingList(Integer.parseInt(bookno), Integer.parseInt(page));
-		int total = svc.totalCnt();
+		BookVO vo = new BookVO();
+		vo.setCategories(cat);
+		//List<BookVO> list = svc.bookGenreList(vo);
+		List<BookVO> pageList = svc.booksPagingList( vo,Integer.parseInt(page));
+		int total = svc.totalCnt(vo);
 		int totalPage = (int)Math.ceil(total/12.0);
 		
 		PageDTO dto = new PageDTO(Integer.parseInt(page),total); 
-		
+		//req.setAttribute("bookGenreList", list);
 		req.setAttribute("pageList", pageList);
 		req.setAttribute("total", total);
 		req.setAttribute("totalPage", totalPage);

@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <script src="js2/bookList.js"></script>
 <!-- bootstrap@4.6.2의 css -->
+<script src="js2/alert.js"></script>
 <link href="css2/bootstrap4_6_2.css">
 
 <div class="product-area most-popular section">
