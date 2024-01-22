@@ -66,8 +66,9 @@
 							</button>
 						</form>
 					</div>
+					<!-- 인기검색어 -->
 					<div class="search-popular pt-3">
-						<span>인기검색어 : </span>
+						
 					</div>
 				</div>
 				<!-- 검색창 끝. -->
@@ -77,15 +78,15 @@
 				<div class="right-bar">
 					<!-- 내서재 아이콘 -->
 					<div class="sinlge-bar">
-						<button class="single-icon fa fa-heart-o" id="myLikeIt"></button>
+						<div class="single-icon fa fa-heart-o myLikeIt"></div>
 					</div>
 					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
-						<button class="single-icon fa fa-user-circle-o" id="myPage"></button>
+						<div class="single-icon fa fa-user-circle-o myPage"></div>
 					</div>
 					<!-- 장바구니 아이콘 -->
 					<div class="sinlge-bar">
-						<button class="single-icon ti-bag" id="shopping"></button>
+						<div class="single-icon ti-bag shopping"></div>
 							<!-- <span class="total-count">2</span>  -->
 					</div>
 				</div>
@@ -240,10 +241,19 @@
 <!-- 로그인 X 시 alert 창 -->
 <script>
 	let logId = '${sessionScope.logId }';
+	let memberNo = '${sessionScope.memberNo }';
 	
-	$('.right-bar').on('click', "button" , function () {
+	$('.right-bar').on('click', "div", function () {
 		if(logId == '') {
 			loginModal();
+		} else {
+			if ($(event.target).hasClass("myLikeIt") == true) {
+				location.href = 'likeIt.do?memberNo=' + memberNo;
+			} else if ($(event.target).hasClass("myPage") == true) {
+				location.href = 'mypage.do';
+			} else if ($(event.target).hasClass("shopping") == true) {
+				location.href = 'cartList.do?memberNo=' + memberNo;
+			}
 		}
 		
 	})

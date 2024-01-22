@@ -25,18 +25,16 @@
 					</div>
 					<ul class="col-6 float-left list-group list-group-flush mt-4">
 						<li class="list-group-item py-4">
-							<span>${vo.category }</span>
-							<a href="bookDetail.do?bookNo=${vo.bookNo }">
-								<h5 class="mt-3">${vo.name }</h5>
-							</a>
+							<h6 class="my-3 font-weight-normal"> | ${vo.category }</h6>
+							<a href="bookDetail.do?bookNo=${vo.bookNo }" class="font-weight-bold h5">${vo.name }</a>
 						</li>
 						<li class="list-group-item py-4">${vo.author } 저 | ${vo.comp } | ${vo.dt }</li>
-						<li class="list-group-item py-4 text-danger font-weight-bold h6">${vo.price }원</li>
+						<li class="list-group-item py-4 text-danger font-weight-bold h5 price" data-price="${vo.price }"></li>
 					</ul>
 					<div class="col-2 float-left text-center">
-						<!-- 수량 버튼 및 바로구매, 장바구니, 내서재 -->						
+						<input type="number" name="" class="input-number text-center m-5 p-2" value="1" style="width: 100px;">
+						<!-- 바로구매, 장바구니, 내서재 버튼 -->						
 						<div class="row-2 btn-group-vertical float-right btns">
-							<input type="number" name="" class="input-number text-center m-3 p-2" value="1" style="width: 100px;">
 							<button type="button" class="btn mb-3 addPurchase" data-bookimg="${vo.img }" data-bookname="${vo.name }" data-bookpirce="${vo.price }" data-bookno="${vo.bookNo }">바로구매</button>
 							<button type="button" class="btn mb-3 addCartBtn" data-bookno="${vo.bookNo }">장바구니</button>
 							<button type="button" class="btn mb-3 addLike" data-bookno="${vo.bookNo }" >내 서재</button>
@@ -51,6 +49,17 @@
 	</div>
 
 <script>
+	// 가격 새로 만들어서(, 추가) 추가하기
+	let priceLiTags = document.querySelectorAll('.price');
+	
+	priceLiTags.forEach(tag => {
+		let price = tag.dataset.price;
+		let newPrice = makeComma(price);
+		// console.log(newPrice);
+		tag.innerHTML = newPrice + '<span> 원</span>';
+		
+	})
+	
 
 	//바로구매, 장바구니, 내서재 버튼 전체에 클릭 그룹이벤트
 	$('.btns').on('click', function () {
@@ -87,7 +96,7 @@
 				let bookImg = event.target.dataset.bookimg;
 				let bookName = event.target.dataset.bookname;
 				let bookPirce = event.target.dataset.bookpirce;
-				let quantity =  $(event.target).parent().find('input').val() ;
+				let quantity =  $(event.target).parent().parent().find('input').val() ;
 				
 				let orders = [{ "bookNo": bookNo, "bookImg": bookImg, "bookName": bookName, "bookPirce": bookPirce, "quantity": quantity }];
 				
@@ -96,7 +105,6 @@
 				formOrder.submit();
 	
 			} else if (event.target.classList.contains("addLike")) { // 3. 내서재	(로그인O)
-				alert("내서재");
 				let bookNo = event.target.dataset.bookno;
 				// console.log(memberNo, bookNo);
 				
@@ -117,7 +125,7 @@
 				})
 				.catch(err => console.error(err));
 			
-			}
+			} 
 		}
 	})
 </script>

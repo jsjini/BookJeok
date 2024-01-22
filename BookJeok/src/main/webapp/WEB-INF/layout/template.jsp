@@ -71,6 +71,9 @@
 	<script src="js2/searchKeyword.js"></script>
 	<!-- <script src="js2/searchBook.js"></script> -->
 	
+	<!-- 공통 함수 -->
+	<script src="js2/commonFunc.js"></script>
+	
 	
 	
 	
