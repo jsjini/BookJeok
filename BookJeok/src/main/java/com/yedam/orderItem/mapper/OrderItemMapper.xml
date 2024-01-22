@@ -8,20 +8,30 @@
 		parameterType="int">
 		select m_name, phone, point
 		from member
-		where member_no = #{memberNo}
+		where member_no =
+		#{memberNo}
 	</select>
 
 	<insert id="insertOrderItem" parameterType="orderItemPage">
-		insert into order_item values (order_item_seq.nextval, #{odNo}, #{bookNo},
+		insert into
+		order_item values (order_item_seq.nextval, #{odNo}, #{bookNo},
 		#{quantity})
 	</insert>
 
 	<select id="selectList" resultType="orderItemPage"
 		parameterType="int">
-		select b.book_no, b.img, b.name, b.price, oi.quantity
+		select b.book_no, b.img, b.name, b.price, oi.quantity, oi.orderitem_no
 		from order_item oi join book b
 		on b.book_no = oi.book_no
-		where od_no = #{odNo}
+		where od_no =
+		#{odNo}
+	</select>
+
+	<select id="selectReview" resultType="orderItemPage"
+		parameterType="int">
+		select contents , rdt
+		from review
+		where book_no = #{bookNo} and orderitem_no = #{orderitemNo} and member_no = #{memberNo}
 	</select>
 
 </mapper> 

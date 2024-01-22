@@ -15,4 +15,6 @@ public interface OrderItemService {
 	// 주문상세 목록
 	public List<OrderItemPageVO> orderItemList(int odNo);
 
+	// 리뷰 체크
+	public OrderItemPageVO checkReview(int bookNo, int orderitemNo, int memberNo);
 }

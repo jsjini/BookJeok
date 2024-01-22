@@ -30,4 +30,9 @@ public class OrderItemServiceImpl implements OrderItemService {
 		return mapper.selectList(odNo);
 	}
 
+	@Override
+	public OrderItemPageVO checkReview(int bookNo, int orderitemNo, int memberNo) {
+		return mapper.selectReview(bookNo, orderitemNo, memberNo);
+	}
+
 }
