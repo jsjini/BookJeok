@@ -9,6 +9,6 @@ public class OrderItemVO {
 	private String mName;
 	private String phone;
 	private String adress;
-
+	private int point;
 	
 }

@@ -4,7 +4,6 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-5 col-md-12 col-12">
-						<!--  -->
 					</div>
 					<div class="col-lg-7 col-md-12 col-12">
 						<!-- Top Right (우측상단 메뉴)-->
@@ -37,7 +36,7 @@
 								<li>
 							</c:otherwise>
 						</c:choose>
-						<li><i class="infomem"></i><a href="#">주문내역</a></li>
+						<li><i class="infomem"></i><a href="orderList.do">주문내역</a></li>
 					</ul>
 				</div>
 				<!-- End Top Right -->
@@ -144,6 +143,8 @@
 								<th>비밀번호</th>
 								<td><input type="password" name="pw" required /></td>
 							</tr>
+
+							
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
 									value="로그인" class="btn btn-primary"> <input
@@ -261,8 +262,6 @@
 	</div>
 </div>
 
-<div></div>
-
 
 <!-- 검색창 관련 JS -->
 <script>
@@ -279,23 +278,16 @@
 
 <!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
 <script>
-	/* if(#joinsucc){
-		document.querySelector('#joinsucc').addEventListener("click", function(){
-			alert("가입이 완료되었습니다. 로그인해주세요");
-		})
-		
-	} */
-
-	/*$('#joinsucc').on('click', function () {
-		alert("가입이 완료되었습니다. 로그인해주세요");
-	}) */
+	let message = '${message}';
+	if(message == 'fail') {
+		alert('아이디와 비밀번호를 확인 후 다시 로그인 해주세요.')
+		$('#loginModal').modal('show');
+	}
+	
+	
+	
 
 	/*
-	$('#joinmodal').$('#joinsucc').on("click",function(){
-		alert("가입이 완료되었습니다. 로그인해주세요");
-	})
-	 */
-
 	if (joinjoin.id.value == "") {
 		alert("사용하실 아이디를 입력해주세요");
 		joinjoin.id.focus();
@@ -325,63 +317,9 @@
 		joinjoin.phone.focus();
 		return false;
 	}
+	*/
 
 
-			/*
-			if(joinjoin.id.value == ""){ 
-				alert("사용하실 아이디를 입력해주세요");
-				joinjoin.id.focus();
-				return false;
-			}
-			
-			if(joinjoin.mName.value == ""){ 
-				alert("이름을 입력해주세요");
-				joinjoin.mName.focus();
-				return false;
-			}
-			
-			if(joinjoin.password.value.length == 0){
-				alert("사용하실 비밀번호를 입력해주세요");
-				joinjoin.password.focus();
-				return false;
-			}
-			
-			if(joinjoin.email.value == ""){ 
-				alert("사용하고 계신 이메일을 입력해주세요");
-				joinjoin.email.focus();
-				return false;
-			}
-			
-			if(joinjoin.phone.value == ""){ 
-				alert("사용하고 계신 이메일을 입력해주세요");
-				joinjoin.phone.focus(); 
-				return false;
-			}
-			*/
-			
-						
-			let msg = '${param.msg}'
-				if(msg != '')
-					$('#joinendModal').modal()
-							
-			/*
-			let msg2 = '${message }'
-				if (msg2 === 1){
-					console.log("1통과");
-				} else if (msg === 0) */
-					
-			document.addEventListener("DOMContentLoaded",function(){
-				let msg2 = 0;
-			            if(msg === ''){
-			                console.log("main.do")
-			            }else if (msg === 0){
-			                alert('${message }')
-			            }else{
-			                console.log("main.do")
-			            }
-			        });		
-					
-					
 		
-		</script>
+</script>
 

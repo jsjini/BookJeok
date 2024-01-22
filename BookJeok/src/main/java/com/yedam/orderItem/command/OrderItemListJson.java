@@ -22,7 +22,7 @@ public class OrderItemListJson implements Control {
 		
 		
 		OrderItemService svc = new OrderItemServiceImpl();
-		OrderItemVO vo = svc.orderItemList(Integer.parseInt(memberNo));
+		OrderItemVO vo = svc.memberInfo(Integer.parseInt(memberNo));
 	
 		Gson gson = new GsonBuilder().create();
 
