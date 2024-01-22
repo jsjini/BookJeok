@@ -72,47 +72,25 @@
 				</div>
 				<!-- 검색창 끝. -->
 			</div>
+			<!-- 오른쪽 아이콘 -->
 			<div class="col-lg-2 col-md-3 col-12">
 				<div class="right-bar">
-					<!-- 오른쪽 아이콘 -->
 					<!-- 내서재 아이콘 -->
-					<c:choose>
-						<c:when test="${empty logId }">
-							<div class="sinlge-bar">
-								<a href="main.do" class="single-icon"><i
-									class="fa fa-heart-o" aria-hidden="true"></i></a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="sinlge-bar">
-								<a href="likeIt.do?memberNo=${memberNo }" class="single-icon"><i
-									class="fa fa-heart-o" aria-hidden="true"></i></a>
-							</div>
-						</c:otherwise>
-					</c:choose>
+					<div class="sinlge-bar">
+						<button class="single-icon fa fa-heart-o" id="myLikeIt"></button>
+					</div>
 					<!-- 마이페이지 아이콘 -->
 					<div class="sinlge-bar">
-						<a href="mypage.do?memberNo=${memberNo }" class="single-icon"><i
-							class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+						<button class="single-icon fa fa-user-circle-o" id="myPage"></button>
 					</div>
 					<!-- 장바구니 아이콘 -->
-					<c:choose>
-						<c:when test="${empty logId }">
-							<div class="sinlge-bar shopping">
-								<a href="main.do" class="single-icon"><i class="ti-bag"></i>
-									<span class="total-count">2</span></a>
-							</div>
-						</c:when>
-						<c:otherwise>
-							<div class="sinlge-bar shopping">
-								<a href="cartList.do?memberNo=${memberNo }" class="single-icon"><i
-									class="ti-bag"></i> <span class="total-count">2</span></a>
-							</div>
-						</c:otherwise>
-					</c:choose>
-					<!-- 오른쪽 아이콘 끝. -->
+					<div class="sinlge-bar">
+						<button class="single-icon ti-bag" id="shopping"></button>
+							<!-- <span class="total-count">2</span>  -->
+					</div>
 				</div>
 			</div>
+			<!-- 오른쪽 아이콘 끝. -->
 		</div>
 	</div>
 </div>
@@ -130,9 +108,7 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<th colspan="2">북적북적 회원 로그인 해주세요 <br> 회원이 아닌 손님은 회원가입을
-									진행해주세요 :)
-								</th>
+								<th colspan="2">북적북적 회원 로그인 해주세요 <br> 회원이 아닌 손님은 회원가입을 진행해주세요 :)</th>
 
 							</tr>
 							<tr>
@@ -162,94 +138,93 @@
 </div>
 
 
-		<!-- 회원가입모달 -->
-		<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModallabel"
-			aria-hidden="true">
-			<div class="modal-dialog modal-sm" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
-					</div>
-					<div class="modal-body">
-						<form action="memberJoin.do" method="post" name="joinjoin">
-							<table class="table">
-								<tbody>
-									<tr>
-										<th colspan="2" id="joinjoin">회원가입</th>
-									</tr>
-									<tr>
-										<th>아이디</th>
-										<td><input type="text" name="id" id="id">
-											<input type="button" id="confirmId" class="checkSome" value="중복 확인">
-										</td>
-									</tr>
-									<tr>
-										<th>이름</th>
-										<td><input type="text" name="mName" id="name" required /></td>
-									</tr>
-									<tr>
-										<th>비밀번호</th>
-										<td><input type="password" name="pw" id="pw" required /></td>
-									</tr>
-									<tr>
-										<th>이메일주소</th>
-										<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email" required /></td>
-									</tr>
-									<tr>
-										<th>연령대(선택)</th>
-										<td><input type="radio" name="userAge" id="userAge" checked>선택안함</td>
-										<td><input type="radio" name="userAge" value="10">10대</td>
-										<td><input type="radio" name="userAge" value="20">20대</td>
-										<td><input type="radio" name="userAge" value="30">30대</td>
-										<td><input type="radio" name="userAge" value="40">40대</td>
-										<td><input type="radio" name="userAge" value="50">50대</td>
-										<td><input type="radio" name="userAge" value="60">60대
-											이상</td>
-									</tr>
-									<tr>
-										<th>휴대폰번호</th>
-										<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required /></td>
-									</tr>
-									<tr>
-										<th required />관심분야(중복가능)</th>
-										<td><input type="checkbox" name="likes" id="social">없음</td>
-										<td><input type="checkbox" name="likes" id="social">인문/사회</td>
-										<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
-										<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
-										<td><input type="checkbox" name="likes" value="drama">영화/드라마</td>
-										<td><input type="checkbox" name="likes" value="mystery">미스터리/스릴러</td>
-										<td><input type="checkbox" name="likes" value="kid">가정/육아</td>
-										<td><input type="checkbox" name="likes" value="economy">경제/경영</td>
-									</tr>
-									<tr>
-										<th>SMS알림수신동의</th>
-										<td><input type="radio" name="sms" value="yes" checked>동의함</td>
-										<td><input type="radio" name="sms" value="no">동의안함</td>
-									</tr>
-									<tr>
-										<td colspan="3" align="center"><input type="submit" value="가입신청" class="btn btn-primary"
-												id="joinsucc" onClick="return check()"> 
-												<!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
-											<input type="reset" value="다시 입력" class="btn btn-warning">
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">회원가입취소</button>
-					</div>
-				</div>
-
+<!-- 회원가입모달 -->
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModallabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-sm" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
+			</div>
+			<div class="modal-body">
+				<form action="memberJoin.do" method="post" name="joinjoin">
+					<table class="table">
+						<tbody>
+							<tr>
+								<th colspan="2" id="joinjoin">회원가입</th>
+							</tr>
+							<tr>
+								<th>아이디</th>
+								<td><input type="text" name="id" id="id">
+									<input type="button" id="confirmId" class="checkSome" value="중복 확인">
+								</td>
+							</tr>
+							<tr>
+								<th>이름</th>
+								<td><input type="text" name="mName" id="name" required /></td>
+							</tr>
+							<tr>
+								<th>비밀번호</th>
+								<td><input type="password" name="pw" id="pw" required /></td>
+							</tr>
+							<tr>
+								<th>이메일주소</th>
+								<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email" required /></td>
+							</tr>
+							<tr>
+								<th>연령대(선택)</th>
+								<td><input type="radio" name="userAge" id="userAge" checked>선택안함</td>
+								<td><input type="radio" name="userAge" value="10">10대</td>
+								<td><input type="radio" name="userAge" value="20">20대</td>
+								<td><input type="radio" name="userAge" value="30">30대</td>
+								<td><input type="radio" name="userAge" value="40">40대</td>
+								<td><input type="radio" name="userAge" value="50">50대</td>
+								<td><input type="radio" name="userAge" value="60">60대
+									이상</td>
+							</tr>
+							<tr>
+								<th>휴대폰번호</th>
+								<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required /></td>
+							</tr>
+							<tr>
+								<th required />관심분야(중복가능)</th>
+								<td><input type="checkbox" name="likes" id="social">없음</td>
+								<td><input type="checkbox" name="likes" id="social">인문/사회</td>
+								<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
+								<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
+								<td><input type="checkbox" name="likes" value="drama">영화/드라마</td>
+								<td><input type="checkbox" name="likes" value="mystery">미스터리/스릴러</td>
+								<td><input type="checkbox" name="likes" value="kid">가정/육아</td>
+								<td><input type="checkbox" name="likes" value="economy">경제/경영</td>
+							</tr>
+							<tr>
+								<th>SMS알림수신동의</th>
+								<td><input type="radio" name="sms" value="yes" checked>동의함</td>
+								<td><input type="radio" name="sms" value="no">동의안함</td>
+							</tr>
+							<tr>
+								<td colspan="3" align="center"><input type="submit" value="가입신청" class="btn btn-primary"
+										id="joinsucc" onClick="return check()"> 
+										<!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+									<input type="reset" value="다시 입력" class="btn btn-warning">
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">회원가입취소</button>
 			</div>
 		</div>
+
 	</div>
 </div>
 
 
-		<!-- 회원가입 후 가입 완료 알림창. 가입 완료되고 메인이 다시 뜰 때 모달 알리기-->
-		<div class="modal fade" id="joinendModal" tabindex="-1" role="dialog"
+
+<!-- 회원가입 후 가입 완료 알림창. 가입 완료되고 메인이 다시 뜰 때 모달 알리기-->
+<div class="modal fade" id="joinendModal" tabindex="-1" role="dialog"
 	aria-labelledby="joinendModallabel" aria-hidden="true">
 	<div class="modal-dialog .modal-sm" role="document">
 		<div class="modal-content">
@@ -261,6 +236,21 @@
 		</div>
 	</div>
 </div>
+
+<!-- 로그인 X 시 alert 창 -->
+<script>
+	let logId = '${sessionScope.logId }';
+	
+	$('.right-bar').on('click', "button" , function () {
+		if(logId == '') {
+			loginModal();
+		}
+		
+	})
+	
+
+	
+</script>
 
 
 <!-- 검색창 관련 JS -->
@@ -276,16 +266,18 @@
 			})
 </script>
 
-<!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
 <script>
+	/* 수정예정
 	let message = '${message}';
 	if(message == 'fail') {
-		alert('아이디와 비밀번호를 확인 후 다시 로그인 해주세요.')
+		// alert('아이디와 비밀번호를 확인 후 다시 로그인 해주세요.')
 		$('#loginModal').modal('show');
 	}
+	*/
 	
 	
 
+<!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
 	/*
 	if (joinjoin.id.value == "") {
 		alert("사용하실 아이디를 입력해주세요");
