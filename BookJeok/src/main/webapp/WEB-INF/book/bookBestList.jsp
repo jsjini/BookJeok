@@ -5,7 +5,6 @@
 
 <!-- bootstrap@5.3.2의 css -->
 <link href="css2/bootstrap5_3_2.css">
-
 <script src="js2/bookList.js"></script>
 
 <div class="product-area section">
