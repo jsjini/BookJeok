@@ -48,23 +48,53 @@
       border-radius: 5px; 
     }
     
+    table{
+	border-collapse: separate;
+	border-spacing: 10px 10px;
+    }
+    
   </style>
-
-<title>마이페이지</title>
-
-<body>
 
 <div class="container">
   <div class="row mt-4">
     <div class="col-md-12 mb-3 info">
       <a href="#"><h5>내 정보</h5></a>
       <hr>
+<form>
+<table>
+
+<tr>
+	<td><h6>회원번호 : ${vo.memberNo}</h6></td>
+</tr>
+<tr>
+	<td><h6>아이디 : ${vo.id}</h6></td>
+</tr>
+<tr>
+	<td><h6>이름 : ${vo.getMName()}</h6></td>
+</tr>
+<tr>
+	<td><h6>이메일 : ${vo.email}</h6></td>
+</tr>
+<tr>
+	<td><h6>연락처 : ${vo.phone}</h6></td>
+</tr>
+<tr>
+	<td><h6>관심분야 : ${vo.likes}</h6></td>
+</tr>
+<tr>
+	<td><h6>나의 포인트 : ${vo.point}</h6></td>
+</tr>
+
+
+</table>
+
+</form>
     </div>
   </div>
 
   <div class="row mt-4">
     <div class="col-md-12 mb-3 qna">
-      <a href="#"><h5>나의 문의 내역</h5></a>
+      <a href="#"><h5>나의 리뷰 보기</h5></a>
       <hr>
     </div>
   </div>
@@ -85,24 +115,21 @@
 </div>
 
 
-    
-</body>
 
 <c:if test="${not empty member}">
-        <p>Member No: ${member.memberNo}</p>
+        <p>회원번호: ${member.memberNo}</p>
         <p>아이디: ${member.id}</p>
         <p>이름: ${member.mName}</p>
         <p>이메일: ${member.email}</p>
-        <p>연령대: ${member.age}</p>
+        <p>연락처: ${member.phone}</p>
         <p>관심분야: ${member.likes}</p>
-        <p>포인트: ${member.point}</p>
-               
-    </c:if>
+        <p>포인트: ${member.point}</p>             
+</c:if>
     
 <script>
 
-    
-function MyInfo(memberNo) {
+/*
+function MyInfo() {
     fetch(`/members/${memberNo}`)
       .then(response => response.json())
       .then(data => {
@@ -110,5 +137,12 @@ function MyInfo(memberNo) {
       })
       .catch(error => console.error('Error:', error));
   }
+  */
+  
+  /*
+  function MyInfo(){
+	  location.href = ""
+  }
+  */
 
 </script>

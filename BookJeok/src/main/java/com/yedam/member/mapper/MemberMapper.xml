@@ -7,7 +7,7 @@
 
   <insert id="insertMember" parameterType="member">
   	insert into member
-  	values (member_seq.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
+  	values (member_sequence.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
   </insert>
   
   <select id="selectMember" resultType="member">
@@ -19,6 +19,6 @@
   </select>
   
   <select id="selectPage" resultType="member" >
-  select * from member where member_seq.nextval=#{memberNo }
+  select * from member where member_no=#{memberNo }
   </select>
 </mapper>
