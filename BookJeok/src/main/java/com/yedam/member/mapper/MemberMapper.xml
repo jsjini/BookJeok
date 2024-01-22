@@ -18,4 +18,7 @@
     select * from member where id=#{id}
   </select>
   
+  <select id="selectPage" resultType="member" >
+  select * from member where member_seq.nextval=#{memberNo }
+  </select>
 </mapper>
