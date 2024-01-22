@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js2/bookList.js"></script>
 <!-- bootstrap@4.6.2의 css -->
 <link href="css2/bootstrap4_6_2.css">
@@ -35,7 +36,9 @@
 							</a>
 							<div class="button-head">
 								<div class="product-action">
-										<a title="Wishlist" href="#"><i class=" ti-heart "></i><span>찜하기</span></a> 
+										<a title="Wishlist" href="#"
+												onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
+												class=" ti-heart "></i><span>찜하기</span></a>
 								</div>
 								<div class="product-action-2">
 									<a title="Add to cart" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에 담기</a>

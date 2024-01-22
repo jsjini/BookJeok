@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+
 <!-- bootstrap@5.3.2의 css -->
 <link href="css2/bootstrap5_3_2.css">
 <!-- 
@@ -29,16 +30,20 @@
 						<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 							<div class="single-product">
 								<div class="product-img">
-									<a href="bookDetail.do?bookNo=${vo.bookNo}">
-										<img class="default-img new-img-size" src="images/${vo.img}">
+
+									<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
+										class="default-img new-img-size" src="images/${vo.img}">
 									</a>
 									<div class="button-head">
 										<div class="product-action">
-											<a title="찜하기" href="#" onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>찜하기</span></a>
-											<a title="모달테스트용" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>모달테스트용</span></a>
+											<a title="Wishlist" href="#"
+												onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
+												class=" ti-heart "></i><span>찜하기</span></a>
 										</div>
 										<div class="product-action-2">
-											<a title="장바구니에 담기" href="#" onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에 담기</a>
+											<a title="Add to cart" href="#"
+												onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에
+												담기</a>
 										</div>
 									</div>
 								</div>
