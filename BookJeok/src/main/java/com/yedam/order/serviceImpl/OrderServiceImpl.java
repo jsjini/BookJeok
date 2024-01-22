@@ -18,5 +18,20 @@ public class OrderServiceImpl implements OrderService {
 	public List<OrderVO> orderList(int memberNo) {
 		return mapper.selectList(memberNo);
 	}
+	
+	@Override
+	public int checkOdNo(int memberNo) {
+		return mapper.checkOrderNo(memberNo);
+	}
+
+	@Override
+	public int addOrder(OrderVO vo) {
+		return mapper.insertOrder(vo);
+	}
+
+	@Override
+	public boolean modPoint(OrderVO vo) {
+		return mapper.updatePoint(vo) == 1;
+	}
 
 }

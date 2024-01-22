@@ -36,7 +36,7 @@
 								<li>
 							</c:otherwise>
 						</c:choose>
-						<li><i class="infomem"></i><a href="#">주문내역</a></li>
+						<li><i class="infomem"></i><a href="orderList.do">주문내역</a></li>
 					</ul>
 				</div>
 				<!-- End Top Right -->
