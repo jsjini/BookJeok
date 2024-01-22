@@ -12,7 +12,7 @@ public interface OrderMapper {
 	int insertOrder(OrderVO vo);
 	
 	// 주문번호 중복체크
-	int checkOrderNo(int memberNo);
+	String checkOrderNo(int memberNo);
 	
 	// 회원 포인트 사용 후 변경
 	int updatePoint(OrderVO vo);

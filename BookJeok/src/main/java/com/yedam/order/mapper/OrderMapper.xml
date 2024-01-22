@@ -13,7 +13,7 @@
 		insert into orders values (#{odNo}, #{odTg}, #{odAd}, #{odt}, #{odStatus}, #{odPrice}, #{usePoint}, #{odTotal}, #{memberNo}, #{phone})
 	</insert>
 
-	<select id="checkOrderNo" resultType="int" parameterType="int">
+	<select id="checkOrderNo" resultType="String" parameterType="int">
 		select od_no from (select * from orders where member_no = #{memberNo} order by 1
 		desc)
 		where rownum = 1

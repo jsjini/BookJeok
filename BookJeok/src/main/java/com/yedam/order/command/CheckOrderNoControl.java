@@ -19,7 +19,7 @@ public class CheckOrderNoControl implements Control {
 		String memberNo = req.getParameter("memberNo");
 		
 		OrderService svc = new OrderServiceImpl();
-		int odNo = svc.checkOdNo(Integer.parseInt(memberNo));
+		String odNo = svc.checkOdNo(Integer.parseInt(memberNo));
 		
 		Gson gson = new GsonBuilder().create();
 		
