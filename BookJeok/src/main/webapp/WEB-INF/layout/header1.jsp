@@ -285,7 +285,6 @@
 	}
 	
 	
-	
 
 	/*
 	if (joinjoin.id.value == "") {

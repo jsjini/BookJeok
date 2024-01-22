@@ -84,6 +84,10 @@
   </div>
 </div>
 
+
+    
+</body>
+
 <c:if test="${not empty member}">
         <p>Member No: ${member.memberNo}</p>
         <p>아이디: ${member.id}</p>
@@ -94,11 +98,10 @@
         <p>포인트: ${member.point}</p>
                
     </c:if>
-
-</body>
-
+    
 <script>
 
+    
 function MyInfo(memberNo) {
     fetch(`/members/${memberNo}`)
       .then(response => response.json())
