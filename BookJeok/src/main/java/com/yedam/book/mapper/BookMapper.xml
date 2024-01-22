@@ -10,14 +10,17 @@
 	</select>
 	<!-- 베스트셀러 출력 -->
 	<select id="selectBestList" resultType="book">
-	select cnt ,b.* 
+	select rownum, cnt ,b.* 
 	from (
-    select book_no,count(book_no) as cnt
+     select  book_no,count(quantity) as cnt
         from  order_item         
-        group by book_no    
-        order by count(book_no) desc
+        group by book_no  
+        order by 2 desc  
    ) o,book b  
    where b.book_no = o.book_no
+   <![CDATA[
+    and rownum <=12
+   ]]>
 	</select>
 	<!-- 신간 출력 -->
 	<select id="selectNewList" resultType="book">
@@ -57,13 +60,11 @@ order by 1)a)b
   <![CDATA[
   where b.r > (#{page}-1)*10  AND b.r <= #{page}*12
   ]]> 
-
 </select>
 	<!-- 총 게시글 갯수 출력 -->
 <select id="selectCount" resultType="int">
 	SELECT COUNT(*) FROM BOOK
 </select>
-
 
 </mapper>
 
