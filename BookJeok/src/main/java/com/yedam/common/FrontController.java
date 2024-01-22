@@ -71,8 +71,8 @@ public class FrontController extends HttpServlet {
 		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
 		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
-		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
-		map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
+		map.put("/bookGenreList.do", new PagingListControl()); //도서 베스트셀러 조회
+		//map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
 		

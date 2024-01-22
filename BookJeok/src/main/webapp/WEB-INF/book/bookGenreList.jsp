@@ -4,6 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!-- bootstrap@4.6.2의 css -->
 <link href="css2/bootstrap4_6_2.css">
+<script src="js2/alert.js"></script>
 <script src="js2/bookList.js"></script>
 <!-- 아직 건들이지 못함. 화면 출력안됨 -->
 <div class="product-area section">
@@ -36,8 +37,7 @@
 													<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
 														class="default-img new-img-size" src="images/${vo.img}" alt="#">
 														<img class="hover-img" src="images/${vo.img}" alt="#">
-														<c:if test=""></c:if> <span class="out-of-stock">Hot</span>
-
+														
 													</a>
 													<div class="button-head">
 														<div class="product-action">
@@ -65,16 +65,34 @@
 										</div>
 									</c:forEach>
 								</div>
-${dto}
+	${dto}							
+<nav aria-label="Page navigation example">
+<input type="hidden" name="pageNum" value="${dto.currPage}">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
 								<div id="paging">
-									${dto} <input type="hidden" name="pageNum"
-										value="${dto.currPage}">
-										
+								${dto}
+								${bookGenreList}
 									<nav aria-label="Page navigation example">
+										<input type="hidden" name="pageNum" value="${dto.currPage}">
 										<ul class="pagination justify-content-center">
 											<c:if test="${dto.prev}">
 												<li class="page-item disabled"><a class="page-link"
-													href="pagingList.do?page=${dto.startPage-1}"
+													href="bookGenreList.do?page=${dto.startPage-1}"
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a>
 												</li>
 											</c:if>
@@ -82,10 +100,10 @@ ${dto}
 											<c:forEach var="i"
 													begin="${dto.startPage}" end="${dto.lastPage}">
 													<li class="page-item"><a class="page-link"
-														href="pagingList.do?page=${i}">${i}</a></li>
+														href="bookGenreList.do?page=${i}">${i}</a></li>
 												</c:forEach> <c:if test="${dto.next}">
 													<li class="page-item"><a class="page-link"
-														href="pagingList.do?page=${dto.lastPage +1}"
+														href="bookGenreList.do?page=${dto.lastPage +1}"
 														aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
 													</li>
 												</c:if>

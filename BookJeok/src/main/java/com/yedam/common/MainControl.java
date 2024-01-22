@@ -1,17 +1,25 @@
 package com.yedam.common;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.yedam.book.service.BookService;
+import com.yedam.book.serviceImpl.BookServiceImpl;
+import com.yedam.book.vo.BookVO;
+
 public class MainControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
+		BookService svc = new BookServiceImpl();
+		List<BookVO> list = svc.bookList();
 		
+		req.setAttribute("list", list);
 		// 페이지를 이동(forward)
 		RequestDispatcher rd = req.getRequestDispatcher("main/mainbody.tiles");
 		try {

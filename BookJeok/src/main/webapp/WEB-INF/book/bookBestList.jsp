@@ -5,6 +5,7 @@
 
 <!-- bootstrap@5.3.2의 css -->
 <link href="css2/bootstrap5_3_2.css">
+<script src="js2/alert.js"></script>
 <script src="js2/bookList.js"></script>
 
 <div class="product-area section">
@@ -21,13 +22,14 @@
 		<div class="tab-pane fade show active" id="man" role="tabpanel">
 			<div class="tab-single">
 				<div class="row">
-					<c:forEach var="vo" items="${bookBestList}">
+					<c:forEach var="vo" items="${bookBestList}" varStatus="status">
 						<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 							<div class="single-product">
 								<div class="product-img">
 
 									<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
 										class="default-img new-img-size" src="images/${vo.img}">
+										<span class="out-of-stock">Hot</span>
 									</a>
 									<div class="button-head">
 										<div class="product-action">

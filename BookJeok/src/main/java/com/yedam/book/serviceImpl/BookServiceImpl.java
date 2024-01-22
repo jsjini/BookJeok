@@ -40,14 +40,18 @@ public class BookServiceImpl  implements BookService{
 
 
 	@Override
-	public List<BookVO> booksPagingList(int bookNo, int page) {
-		return mapper.selectPageList(bookNo, page);
+	public int totalCnt(BookVO cat) {
+		return mapper.selectCount(cat);
 	}
 
 	@Override
-	public int totalCnt() {
-		return mapper.selectCount();
+	public List<BookVO> booksPagingList(BookVO cat, int page) {
+		return mapper.selectPageList(cat, page);
 	}
+
+
+
+
 
 
 
