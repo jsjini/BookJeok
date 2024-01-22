@@ -1670,10 +1670,9 @@
 			<!-- Single Banner  -->
 			<div class="col-lg-6 col-md-6 col-12">
 				<div class="single-banner">
-					<img src="https://via.placeholder.com/600x370" alt="#">
+					<img src="images/thisyearbest.jpg" alt="#">
 					<div class="content">
-						<p>Reviewer's Collectons</p>
-						<h3>평론가가 선택한 올해의 책</h3>
+						
 						<a href="bookDetail.do?bookNo=77">View Now</a>
 					</div>
 				</div>
@@ -1682,13 +1681,10 @@
 			<!-- Single Banner  -->
 			<div class="col-lg-6 col-md-6 col-12">
 				<div class="single-banner">
-					<img src="https://via.placeholder.com/600x370" alt="#">
+					<img src="images/recommand.jpg" alt="#">
 					<div class="content">
-						<p>Influencer pick</p>
-						<h3>
-							구독자 150만의 <br>독서 유튜버가 고른 신간 도서는?</br>
-						</h3>
-						<a href="#" class="btn">Shop Now</a>
+						
+						<a href="bookDetail.do?bookNo=77" class="btn">Shop Now</a>
 					</div>
 				</div>
 			</div>

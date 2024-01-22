@@ -2,10 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!-- bootstrap@4.6.2의 css -->
+<link href="css2/bootstrap4_6_2.css">
+
+<!-- 
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 	integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
 	crossorigin="anonymous">
+-->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script src="js2/bookList.js"></script>
 <!-- 아직 건들이지 못함. 화면 출력안됨 -->
@@ -35,21 +40,22 @@
 										<div class="col-xl-3 col-lg-4 col-md-4 col-12">
 											<div class="single-product">
 												<div class="product-img">
+
 													<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
-														class="default-img" src="images/${vo.img}" alt="#">
+														class="default-img new-img-size" src="images/${vo.img}" alt="#">
 														<img class="hover-img" src="images/${vo.img}" alt="#">
 														<c:if test=""></c:if> <span class="out-of-stock">Hot</span>
+
 													</a>
 													<div class="button-head">
 														<div class="product-action">
 
-															<a title="Wishlist" href="#"
-																onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
-																class=" ti-heart "></i><span>찜하기</span></a>
+															<a title="찜하기" href="#" onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>찜하기</span></a>
+
 														</div>
 														<div class="product-action-2">
 
-															<a title="Add to cart" href="#"
+															<a title="장바구니에 넣기" href="#"
 																onclick="addToCart('${sessionScope.memberNo}',${vo.bookNo})">장바구니에
 																넣기</a>
 														</div>
@@ -101,4 +107,3 @@ ${dto}
 		</div>
 	</div>
 </div>
-
