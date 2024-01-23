@@ -69,33 +69,45 @@
 									</c:forEach>
 								</div>
 
-								<div id="paging">
-									${dto}
+							</div>
+							<div id="paging" style="text-align: center">
 
-									<nav aria-label="Page navigation example">
-										<input type="hidden" name="pageNum" value="${dto.currPage}">
-										<ul class="pagination justify-content-center">
-											<c:if test="${dto.prev}">
-												<li class="page-item disabled"><a class="page-link"
-													href="bookGenreList.do?page=${dto.startPage-1}"
-													aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a>
-												</li>
-											</c:if>
-											<li class="page-item"><c:forEach var="i"
-													begin="${dto.startPage}" end="${dto.lastPage}">
-													<li class="page-item"><a class="page-link"
-														href="bookGenreList.do?page=${i}">${i}</a></li>
-												</c:forEach> <c:if test="${dto.next}">
-													<li class="page-item"><a class="page-link"
-														href="bookGenreList.do?page=${dto.lastPage +1}"
-														aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
-													</li>
-												</c:if>
-										</ul>
-									</nav>
-								</div>
+								<nav aria-label="Page navigation example">
+									<input type="hidden" name="pageNum" value="${dto.currPage}">
+									<ul class="pagination justify-content-center"
+										style="text-align: center">
+										<c:if test="${dto.prev}">
+											<li class="page-item" style="display: inline-block"><a
+												class="page-link"
+												href="bookGenreList.do?categories=${vo.categories[0]}&categories=${vo.categories[1]}&page=${dto.startPage-1}"
+												aria-label="Previous" role="button"> <span
+													aria-hidden="true">&laquo;</span></a></li>
+										</c:if>
+										<c:forEach var="i" begin="${dto.startPage}" end="${dto.lastPage}">
+											<c:choose>
+												<c:when test="${empty vo.categories}">
+													<li class="page-item" style="display: inline-block"><a
+														class="page-link" href="bookGenreList.do?page=${i}">${i}</a></li>
+												</c:when>
+												<c:otherwise>
+													<li class="page-item" style="display: inline-block"><a
+														class="page-link"
+														href="bookGenreList.do?categories=${vo.categories[0]}&categories=${vo.categories[1]}&page=${i}">${i}</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:if test="${dto.next}">
+											<li class="page-item" style="display: inline-block"><a
+												class="page-link"
+												href="bookGenreList.do?categories=${vo.categories[0]}&categories=${vo.categories[1]}&page=${dto.lastPage +1}"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span></a>
+											</li>
+										</c:if>
+									</ul>
+								</nav>
 							</div>
 						</div>
+
 					</div>
 				</div>
 			</div>

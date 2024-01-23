@@ -12,6 +12,7 @@ public class PageDTO {
 	private int pageUnit = 12; //한 페이지 출력할 상품 수 
 	private int pageSize = 5; //한 페이지 출력할 페이지 번호 갯수 
 	
+	
 	//생성자: 전체 건 수, 현재 페이지를 매개값으로 받음
 	public PageDTO (int page, int totalCnt) {
 		this.currPage = page;
@@ -33,5 +34,6 @@ public class PageDTO {
 		this.next = this.lastPage < realLast; 
 	}
 
+	
 	
 }

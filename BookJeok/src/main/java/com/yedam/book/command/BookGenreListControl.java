@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.book.service.BookService;
 import com.yedam.book.serviceImpl.BookServiceImpl;
 import com.yedam.book.vo.BookVO;
+import com.yedam.book.vo.PageDTO;
 import com.yedam.common.Control;
 
 public class BookGenreListControl implements Control {
@@ -25,10 +26,16 @@ public class BookGenreListControl implements Control {
 		BookVO vo = new BookVO();
 		vo.setCategories(cat);
 		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.bookGenreList(vo, Integer.parseInt(page));
-		
+		List<BookVO> list = svc.booksPagingList(vo, Integer.parseInt(page));
+		int total = svc.totalCnt(vo);
+		int totalPage = (int)Math.ceil(total/12.0);
 		req.setAttribute("bookGenreList", list);
-		
+		PageDTO dto = new PageDTO(Integer.parseInt(page),total); 
+		req.setAttribute("bookGenreList", list);
+		req.setAttribute("total", total);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("dto", dto);
+		req.setAttribute("vo", vo);
 		// 페이지를 이동(forward)
 		// 사용자가 URL을 입력시 "/WEB-INF/book/bookList.jsp"페이지 재이동
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookGenreList.tiles");
