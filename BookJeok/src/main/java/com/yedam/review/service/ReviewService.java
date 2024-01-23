@@ -8,4 +8,8 @@ public interface ReviewService {
 	public List<ReviewVO> selectOne(int bookNo);
 	
 	public boolean addReview(ReviewVO vo);
+	
+	public int checkReviewNo(ReviewVO vo);
+	
+	public boolean remReview(int reviewNo);
 }

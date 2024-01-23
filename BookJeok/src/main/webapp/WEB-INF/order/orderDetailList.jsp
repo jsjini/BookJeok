@@ -63,6 +63,9 @@
                     // 리뷰 등록버튼 이벤트
                     addReviewBtn();
 
+                    // 리뷰 삭제버튼 이벤트
+                    delReviewBtn();
+
                 })
         }
 
@@ -92,7 +95,7 @@
                 <tr class ="checkrv" style="display: none;">
                     <td><span class="rvdt"></span></td>
                     <td><span class="rvcontents"></span></td>
-                    <td><a href="#" class="remBtn"><i
+                    <td><a href="#" class="remBtn" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}"><i
 						class="ti-trash remove-icon"></i></a></td>
                     
                 </tr>
@@ -103,6 +106,40 @@
         let bookNo1 = 0;
         let orderitemNo1 = 0;
 
+        function delReviewBtn() {
+            let remBtns = document.querySelectorAll("#makeList .remBtn");
+            remBtns.forEach(remBtn => {
+                remBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (confirm("리뷰를 삭제 하시겠습니까?")) {
+                        bookNo1 = remBtn.dataset.bookno;
+                        orderitemNo1 = remBtn.dataset.orderitemno;
+                        console.log(bookNo1, orderitemNo1);
+                        fetch("checkReviewNo.do?bookNo1=" + bookNo1 + "&orderitemNo1=" + orderitemNo1 + "&memberNo=" + memberNo1)
+                            .then(result => result.json())
+                            .then(result => {
+                                console.log(result);
+
+                                fetch("removeReview.do?reviewNo=" + result)
+                                    .then(str => str.json())
+                                    .then(str => {
+                                        if (str.retCode == "OK") {
+                                            warningAlert("리뷰가 삭제 되었습니다.");
+                                            remBtn.closest("tr").style.display = "none";
+                                            remBtn.closest("tr").previousElementSibling.previousElementSibling.querySelector(".reviewBtn_N").style.display = "none";
+                                            remBtn.closest("tr").previousElementSibling.previousElementSibling.querySelector(".reviewBtn_Y").style.display = "inline-block";
+                                            // location.reload();
+                                        } else if (str.retCode == "NG") {
+                                            warningAlert("리뷰 삭제 실패하였습니다.");
+                                        }
+
+                                    })
+
+                            })
+                    }
+                })
+            })
+        }
 
         function repurChase() {
             let repurChaseBtns = document.querySelectorAll("#makeList .repurChaseBtn");
@@ -201,6 +238,10 @@
                                 .then(result => result.json())
                                 .then(result => {
                                     if (result.retCode == "OK") {
+                                        // warningAlert("리뷰가 등록 되었습니다.");
+                                        // this.closest("tr").style.display = "none";
+                                        // this.closest("tr").previousElementSibling.querySelector(".reviewBtn_Y").style.display = "none";
+                                        // this.closest("tr").previousElementSibling.querySelector(".reviewBtn_N").style.display = "inline-block";
                                         alert("등록 성공");
                                         location.reload();
                                     } else {

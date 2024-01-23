@@ -23,4 +23,12 @@
 		update member set point = #{point} where member_no = #{memberNo}
 	</update>
 
+	<delete id="deleteOrder" parameterType="int">
+  		delete from orders where od_no = #{odNo}
+  	</delete>
+  	
+  	<delete id="deleteOrderItem" parameterType="int">
+  		delete from order_item where od_no = #{odNo}
+  	</delete>
+	
 </mapper> 

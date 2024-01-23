@@ -5,21 +5,33 @@
 
 <mapper namespace="com.yedam.review.mapper.ReviewMapper">
 	<select id="selectOne" parameterType="int" resultType="review">
-		select review_no, 
-			   contents, 
-			   rdt, 
-			   r.member_no, 
-			   book_no, 
-			   orderitem_no,
-			   m.m_name
+		select
+		review_no,
+		contents,
+		rdt,
+		r.member_no,
+		book_no,
+		orderitem_no,
+		m.m_name
 		from member m, review r
-		where book_no=#{bookNo} 
+		where book_no=#{bookNo}
 		and m.member_no=r.member_no
 
 	</select>
-	
+
 	<insert id="insertReview" parameterType="review">
-  		insert into review values (review_seq.nextval, #{contents}, sysdate, #{memberNo}, #{bookNo}, #{orderitemNo})
-  	</insert>
+		insert into review values (review_seq.nextval, #{contents}, sysdate,
+		#{memberNo}, #{bookNo}, #{orderitemNo})
+	</insert>
+
+	<select id="selectReviewNo" parameterType="review" resultType="int">
+		select review_no
+		from review
+		where member_no = #{memberNo} and book_no = #{bookNo} and orderitem_no = #{orderitemNo}
+	</select>
+	
+	<delete id="deleteReview" parameterType="int">
+  		delete from review where review_no = #{reviewNo}
+  	</delete>
 
 </mapper>  

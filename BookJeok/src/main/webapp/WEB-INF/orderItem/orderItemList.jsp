@@ -75,7 +75,7 @@
 	</div>
 	<!-- Shopping Cart -->
 	<div class="shopping-cart section" style="padding-top: 0px;">
-		<div class="container">
+		<div class="container mb-5">
 			<div class="row">
 				<div class="col-12">
 					<h4 style="padding: 15px;">주문도서내역</h4>
