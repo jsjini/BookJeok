@@ -34,7 +34,7 @@
 						<tbody>
 							<tr>
 								<td><b>가격:</b></td>
-								<td><b>${vo.price}</b></td>
+								<td class="price" data-price="${vo.price }"></td>
 							</tr>
 							<tr>
 								<td>저자:</td>
@@ -151,6 +151,18 @@
 
 
 <script>
+//가격 새로 만들어서(, 추가) 추가하기 
+let priceLiTags = document.querySelectorAll('.price');
+	
+	priceLiTags.forEach(tag => {
+		let price = tag.dataset.price;
+		let newPrice = makeComma(price);
+		// console.log(newPrice);
+		tag.innerHTML ='<b>'+ newPrice + '<span> 원</span>'+'</b>';
+		
+	})
+
+
 	<!-- 카트 추가 -->
 	$('.btnCart').on('click', function () {
 		event.preventDefault();

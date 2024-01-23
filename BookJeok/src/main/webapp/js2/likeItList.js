@@ -4,7 +4,7 @@
 
 
 
-let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+//let memberNum = document.querySelector('#memberNumber').dataset.memberno;
 /*let today = getToday();*/
 /*console.log(memberNo, today);*/
 
@@ -87,27 +87,31 @@ function allCheckboxEvent() {
 //단품 삭제
 function removeLikeItEvent() {
 	let remLikeIts = document.querySelectorAll("#selectList .remBtn");
+
 	remLikeIts.forEach(remLikeIt => {
-		remLikeIt.addEventListener("click", function(e) {
+		remLikeIt.addEventListener("click", async function(e) {
 			console.log(remLikeIt);
 			e.preventDefault();
-			if (confirm("삭제하시겠습니까?")) {
+
+			const result = await likeItDelAllModal();
+
+			if (result.isConfirmed) {
 				let bookNo = remLikeIt.dataset.bookno;
-				let memberNo = remLikeIt.dataset.memberno;
-				console.log(bookNo);
 				fetch("removeLikeIt.do?bookNo=" + bookNo + "&memberNo=" + memberNo)
 					.then(result => result.json())
 					.then(result => {
 						if (result.retCode == "OK") {
-							alert('삭제완료');
-							location.reload();
+							likeItDelModal(); // 삭제 완료 모달 표시
+							remLikeIt.closest('tr').remove();
 						} else {
 							alert('삭제 중 오류 발생.');
 						}
+
 					});
 			}
 		});
 	});
+
 }
 
 // 체크박스 선택 전체 삭제
@@ -115,14 +119,18 @@ function delCheckEvent() {
 	$('#delChecked').on('click', async function() {
 		let checkedItems = document.querySelectorAll('#selectList .selCheck:checked');
 		if (checkedItems.length === 0) {
-			alert('삭제할 항목을 선택해주세요.');
+			likeItNGModal();
 			return;
 		}
-		if (confirm('선택한 항목을 삭제하시겠습니까?')) {
+
+		const result = await likeItDelAllModal();
+
+		if (result.isConfirmed) {
 			let deletePromises = [];
+
 			checkedItems.forEach(checkedItem => {
 				let bookNo = checkedItem.closest('tr').querySelector('.remBtn').dataset.bookno;
-				let memberNo = checkedItem.closest('tr').querySelector('.remBtn').dataset.memberno;
+
 				let deletePromise = fetch(`removeLikeIt.do?bookNo=${bookNo}&memberNo=${memberNo}`, {
 					method: 'GET'
 				})
@@ -135,15 +143,19 @@ function delCheckEvent() {
 					.catch(error => {
 						console.error('삭제 중 오류 발생:', error);
 					});
+
 				deletePromises.push(deletePromise);
 			});
+
 			// 모든 삭제 작업이 완료될 때까지 기다림
 			await Promise.all(deletePromises);
+
 			// 화면에서 삭제
 			checkedItems.forEach(checkedItem => {
 				checkedItem.closest('tr').remove();
 			});
-			alert('삭제완료');
+
+			likeItDelModal();
 		}
 	});
 }
