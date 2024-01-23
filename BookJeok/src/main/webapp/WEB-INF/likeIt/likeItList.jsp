@@ -13,7 +13,8 @@
 				<div class="bread-inner">
 					<div class="orderStepN"
 						style="margin-top: 20px; border: 1px solid #aaa; border-radius: 15px; padding: 30px; color: rgb(71, 71, 66);">
-						<h2 id="memberNumber" data-memberno="${sessionScope.memberNo}">찜 목록</h2>
+						<h2 id="memberNumber" data-memberno="${sessionScope.memberNo}">찜
+							목록</h2>
 					</div>
 				</div>
 			</div>
@@ -52,7 +53,7 @@
 								<td><a href="bookDetail.do?bookNo=${likeIt.bookNo }">${likeIt.name }</a></td>
 								<td>${likeIt.author }</td>
 								<td>${likeIt.comp }</td>
-								<td>${likeIt.price }</td>
+								<td class="price" data-price="${likeIt.price }"></td>
 								<td class="action"><button class="remBtn"
 										data-bookno="${likeIt.bookNo }" data-memberno="${memberNo}">
 										<i class="ti-trash remove-icon"></i>
@@ -74,6 +75,17 @@
 	<input type="hidden" name="orders" id="orders">
 </form>
 <script>
+//가격 새로 만들어서(, 추가) 추가하기 
+let priceLiTags = document.querySelectorAll('.price');
+	
+	priceLiTags.forEach(tag => {
+		let price = tag.dataset.price;
+		let newPrice = makeComma(price);
+		// console.log(newPrice);
+		tag.innerHTML = newPrice;
+		
+	})
+
 	document.querySelector('#selectList').addEventListener("click", function() {
 
 		if (event.target.nodeName == "TR") { //tag 이름은 무조건 대문자
