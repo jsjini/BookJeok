@@ -3,6 +3,30 @@
  */
 
 // 알림창 공통 모달
+// 삭제하기
+
+function delAlert() {
+	Swal.fire({
+	  title: "정말로 삭제 하시겠습니까?",
+	  text: "삭제 후 복구 불가합니다.",
+	  icon: "warning",
+	  showCancelButton: true,
+	  confirmButtonColor: "#badc58",
+	  cancelButtonColor: "#568A35",
+	  confirmButtonText: "삭제하기"
+	}).then((result) => {
+	  if (result.isConfirmed) {
+	    Swal.fire({
+	      title: "삭제완료",
+	      text: "삭제메세지",
+	      icon: "success",
+	      confirmButtonColor: "#badc58",
+	      confirmButtonText: "확인"
+	    });
+	   	
+	  }
+	});
+}
 
 // 형식1_알림 및 이동
 function commonAlert(alertText, cacel, confirm){
