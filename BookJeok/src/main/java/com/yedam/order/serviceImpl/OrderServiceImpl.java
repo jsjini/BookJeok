@@ -44,4 +44,9 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.deleteOrderItem(odNo) == 1;
 	}
 
+	@Override
+	public List<OrderVO> bookInfo(int odNo) {
+		return mapper.selectBookInfo(odNo);
+	}
+
 }

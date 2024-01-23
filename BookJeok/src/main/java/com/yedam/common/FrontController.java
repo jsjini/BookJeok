@@ -34,6 +34,7 @@ import com.yedam.member.command.LogoutBookControl;
 import com.yedam.member.command.MemberJoinResultControl;
 import com.yedam.member.command.MyPageControl;
 import com.yedam.order.command.AddOrderControl;
+import com.yedam.order.command.CheckBookInfoControl;
 import com.yedam.order.command.CheckOrderNoControl;
 import com.yedam.order.command.ModifyPointControl;
 import com.yedam.order.command.OrderListControl;
@@ -134,6 +135,7 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyPoint.do", new ModifyPointControl()); // 회원 포인트 수정
 		map.put("/removeOrder.do", new RemoveOrderControl()); // 주문목록 삭제
 		map.put("/removeOrderItem.do", new RemoveOrderItemControl()); // 주문상세 삭제
+		map.put("/checkBookInfo.do", new CheckBookInfoControl()); // 주문목록페이지에 도서정보넘기는 기능
 		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록

@@ -14,11 +14,25 @@
         </div>
     </div>
 
-    <div class="shopping-cart section">
+    <div class="shopping-cart section" style="padding-bottom: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-10" style="margin: 0 auto;">
+                    <div>
+                        <h5 id="orderNo" style="padding: 5px;"></h5>
+                        <h5 id="orderDate" style="padding: 5px;"></h5>
+                        <h5 id="orderStatus" style="padding: 5px;"></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shopping-cart section" style="padding-bottom: 0px;">
         <div class="container">
             <div class="row">
                 <div class="col-10 outside1" style="margin: auto;">
-                    <table class="table shopping-summery" id="memberNumber" data-memberno="${sessionScope.memberNo}">
+                    <table class="table shopping-summery">
                         <tbody id="makeList" style="text-align: center;">
 
                         </tbody>
@@ -28,16 +42,84 @@
         </div>
     </div>
 
+    <div class="shopping-cart section" style="padding-bottom: 0px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-10" style="margin: 0 auto;">
+                    <div>
+                        <h3 style="margin-bottom: 20px;">배송지 정보</h3>
+                        <table class="table" style="font-size: 20px;">
+                            <tr>
+                                <td>주문자</td>
+                                <td id="orderTg"></td>
+                            </tr>
+                            <tr>
+                                <td>연락처</td>
+                                <td id="orderPhone"></td>
+                            </tr>
+                            <tr>
+                                <td>배송지</td>
+                                <td id="orderAddr"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shopping-cart section">
+        <div class="container">
+            <div class="row">
+                <div class="col-10" style="margin: 0 auto;">
+                    <div>
+                        <h3 style="margin-bottom: 20px;">결제 정보</h3>
+                        <table class="table" style="font-size: 20px;">
+                            <tr>
+                                <td>상품 금액</td>
+                                <td id="orderPrice"></td>
+                            </tr>
+                            <tr>
+                                <td>사용 포인트</td>
+                                <td id="orderUsePoint"></td>
+                            </tr>
+                            <tr>
+                                <td>결제 금액</td>
+                                <td id="orderTotal"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         let memberNo1 = document.querySelector('#memberNumber').dataset.memberno;
 
+				// "odPrice": odPrice, "usePoint": usePoint, "odTotal": odTotal,
         console.log(memberNo1);
         var details = ${ orderDetail3 };
         console.log(details);
 
 
         showOrderDetailList();
+        showOrderInfo();
 
+        function showOrderInfo() {
+            orderNo.innerHTML = "▶&nbsp;주문번호:&nbsp;&nbsp;&nbsp;"+details.odNo;
+            orderDate.innerHTML = "▶&nbsp;주문일자:&nbsp;&nbsp;&nbsp;"+details.odt;
+            orderStatus.innerHTML = "▶&nbsp;주문상태:&nbsp;&nbsp;&nbsp;"+details.odStatus;
+            orderTg.innerHTML = details.odTg;
+            orderPhone.innerHTML = details.phone;
+            orderAddr.innerHTML = details.odAd;
+            let odprice1 = makeComma(details.odPrice)+"&nbsp;&nbsp;원";
+            let usePoint1 = makeComma(details.usePoint)+"&nbsp;&nbsp;P";
+            let odTotal1 = makeComma(details.odTotal)+"&nbsp;&nbsp;원";
+            orderPrice.innerHTML = odprice1;
+            orderUsePoint.innerHTML = usePoint1;
+            orderTotal.innerHTML = odTotal1;
+        }
 
         function showOrderDetailList(callback) {
             fetch("orderDetailListJson.do?odNo=" + details.odNo)
@@ -70,33 +152,35 @@
         }
 
         function maketr(item) {
+            let price = makeComma(item.price);
             const newtbody1 =
                 `
                 <tr>
-                    
-                    <td><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.img}" alt="#"></a></td>
+                    <td></td>
+                    <td><a href="bookDetail.do?bookNo=\${item.bookNo}"><img style="width: 120px;" src="images/\${item.img}" alt="#"></a></td>
                     <td style="padding: 0px 0px 0px 80px;">
-                        <div><a href="bookDetail.do?bookNo=\${item.bookNo}"><span>\${item.name}</span></a></div>
+                        <div><a href="bookDetail.do?bookNo=\${item.bookNo}"><span style="font-size: 18px;">\${item.name}</span></a></div>
                     </td>
                     <td>
-                        <div><span>\${item.price}&nbsp;&nbsp;원</span></div>
+                        <div><span style="font-size: 18px;">\${price}&nbsp;&nbsp;원</span></div>
                     </td>
                     <td>
-                        <div><span>주문수량 : </span><span>\${item.quantity}&nbsp;&nbsp;권</span></div>
+                        <div><span>수량</span><br><span style="font-size: 18px;">\${item.quantity}&nbsp;&nbsp;권</span></div>
                     </td>
-                    <td class="startPosition" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}"><button class="repurChaseBtn" data-bookno="\${item.bookNo}">재구매</button><br><button class="addReview reviewBtn_Y" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}">리뷰쓰기</button>
-                        <button class="reviewBtn reviewBtn_N" data-state="N" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}" style="display: none;">리뷰확인</button></td>
+                    <td class="startPosition" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}"><button class="btn repurChaseBtn" data-bookno="\${item.bookNo}" style="width: 140px;">재구매</button><br><button class="btn addReview reviewBtn_Y" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}" style="width: 140px;">리뷰쓰기</button>
+                        <button class="btn reviewBtn reviewBtn_N" data-state="N" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}" style="display: none; width: 140px;">리뷰확인</button></td>
                 </tr>
-                <tr class="reviewAdd" style="display: none;">
-                    <td><input type="textarea" class="rvcontent"></td>
-                    <td><button class="btn addReviewBtn" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}">등록</button></td>
+                <tr class="reviewAdd" hidden>
+                    <td></td>
+                    <td colspan="4"><textarea maxlength="80" placeholder="리뷰를 입력하세요." class="rvcontent"></textarea></td>
+                    <td><button class="btn addReviewBtn" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}" style="width: 140px;">등록</button></td>
                     
                 </tr>
-                <tr class ="checkrv" style="display: none;">
-                    <td><span class="rvdt"></span></td>
-                    <td><span class="rvcontents"></span></td>
+                <tr class ="checkrv" hidden>
+                    <td colspan="2"><span class="rvdt"></span></td>
+                    <td colspan="3"><span class="rvcontents" style="font-size: 16px;"></span></td>
                     <td><a href="#" class="remBtn" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}"><i
-						class="ti-trash remove-icon"></i></a></td>
+						class="ti-trash remove-icon" style="font-size: 20px;"></i></a></td>
                     
                 </tr>
                 `
@@ -125,7 +209,7 @@
                                     .then(str => {
                                         if (str.retCode == "OK") {
                                             warningAlert("리뷰가 삭제 되었습니다.");
-                                            remBtn.closest("tr").style.display = "none";
+                                            remBtn.closest("tr").hidden = true;
                                             remBtn.closest("tr").previousElementSibling.previousElementSibling.querySelector(".reviewBtn_N").style.display = "none";
                                             remBtn.closest("tr").previousElementSibling.previousElementSibling.querySelector(".reviewBtn_Y").style.display = "inline-block";
                                             // location.reload();
@@ -198,10 +282,10 @@
                     e.preventDefault();
                     console.log(this);
                     let checkrv1 = this.closest("tr").nextElementSibling.nextElementSibling;
-                    if (checkrv1.style.display == "none") {
-                        checkrv1.style.display = "inline-block";
-                    } else if (checkrv1.style.display == "inline-block") {
-                        checkrv1.style.display = "none";
+                    if (checkrv1.hidden == true) {
+                        checkrv1.hidden = false;
+                    } else if (checkrv1.hidden == false) {
+                        checkrv1.hidden = true;
                     }
                 })
             })
@@ -214,10 +298,10 @@
                 addReviewBtn.addEventListener("click", function (e) {
                     e.preventDefault();
                     let checkrv1 = this.closest("tr").nextElementSibling;
-                    if (checkrv1.style.display == "none") {
-                        checkrv1.style.display = "inline-block";
-                    } else if (checkrv1.style.display == "inline-block") {
-                        checkrv1.style.display = "none";
+                    if (checkrv1.hidden == true) {
+                        checkrv1.hidden = false;
+                    } else if (checkrv1.hidden == false) {
+                        checkrv1.hidden = true;
                     }
                 })
             })

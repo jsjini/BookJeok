@@ -106,14 +106,14 @@
 				</div>
 			</div>
 			<div>
-				<h4 style="padding: 15px;">배송지 정보</h4>
+				<h4 class="mt-5 md-5" style="padding: 15px;">배송지 정보</h4>
 				<table class="table">
 					<tbody>
 						<tr>
 							<th>이름</th>
 							<td>
-								<input id="memberName" type="text" maxlength="20"><a href="#" id="membetInfo">회원정보와
-									동일</a>
+								<input id="memberName" type="text" maxlength="20"><button class="btn ml-3" style="height: 40px;" id="membetInfo">회원정보와
+									동일</button>
 							</td>
 						</tr>
 
@@ -134,8 +134,8 @@
 								</div>
 								<input type="text" id="order_add1">
 								<input type="text" id="order_add2"> -->
-								<input type="text" id="sample4_postcode" placeholder="우편번호" readonly>
-								<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input class="mb-2"type="text" id="sample4_postcode" placeholder="우편번호" readonly>
+								<input class="btn ml-3 mb-2" style="height: 40px;" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 								<input type="text" id="sample4_roadAddress" placeholder="도로명주소" readonly>
 								<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소">
 								<span id="guide" style="color:#999;display:none"></span>
@@ -170,9 +170,9 @@
 									</tr>
 									<tr>
 										<th>사용 포인트</th>
-										<td><input id="usePoint" value=0 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"><button class="pointUseBtn pointUseBtn_Y"
-												data-state="Y">모두사용</button><button class="pointUseBtn pointUseBtn_N"
-												data-state="N" style="display: none;">사용취소</button></td>
+										<td><input id="usePoint" value=0 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"><button style="height: 40px;" class="btn ml-3 pointUseBtn pointUseBtn_Y"
+												data-state="Y">모두사용</button><button class="btn ml-3 pointUseBtn pointUseBtn_N"
+												data-state="N" style="display: none; height: 40px;">사용취소</button></td>
 									</tr>
 								</tbody>
 							</table>
@@ -306,7 +306,9 @@
 
 			function maketr(item) {
 				console.log(item.bookImg, item.bookName, item.bookNo, item.bookPirce);
+				let bookPirce1 = makeComma(item.bookPirce);
 				let totalPrice = item.bookPirce * item.quantity;
+				let totalPrice1 = makeComma(totalPrice);
 				const newtbody1 = `<tr>
 				<td class="image" data-cartno="\${item.cartNo}" data-totalprice="\${totalPrice}" data-bookno="\${item.bookNo}" data-quantity="\${item.quantity}" data-img="\${item.bookImg}" data-name="\${item.bookName}" data-price="\${item.bookPirce}" data-title="No"><a href="bookDetail.do?bookNo=\${item.bookNo}"><img src="images/\${item.bookImg}"
 					alt="#"></a></td>
@@ -318,11 +320,11 @@
 				<td class="product-des" data-title="Description">
 				<p class="product-des">내일 수령</p>
 				</td>
-				<td class="price" data-title="\${item.bookPirce}"><span>\${item.bookPirce}</span></td>
+				<td class="price" data-title="\${item.bookPirce}"><span>\${bookPirce1}</span></td>
 				<td class="qty" data-title="Qty">
 					<p class="qty-value">\${item.quantity}</p>
 				</td>
-				<td class="total-amount" data-title="Total"><span>\${totalPrice}</span></td>
+				<td class="total-amount" data-title="Total"><span>\${totalPrice1}</span></td>
 				</tr>`
 				return newtbody1;
 			}
@@ -488,6 +490,7 @@
 												text: "결제가 완료되었습니다!",
 												confirmButtonText: `<a href="orderList.do">확인</a>`
 											})
+											
 										} else {
 											Swal.fire({
 												text: "결제 실패. 다시 시도해주세요.",

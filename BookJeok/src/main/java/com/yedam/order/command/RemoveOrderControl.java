@@ -23,7 +23,10 @@ public class RemoveOrderControl implements Control {
 		Map<String, Object> map = new HashMap<>();
 		if (svc.remOrder(Integer.parseInt(odNo))) {
 			map.put("retCode", "OK");
-			
+			map.put("retCode1", "OK");
+			map.put("retCode2", "OK");
+			map.put("retCode3", "OK");
+			map.put("retCode4", "OK");
 		} else {
 			map.put("retCode", "NG");
 		}

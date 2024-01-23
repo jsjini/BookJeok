@@ -23,4 +23,6 @@ public interface OrderService {
 	// 주문상세 삭제
 	public boolean remOrderItem(int odNo);
 	
+	public List<OrderVO> bookInfo(int odNo);
+	
 }

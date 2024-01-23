@@ -20,8 +20,20 @@ public class RemoveOrderItemControl implements Control {
 		String odNo = req.getParameter("orderNo");
 
 		OrderService svc = new OrderServiceImpl();
-		svc.remOrderItem(Integer.parseInt(odNo));
+		Map<String, Object> map = new HashMap<>();
+		if (svc.remOrderItem(Integer.parseInt(odNo))) {
+			map.put("retCode", "OK");
+			
+		} else {
+			map.put("retCode", "NG");
+		}
 
+		Gson gson = new GsonBuilder().create();
+		try {
+			resp.getWriter().print(gson.toJson(map));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
