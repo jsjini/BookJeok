@@ -35,14 +35,17 @@
 												<div class="product-img">
 
 													<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
-														class="default-img new-img-size" src="images/${vo.img}" alt="#">
-														<img class="hover-img" src="images/${vo.img}" alt="#">
-														
+														class="default-img new-img-size" src="images/${vo.img}"
+														alt="#"> <img class="hover-img"
+														src="images/${vo.img}" alt="#">
+
 													</a>
 													<div class="button-head">
 														<div class="product-action">
 
-															<a title="찜하기" href="#" onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i class=" ti-heart "></i><span>찜하기</span></a>
+															<a title="찜하기" href="#"
+																onclick="addLikeIt('${sessionScope.memberNo}',${vo.bookNo})"><i
+																class=" ti-heart "></i><span>찜하기</span></a>
 
 														</div>
 														<div class="product-action-2">
@@ -65,28 +68,10 @@
 										</div>
 									</c:forEach>
 								</div>
-	${dto}							
-<nav aria-label="Page navigation example">
-<input type="hidden" name="pageNum" value="${dto.currPage}">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+
 								<div id="paging">
-								${dto}
-								${bookGenreList}
+									${dto}
+
 									<nav aria-label="Page navigation example">
 										<input type="hidden" name="pageNum" value="${dto.currPage}">
 										<ul class="pagination justify-content-center">
@@ -96,8 +81,7 @@
 													aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a>
 												</li>
 											</c:if>
-											<li class="page-item">
-											<c:forEach var="i"
+											<li class="page-item"><c:forEach var="i"
 													begin="${dto.startPage}" end="${dto.lastPage}">
 													<li class="page-item"><a class="page-link"
 														href="bookGenreList.do?page=${i}">${i}</a></li>

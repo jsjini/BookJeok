@@ -34,7 +34,7 @@ public class BookServiceImpl  implements BookService{
 	}
 
 	@Override
-	public List<BookVO> bookGenreList(BookVO cat) {	
+	public List<BookVO> bookGenreList(BookVO cat, int page) {	
 		return mapper.selectGenreList(cat);
 	}
 
