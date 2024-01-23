@@ -1040,6 +1040,7 @@ Version:1.0
 }
 .header.shop .right-bar .sinlge-bar .single-icon:hover{
 	color:#568A35;
+	cursor: pointer;
 }
 .header.shop .right-bar .sinlge-bar .single-icon .total-count {
 	position: absolute;
