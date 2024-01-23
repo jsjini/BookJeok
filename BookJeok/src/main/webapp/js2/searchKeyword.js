@@ -21,6 +21,7 @@
 			 newLi.innerHTML = content;
 			 
 			 document.querySelector('.search-popular').appendChild(newLi);
+			 //document.querySelector('.search-popular li').data('keyword', '${item.keyword}');
 		 }
 		$('.search-popular li').css('display', 'inline-block');
 		$('.search-popular li').css('border', '1px solid #568A35');
@@ -30,6 +31,11 @@
 				
 		$('.search-popular li').addClass('mx-2 p-2 h6');
 		
+	 })
+	 
+	 $('.search-popular').on('click', 'li', function() {
+		 console.log($(this));
+		 //delAlert()
 	 })
  
 	 

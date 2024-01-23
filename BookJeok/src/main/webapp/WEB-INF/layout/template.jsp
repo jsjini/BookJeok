@@ -68,7 +68,7 @@
 
 	
 	<!-- 검색어 JS -->
-	<script src="js2/searchKeyword.js"></script>
+	<script defer src="js2/searchKeyword.js"></script>
 	<!-- <script src="js2/searchBook.js"></script> -->
 	
 	<!-- 공통 함수 -->
