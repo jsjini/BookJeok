@@ -52,7 +52,7 @@ from
 (select *   
 from book
 <where>
-    <foreach item="item" index="index" collection="categories"
+    <foreach item="item" index="index" collection="item.categories"
         open="category in (" separator="," close=")" nullable="true">
           #{item}
     </foreach>
@@ -66,7 +66,7 @@ order by 1)a)b
 <select id="selectCount" resultType="int" parameterType="book">
 	SELECT COUNT(*) FROM BOOK
 	<where>
-    <foreach item="item" index="index" collection="categories"
+    <foreach item="item" index="index" collection="item.categories"
         open="category in (" separator="," close=")" nullable="true">
           #{item}
     </foreach>

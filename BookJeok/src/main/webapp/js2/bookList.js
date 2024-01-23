@@ -68,8 +68,28 @@ function likeItModal(memberNo) {
 	})
 }//end of cartOkModal
 
+// 가격 새로 만들어서(, 추가) 추가하기
+	let priceLiTags = document.querySelectorAll('.price');
+	
+	priceLiTags.forEach(tag => {
+		let price = tag.dataset.price;
+		let newPrice = makeComma(price);
+		console.log(newPrice);
+		tag.innerHTML = newPrice + '<span> 원</span>';
+		
+	})
+
+//랜덤 책 출력 랜덤쿼리로 만들어야함!!!!!!!!oracle randon 정렬 찾아서 main에 적용시키
+let bookNo = `${bookNo}`
+let min = bookNo[0];
+let max = bookNo.length;
+
+function getRandomBook(){
+	return Math.floor(Math.random() * (max - min + 1)) + min
+	
+}
 //HOT SPAN 판매기준 출력 // 적용 어떻게??
-fetch('bookBestList.do', {
+/* fetch('bookBestList.do', {
  })
  .then(result => result.json())
  .then(result => {
@@ -80,32 +100,10 @@ fetch('bookBestList.do', {
 		 if(idx < 2) {
 			 let newSpan = document.createElement('span');
 			 newSpan.innerHTML = `Hot`;
-			 document.querySelector('.default-img new-img-size').appendChild(newSpan);
-			 document.querySelector('.default-img new-img-size span').setAttribute('class', 'out-of-stock');
+			 document.querySelector('.default-img').appendChild(newSpan);
+			 document.querySelector('.default-img').setAttribute('class', 'out-of-stock');
 		 }
 	 })
  })
 
-/*
-fetch('https://www.aladin.co.kr/home/welcome.aspx')
-.then (res=>res.json())
-.then (console.log);
-
-/*
-	//페이징용
-	function showList(bookNo, page) {
-		fetch('pagingList.do', {
-			method: 'get',
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: 'bookno=' + bookNo + '&page=' + page
-		})
-			.then(str => str.json())
-			.then(result => {
-				console.log(result);
-			})
-			.catch(reject => console.log(reject));
-	}
-	showList(bookNo,page); */
-
+*/

@@ -17,9 +17,7 @@ public class BookBestListControl implements Control {
 
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
-		String page = req.getParameter("page");
-		page = (page == null || page.equals(""))? "1" : page;
-		System.out.println(page);
+		
 		BookService svc = new BookServiceImpl();
 		
 		List<BookVO> list = svc.bookBestList();

@@ -22,6 +22,7 @@ public class PagingListControl implements Control {
 		String page = req.getParameter("page");
 		page = (page == null || page.equals(""))? "1" : page;
 		
+		
 		System.out.println(page);
 		BookService svc = new BookServiceImpl();
 		BookVO vo = new BookVO();

@@ -29,7 +29,7 @@
 
 									<a href="bookDetail.do?bookNo=${vo.bookNo}"> <img
 										class="default-img new-img-size" src="images/${vo.img}">
-										<span class="out-of-stock">Hot</span>
+									
 									</a>
 									<div class="button-head">
 										<div class="product-action">
@@ -48,8 +48,8 @@
 									<h3>
 										<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 									</h3>
-									<div class="product-price">
-										<span>${vo.price}원</span>
+									<div class="price">
+										<span class="price">${vo.price}원</span>
 									</div>
 								</div>
 							</div>
@@ -57,6 +57,8 @@
 					</c:forEach>
 				</div>
 			</div>
+			
 		</div>
+		
 	</div>
 </div>

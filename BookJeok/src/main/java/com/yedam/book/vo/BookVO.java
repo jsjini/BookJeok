@@ -18,6 +18,7 @@ public class BookVO {
 	private String img;
 	private String isbn;
 	private String[] categories;
+	private int page;
 
 }
 

@@ -51,7 +51,6 @@
 <script>
 	// 가격 새로 만들어서(, 추가) 추가하기
 	let priceLiTags = document.querySelectorAll('.price');
-	
 	priceLiTags.forEach(tag => {
 		let price = tag.dataset.price;
 		let newPrice = makeComma(price);
