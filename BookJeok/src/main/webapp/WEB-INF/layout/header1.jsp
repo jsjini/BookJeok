@@ -1,57 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	
-	<style>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<style>
 /*
 #loginModal {
     max-width: 500px; 
     margin: 0 auto;
 }
 */
+#loginModal .modal-dialog {
+	width: 100%;
+	max-width: 500px;
+}
+
+#loginModal .modal-content {
+	width: 100%;
+	height: 100%;
+}
+
+#loginModal .modal-body {
+	overflow-y: hidden;
+}
 
 .modal-dialog {
-    width: 100%;
-    max-width: 500px; 
+	margin-top: 50vh;
+	transform: translateY(-50%);
 }
 
-.modal-content {
-    width: 100%;
-    height: 100%;
+#joinsize2 {
+	overflow: auto;
 }
 
-.modal-body {   
-    overflow-y: hidden;
-}
+/*
+#joinModal{
+overflow-y: hidden;
+}*/
+</style>
 
-.modal-dialog {
-    margin-top: 50vh;
-    transform: translateY(-50%);
-}
+<div class="topbar">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-12 col-12"></div>
+			<div class="col-lg-7 col-md-12 col-12">
+				<!-- Top Right (우측상단 메뉴)-->
+				<div class="right-content">
 
-
-
-	</style>
-	
-		<div class="topbar">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-md-12 col-12">
-					</div>
-					<div class="col-lg-7 col-md-12 col-12">
-						<!-- Top Right (우측상단 메뉴)-->
-						<div class="right-content">
-						
-							<ul class="list-main">
-								<c:choose>
-									<c:when test="${empty logId }">
-										<li>! 로그인해주세요 →
-										<li>
-									</c:when>
-									<c:otherwise>
-										<li>${logName }님, 좋은 하루 되세요:)
-										<li>
-									</c:otherwise>
-								</c:choose>
+					<ul class="list-main">
+						<c:choose>
+							<c:when test="${empty logId }">
+								<li>! 로그인해주세요 →
+								<li>
+							</c:when>
+							<c:otherwise>
+								<li>${logName }님,좋은하루되세요:)
+								<li>
+							</c:otherwise>
+						</c:choose>
 
 
 						<c:choose>
@@ -99,9 +104,7 @@
 						</form>
 					</div>
 					<!-- 인기검색어 -->
-					<div class="search-popular pt-3">
-						
-					</div>
+					<div class="search-popular pt-3"></div>
 				</div>
 				<!-- 검색창 끝. -->
 			</div>
@@ -119,7 +122,7 @@
 					<!-- 장바구니 아이콘 -->
 					<div class="sinlge-bar">
 						<div class="single-icon ti-bag shopping"></div>
-							<!-- <span class="total-count">2</span>  -->
+						<!-- <span class="total-count">2</span>  -->
 					</div>
 				</div>
 			</div>
@@ -130,9 +133,9 @@
 
 <!-- 로그인모달 -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-	aria-labelledby="loginModalLabel"  aria-hidden="true">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
+	aria-labelledby="loginModalLabel" aria-hidden="true">
+	<div class="modal-dialog " role="document">
+		<div class="modal-content" id="loginsize">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
 			</div>
@@ -141,7 +144,9 @@
 					<table class="table">
 						<tbody>
 							<tr>
-								<th colspan="2">북적북적 회원 로그인 해주세요 <br> 회원이 아닌 손님은 회원가입을 진행해주세요 :)</th>
+								<th colspan="2">북적북적 회원 로그인 해주세요 <br> 회원이 아닌 손님은 회원가입을
+									진행해주세요 :)
+								</th>
 
 							</tr>
 							<tr>
@@ -153,7 +158,7 @@
 								<td><input type="password" name="pw" required /></td>
 							</tr>
 
-							
+
 							<tr>
 								<td colspan="2" align="center"><input type="submit"
 									value="로그인" class="btn btn-primary"> <input
@@ -172,24 +177,24 @@
 
 
 <!-- 회원가입모달 -->
-<div class="modal fade" id="joinModal" tabindex="-1" role="dialog" aria-labelledby="joinModallabel"
-	aria-hidden="true">
-	<div class="modal-dialog modal-sm" role="document">
-		<div class="modal-content">
+<div class="modal fade" id="joinModal" tabindex="-1" role="dialog"
+	aria-labelledby="joinModallabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content" id="joinsize">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLongTitle">JOIN US!</h5>
 			</div>
-			<div class="modal-body">
+			<div class="modal-body" id="joinsize2">
 				<form action="memberJoin.do" method="post" name="joinjoin">
-					<table class="table">
+					<table class="table" id="joinsize3">
 						<tbody>
 							<tr>
 								<th colspan="2" id="joinjoin">회원가입</th>
 							</tr>
 							<tr>
 								<th>아이디</th>
-								<td><input type="text" name="id" id="id">
-									<input type="button" id="confirmId" class="checkSome" value="중복 확인">
+								<td><input type="text" name="id" id="id"> <input
+									type="button" id="confirmId" class="checkSome" value="중복 확인">
 								</td>
 							</tr>
 							<tr>
@@ -202,7 +207,8 @@
 							</tr>
 							<tr>
 								<th>이메일주소</th>
-								<td><input type="text" name="email" placeholder="ex. info@bookjk.com" id="email" required /></td>
+								<td><input type="text" name="email"
+									placeholder="ex. info@bookjk.com" id="email" required /></td>
 							</tr>
 							<tr>
 								<th>연령대(선택)</th>
@@ -217,11 +223,12 @@
 							</tr>
 							<tr>
 								<th>휴대폰번호</th>
-								<td><input type="text" name="phone" id="phone" placeholder="ex. 010-1111-1111" required /></td>
+								<td><input type="text" name="phone" id="phone"
+									placeholder="ex. 010-1111-1111" required /></td>
 							</tr>
 							<tr>
-								<th required />관심분야(중복가능)</th>
-								<td><input type="checkbox" name="likes" id="none">없음</td>
+								<th>관심분야(중복가능)</th>
+								<td><input type="checkbox" name="likes" id="none" checked>없음</td>
 								<td><input type="checkbox" name="likes" id="social">인문/사회</td>
 								<td><input type="checkbox" name="likes" value="com">컴퓨터/IT</td>
 								<td><input type="checkbox" name="likes" value="science">자연과학/공학</td>
@@ -236,9 +243,9 @@
 								<td><input type="radio" name="sms" value="no">동의안함</td>
 							</tr>
 							<tr>
-								<td colspan="3" align="center"><input type="submit" value="가입신청" class="btn btn-primary"
-										id="joinsucc" onClick="return check()"> 
-										<!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
+								<td colspan="3" align="center"><input type="submit"
+									value="가입신청" class="btn btn-primary" id="joinsucc"
+									onClick="return check()"> <!-- 가입신청 누르면 회원가입 완료창 하나 더 뜨게. join.jsp -->
 									<input type="reset" value="다시 입력" class="btn btn-warning">
 								</td>
 							</tr>
@@ -261,11 +268,10 @@
 	aria-labelledby="joinendModallabel" aria-hidden="true">
 	<div class="modal-dialog .modal-sm" role="document">
 		<div class="modal-content">
-			<div class="modal-header">
-			</div>
+			<div class="modal-header"></div>
 			<div class="modal-body">
-			<p>회원이 되신 걸 환영합니다. 로그인 해주세요.</p>
-			</div>		
+				<p>회원이 되신 걸 환영합니다. 로그인 해주세요.</p>
+			</div>
 		</div>
 	</div>
 </div>
@@ -274,9 +280,9 @@
 <script>
 	let logId = '${sessionScope.logId }';
 	let memberNo = '${sessionScope.memberNo }';
-	
-	$('.right-bar').on('click', "div", function () {
-		if(logId == '') {
+
+	$('.right-bar').on('click', "div", function() {
+		if (logId == '') {
 			loginModal();
 		} else {
 			if ($(event.target).hasClass("myLikeIt") == true) {
@@ -287,11 +293,8 @@
 				location.href = 'cartList.do?memberNo=' + memberNo;
 			}
 		}
-		
-	})
-	
 
-	
+	})
 </script>
 
 
@@ -309,15 +312,14 @@
 </script>
 
 <script>
-	/* 수정예정
+	
+	//아이디 또는 비밀번호가 틀릴때 뜨는 창.
 	let message = '${message}';
 	if(message == 'fail') {
-		// alert('아이디와 비밀번호를 확인 후 다시 로그인 해주세요.')
-		$('#loginModal').modal('show');
+	//alert('아이디와 비밀번호를 확인 후 다시 로그인 해주세요.')
+	$('#loginModal').modal('show');
 	}
-	*/
-	
-	
+	 
 
 <!-- 빈칸이 있으면 칸 먼저 채우고 가입신청 누르면 가입완료 alert 뜨게 -->
 	/*
@@ -351,8 +353,5 @@
 		return false;
 	}
 	*/
-
-
-		
 </script>
 
