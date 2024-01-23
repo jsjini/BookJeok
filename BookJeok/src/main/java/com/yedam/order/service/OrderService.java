@@ -17,5 +17,10 @@ public interface OrderService {
 	// 회원 포인트 수정
 	public boolean modPoint(OrderVO vo);
 	
+	// 주문 삭제
+	public boolean remOrder(int odNo);
+	
+	// 주문상세 삭제
+	public boolean remOrderItem(int odNo);
 	
 }

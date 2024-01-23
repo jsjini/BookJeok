@@ -3,14 +3,14 @@
  */
 
 
-let memberNo = document.querySelector('#memberNumber').dataset.memberno;
+let memberNo1 = document.querySelector('#memberNumber').dataset.memberno;
 let today = getToday();
-console.log(memberNo, today);
-showCart(memberNo);
+console.log(memberNo1, today);
+showCart(memberNo1);
 
 
 function showCart() {
-	fetch("cartListJson.do?memberNo=" + memberNo)
+	fetch("cartListJson.do?memberNo=" + memberNo1)
 		.then(result => result.json())
 		.then(result => {
 			console.log(result);
@@ -93,24 +93,6 @@ function maketr(item) {
 	return newtbody;
 }
 
-// const form = {
-// 	memberNo: '${}',
-// 	bookNo: '${}',
-// }
-// function addCartEvent() {
-// 	$(".add_cart").on("click", function () {
-// 		form.quantity = $(".quantity_input").val();
-// 		$.ajax({
-// 			url: 'addCart.do',
-// 			type: 'GET',
-// 			data: form,
-// 			success: function (result) {
-// 				cartAlert(result);
-// 			}
-// 		})
-// 	})
-// }
-
 function cartAlert(result) {
 	if (result.retCode == 'NG') {
 		alert("장바구니에 추가를 하지 못하였습니다.");
@@ -139,23 +121,17 @@ function modifyCartEvent() {
 				let cartNo = modCart.dataset.cartno
 				let curQuantity = modCart.dataset.quantity
 				let modquantity = modCart.parentElement.parentElement.childNodes[3].value
-				let memberNo = modCart.dataset.memberno
 				let bookNo = modCart.dataset.bookno
 				let name = modCart.dataset.name
 				let price = modCart.dataset.price
 				let img = modCart.dataset.img
-				console.log(cartNo, curQuantity, modquantity, memberNo, bookNo, name, price, img);
+				console.log(cartNo, curQuantity, modquantity, memberNo1, bookNo, name, price, img);
 				if (curQuantity != modquantity) {
-					fetch("modifyCart.do?cno=" + cartNo + "&quan=" + modquantity + "&mno=" + memberNo + "&bno=" + bookNo + "&bookName=" + name + "&bookPrice=" + price + "&bookImg=" + img)
+					fetch("modifyCart.do?cno=" + cartNo + "&quan=" + modquantity + "&mno=" + memberNo1 + "&bno=" + bookNo + "&bookName=" + name + "&bookPrice=" + price + "&bookImg=" + img)
 						.then(result => result.json())
 						.then(result => {
 							if (result.retCode == "OK") {
 								alert('수정되었습니다.');
-								// modCart.parentElement.parentElement.childNodes[3].value = quantity;
-								// cartList.innerHTML = '';
-								// addPoint.innerHTML = '';
-								// totalAmount.innerHTML = '';
-								// showCart(parseInt(memberNo));
 								location.reload();
 							} else {
 								alert('수정 중 오류발생.');
@@ -225,11 +201,6 @@ function removeCartEvent() {
 					.then(result => {
 						if (result.retCode == "OK") {
 							alert('삭제됨.');
-							// remCart.closest("tr").remove();
-							// cartList.innerHTML = '';
-							// addPoint.innerHTML = '';
-							// totalAmount.innerHTML = '';
-							// showCart(memberNo);
 							location.reload();
 						} else {
 							alert('삭제 중 오류발생.');

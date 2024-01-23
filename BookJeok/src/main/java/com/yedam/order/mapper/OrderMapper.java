@@ -16,4 +16,8 @@ public interface OrderMapper {
 	
 	// 회원 포인트 사용 후 변경
 	int updatePoint(OrderVO vo);
+	
+	int deleteOrder(int odNo);
+	
+	int deleteOrderItem(int odNo);
 }

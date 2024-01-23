@@ -38,6 +38,8 @@ import com.yedam.order.command.CheckOrderNoControl;
 import com.yedam.order.command.ModifyPointControl;
 import com.yedam.order.command.OrderListControl;
 import com.yedam.order.command.OrderListJson;
+import com.yedam.order.command.RemoveOrderControl;
+import com.yedam.order.command.RemoveOrderItemControl;
 import com.yedam.orderItem.command.AddOrderItemControl;
 import com.yedam.orderItem.command.CheckReviewControl;
 import com.yedam.orderItem.command.OrderDetailListControl;
@@ -45,6 +47,8 @@ import com.yedam.orderItem.command.OrderDetailListJson;
 import com.yedam.orderItem.command.OrderItemListJson;
 import com.yedam.orderItem.command.OrderItemPageListControl;
 import com.yedam.review.command.AddReviewControl;
+import com.yedam.review.command.CheckReviewNoControl;
+import com.yedam.review.command.RemoveReviewControl;
 import com.yedam.review.command.ReviewControl;
 import com.yedam.search.command.SearchKeywordControl;
 import com.yedam.search.command.SearchListControl;
@@ -109,24 +113,27 @@ public class FrontController extends HttpServlet {
 		map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
 		map.put("/addCart.do", new AddCartControl()); // 카트등록
 
-		// 주문페이지 관련
+		// 주문페이지
 		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
 		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
 		
-
+		// 주문상세페이지
 		map.put("/addOrderItem.do", new AddOrderItemControl()); // 주문상세등록
 		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세페이지 이동
 		map.put("/orderDetailListJson.do", new OrderDetailListJson()); // 주문상세페이지에 정보넘기는 기능
 		map.put("/checkReview.do", new CheckReviewControl()); // 리뷰 존재 체크
 		map.put("/addReview.do", new AddReviewControl()); // 리뷰 등록
+		map.put("/checkReviewNo.do", new CheckReviewNoControl()); // 리뷰 번호 체크
+		map.put("/removeReview.do", new RemoveReviewControl()); // 리뷰 삭제
 		
-		
+		// 주문목록페이지
 		map.put("/orderList.do", new OrderListControl()); // 주문목록페이지 이동
 		map.put("/orderListJson.do", new OrderListJson()); // 주문목록페이지에 정보넘기는 기능
 		map.put("/addOrder.do", new AddOrderControl()); // 주문등록
 		map.put("/checkOrderNo.do", new CheckOrderNoControl()); // 주문번호 체크
 		map.put("/modifyPoint.do", new ModifyPointControl()); // 회원 포인트 수정
-
+		map.put("/removeOrder.do", new RemoveOrderControl()); // 주문목록 삭제
+		map.put("/removeOrderItem.do", new RemoveOrderItemControl()); // 주문상세 삭제
 		
 		// 검색 관련
 		map.put("/searchList.do", new SearchListControl()); // 검색결과목록

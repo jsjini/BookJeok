@@ -34,4 +34,14 @@ public class OrderServiceImpl implements OrderService {
 		return mapper.updatePoint(vo) == 1;
 	}
 
+	@Override
+	public boolean remOrder(int odNo) {
+		return mapper.deleteOrder(odNo) == 1;
+	}
+
+	@Override
+	public boolean remOrderItem(int odNo) {
+		return mapper.deleteOrderItem(odNo) == 1;
+	}
+
 }

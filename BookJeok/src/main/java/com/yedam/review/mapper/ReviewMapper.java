@@ -8,4 +8,8 @@ public interface ReviewMapper {
 	List<ReviewVO> selectOne(int bookNo);
 	
 	int insertReview(ReviewVO vo);
+	
+	int selectReviewNo(ReviewVO vo);
+	
+	int deleteReview(int reviewNo);
 }
