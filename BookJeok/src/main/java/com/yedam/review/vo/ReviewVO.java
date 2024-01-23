@@ -10,7 +10,7 @@ public class ReviewVO {
 	private String rdt;
 	private int memberNo;
 	private int bookNo;	
-	private int orderItemNo;
+	private int orderitemNo;
 	private String mname;
 	private int price; 
 }

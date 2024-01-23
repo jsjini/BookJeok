@@ -17,7 +17,7 @@
     <div class="shopping-cart section">
         <div class="container">
             <div class="row">
-                <div class="col-9 outside1" style="margin: auto;">
+                <div class="col-10 outside1" style="margin: auto;">
                     <table class="table shopping-summery" id="memberNumber" data-memberno="${sessionScope.memberNo}">
                         <tbody id="makeList" style="text-align: center;">
 
@@ -30,6 +30,7 @@
 
     <script>
         let memberNo1 = document.querySelector('#memberNumber').dataset.memberno;
+
         console.log(memberNo1);
         var details = ${ orderDetail3 };
         console.log(details);
@@ -47,7 +48,21 @@
                         makeList.insertAdjacentHTML("afterbegin", newtbody);
                     });
 
+                    // 재구매 버튼 이벤트
+                    repurChase();
+
+                    // 리뷰 있는지 없는지 체크
+                    checkReview();
+
+                    // 리뷰 있으면 데이터 나옴
+                    checkReviewBtn();
+
+                    // 리뷰 없으면 등록창 나옴
+                    addReviewButton();
+
+                    // 리뷰 등록버튼 이벤트
                     addReviewBtn();
+
                 })
         }
 
@@ -66,17 +81,17 @@
                     <td>
                         <div><span>주문수량 : </span><span>\${item.quantity}&nbsp;&nbsp;권</span></div>
                     </td>
-                    <td><button>재구매</button><br><button class="addReview reviewBtn_Y" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}">리뷰쓰기</button>
-                        <button class="reviewBtn reviewBtn_N" data-state="N" style="display: none;">리뷰확인</button></td>
+                    <td class="startPosition" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}"><button class="repurChaseBtn" data-bookno="\${item.bookNo}">재구매</button><br><button class="addReview reviewBtn_Y" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}">리뷰쓰기</button>
+                        <button class="reviewBtn reviewBtn_N" data-state="N" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}" style="display: none;">리뷰확인</button></td>
                 </tr>
                 <tr class="reviewAdd" style="display: none;">
-                    <td><input type="textarea"></td>
-                    <td><button>등록</button></td>
+                    <td><input type="textarea" class="rvcontent"></td>
+                    <td><button class="btn addReviewBtn" data-bookno="\${item.bookNo}" data-orderitemno="\${item.orderitemNo}">등록</button></td>
                     
                 </tr>
                 <tr class ="checkrv" style="display: none;">
-                    <td><span id="rvdt"></span></td>
-                    <td><span id="rvcontents"></span></td>
+                    <td><span class="rvdt"></span></td>
+                    <td><span class="rvcontents"></span></td>
                     <td><a href="#" class="remBtn"><i
 						class="ti-trash remove-icon"></i></a></td>
                     
@@ -88,52 +103,80 @@
         let bookNo1 = 0;
         let orderitemNo1 = 0;
 
-        function addReviewBtn() {
-            let addReviewBtns = document.querySelectorAll("#makeList .addReview");
-            console.log(addReviewBtns);
-            addReviewBtns.forEach(reviewBtn => {
-                let reviewBtnY = reviewBtn;
-                let reviewBtnN = reviewBtn.parentNode.querySelector(".reviewBtn_N");
-                let reviewAdd1 = reviewBtn.closest("tr").nextElementSibling;
-                let checkrv1 = reviewBtn.closest("tr").nextElementSibling.nextElementSibling;
 
-                bookNo1 = reviewBtn.dataset.bookno;
-                orderitemNo1 = reviewBtn.dataset.orderitemno;
-                console.log(bookNo1, orderitemNo1, memberNo1);
+        function repurChase() {
+            let repurChaseBtns = document.querySelectorAll("#makeList .repurChaseBtn");
+            repurChaseBtns.forEach(repurChaseBtn => {
+                repurChaseBtn.addEventListener("click", function () {
+                    bookNo1 = repurChaseBtn.dataset.bookno;
+                    if (confirm("재구매를 하시겠습니까?")) {
+                        fetch("addCart.do?memberNo=" + memberNo1 + "&bookNo=" + bookNo1)
+                            .then(str => str.json())
+                            .then(result => {
+                                if (result.retCode == 'NG') {
+                                    warningAlert("장바구니에 추가를 하지 못하였습니다.");
+                                } else if (result.retCode == 'OK') {
+                                    cartOkModal(memberNo1);
+                                } else if (result.retCode == 'CK') {
+                                    cartCKModal();
+                                }
+                            })
+                    }
+                })
+            })
+        }
+
+        function checkReview() {
+            let startPositions = document.querySelectorAll("#makeList .startPosition");
+            startPositions.forEach(startPosition => {
+                bookNo1 = startPosition.dataset.bookno;
+                orderitemNo1 = startPosition.dataset.orderitemno;
+                console.log(startPosition.parentNode.nextElementSibling.nextElementSibling.querySelector(".rvcontents"));
                 let content = '';
                 let reviewdt = '';
-
                 fetch("checkReview.do?bookNo1=" + bookNo1 + "&orderitemNo=" + orderitemNo1 + "&memberNo=" + memberNo1)
                     .then(result => result.json())
                     .then(result => {
+                        console.log(result);
                         if (result == null) {
                             console.log("널입니다.");
 
                         } else {
-                            console.log(result);
-                            document.querySelector(".reviewBtn_N").style.display = "inline-block";
-                            document.querySelector(".reviewBtn_Y").style.display = "none";
                             content = result.contents;
                             reviewdt = result.rdt;
+                            console.log(content, reviewdt);
+                            startPosition.parentNode.nextElementSibling.nextElementSibling.querySelector(".rvdt").innerHTML = reviewdt;
+                            startPosition.parentNode.nextElementSibling.nextElementSibling.querySelector(".rvcontents").innerHTML = content;
+                            startPosition.querySelector(".reviewBtn_N").style.display = "inline-block";
+                            startPosition.querySelector(".reviewBtn_Y").style.display = "none";
                         }
-                        console.log(content, reviewdt);
-                        let reviewDate = reviewdt.split(" ")[0];
-                        checkrv1.querySelector("#rvdt").innerText = reviewDate;
-                        checkrv1.querySelector("#rvcontents").innerText = content;
-
                     })
-                reviewBtnY.addEventListener("click", function (e) {
+            })
+        }
+
+        function checkReviewBtn() {
+            let checkReviewBtns = document.querySelectorAll("#makeList .reviewBtn");
+            checkReviewBtns.forEach(checkReviewBtn => {
+                checkReviewBtn.addEventListener("click", function (e) {
                     e.preventDefault();
-                    console.log("리뷰쓰기클릭되었습니다");
-                    if (reviewAdd1.style.display == "none") {
-                        reviewAdd1.style.display = "inline-block";
-                    } else if (reviewAdd1.style.display == "inline-block") {
-                        reviewAdd1.style.display = "none";
+                    console.log(this);
+                    let checkrv1 = this.closest("tr").nextElementSibling.nextElementSibling;
+                    if (checkrv1.style.display == "none") {
+                        checkrv1.style.display = "inline-block";
+                    } else if (checkrv1.style.display == "inline-block") {
+                        checkrv1.style.display = "none";
                     }
                 })
-                reviewBtnN.addEventListener("click", function (e) {
+            })
+
+        }
+
+        function addReviewButton() {
+            let addReviewBtns = document.querySelectorAll("#makeList .addReview");
+            addReviewBtns.forEach(addReviewBtn => {
+                addReviewBtn.addEventListener("click", function (e) {
                     e.preventDefault();
-                    console.log("리뷰확인클릭되었습니다");
+                    let checkrv1 = this.closest("tr").nextElementSibling;
                     if (checkrv1.style.display == "none") {
                         checkrv1.style.display = "inline-block";
                     } else if (checkrv1.style.display == "inline-block") {
@@ -143,6 +186,34 @@
             })
         }
 
+        function addReviewBtn() {
+            let addReviewBtns = document.querySelectorAll("#makeList .addReviewBtn");
+            addReviewBtns.forEach(reviewBtn => {
+                reviewBtn.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    console.log(this);
+                    bookNo1 = this.dataset.bookno;
+                    orderitemNo1 = this.dataset.orderitemno;
+                    let contents1 = this.closest("tr").querySelector(".rvcontent").value;
+                    if (contents1 != "") {
+                        if (confirm("리뷰를 등록하시겠습니까?")) {
+                            fetch("addReview.do?contents=" + contents1 + "&memberNo=" + memberNo1 + "&bookNo=" + bookNo1 + "&orderitemNo=" + orderitemNo1)
+                                .then(result => result.json())
+                                .then(result => {
+                                    if (result.retCode == "OK") {
+                                        alert("등록 성공");
+                                        location.reload();
+                                    } else {
+                                        alert("등록 실패");
+                                    }
+                                })
+                        }
+                    } else {
+                        alert("등록하실 글을 작성해주세요.");
+                    }
+                })
+            })
+        }
 
     </script>
     <script src="js2/orderDetailList.js"></script>

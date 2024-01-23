@@ -17,6 +17,9 @@
 		and m.member_no=r.member_no
 
 	</select>
-
+	
+	<insert id="insertReview" parameterType="review">
+  		insert into review values (review_seq.nextval, #{contents}, sysdate, #{memberNo}, #{bookNo}, #{orderitemNo})
+  	</insert>
 
 </mapper>  

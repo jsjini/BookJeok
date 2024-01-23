@@ -19,4 +19,9 @@ public class ReviewServiceImpl implements ReviewService{
 		return mapper.selectOne(bookNo);
 	}
 
+	@Override
+	public boolean addReview(ReviewVO vo) {
+		return mapper.insertReview(vo) == 1;
+	}
+
 }

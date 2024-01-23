@@ -6,4 +6,6 @@ import com.yedam.review.vo.ReviewVO;
 
 public interface ReviewMapper {
 	List<ReviewVO> selectOne(int bookNo);
+	
+	int insertReview(ReviewVO vo);
 }
