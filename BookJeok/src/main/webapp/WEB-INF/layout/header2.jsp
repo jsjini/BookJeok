@@ -17,7 +17,7 @@
 							<div class="navbar-collapse">
 								<div class="nav-inner">
 									<ul class="nav main-menu menu navbar-nav">
-										<li class="active"><a href="#">Home</a></li>
+										<li class="active"><a href="main.do">Home</a></li>
 										<li><a href="bookBestList.do#">베스트셀러</a></li>
 										<li><a href="bookNewList.do">신간도서</a></li>
 										<li>

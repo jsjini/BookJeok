@@ -7,6 +7,7 @@
 <link href="css2/bootstrap5_3_2.css">
 <script src="js2/alert.js"></script>
 <script src="js2/bookList.js"></script>
+<script src="js2/commonFunc.js"></script>
 
 <div class="product-area section">
 	<div class="container">
@@ -49,7 +50,7 @@
 										<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 									</h3>
 									<div class="price">
-										<span class="price">${vo.price}원</span>
+										<span class="price" data-price="${vo.price}">${vo.price}원</span>
 									</div>
 								</div>
 							</div>

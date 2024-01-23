@@ -72,6 +72,11 @@ order by 1)a)b
     </foreach>
   </where>
 </select>
+<!-- 랜덤리스트 출력 -->
+<select id="selectRandomList" resultType="book">
+		select * from book
+	order by dbms_random.random
+	</select>
 </mapper>
 
 <!-- 닫으면 에러 없어짐.. -->

@@ -13,6 +13,7 @@ public interface BookService {
 	public List<BookVO> bookGenreList(BookVO cat, int page);
 	public List<BookVO> booksPagingList(BookVO vo, int page);
 	public int totalCnt(BookVO cat);
+	public List<BookVO> bookRandomList();
 
 
 }

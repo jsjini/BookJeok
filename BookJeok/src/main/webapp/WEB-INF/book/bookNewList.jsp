@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<script src="js2/commonFunc.js"></script>
 <script src="js2/bookList.js"></script>
 <!-- bootstrap@4.6.2의 css -->
 <script src="js2/alert.js"></script>
@@ -47,7 +48,7 @@
 								<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 							</h3>
 							<div class="product-price">
-								<span>${vo.price}원</span>
+								<span class="price" data-price="${vo.price}">${vo.price}원</span>
 							</div>
 						</div>
 					</div>

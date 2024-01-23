@@ -30,31 +30,31 @@ function addToCart(memberNo, bookNo) {
 
 
 
-	//찜하기 담기
-	function addLikeIt(memberNo, bookNo) {
-		event.preventDefault();
-		if (memberNo == '') {
-			loginModal();
-			return;
-		}
-		fetch('addLikeIt.do', {
-			method: "post",
-			headers: {
-				'Content-Type': 'application/x-www-form-urlencoded'
-			},
-			body: '&memberNo=' + memberNo + '&bookNo=' + bookNo
-		})
-			.then(result => result.json())
-			.then(result => {
-				console.log(result)
-				if (result.retCode == 'OK') {
-					likeItOkModal(memberNo);
-				} else if (result.retCode == 'CK') {
-					likeItCKModal(); // 내서재 중복알림
-				}
+//찜하기 담기
+function addLikeIt(memberNo, bookNo) {
+	event.preventDefault();
+	if (memberNo == '') {
+		loginModal();
+		return;
+	}
+	fetch('addLikeIt.do', {
+		method: "post",
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded'
+		},
+		body: '&memberNo=' + memberNo + '&bookNo=' + bookNo
+	})
+		.then(result => result.json())
+		.then(result => {
+			console.log(result)
+			if (result.retCode == 'OK') {
+				likeItOkModal(memberNo);
+			} else if (result.retCode == 'CK') {
+				likeItCKModal(); // 내서재 중복알림
+			}
 
-			})
-	}//end of addLikeIt
+		})
+}//end of addLikeIt
 
 //찜하기 성공 모달  
 function likeItModal(memberNo) {
@@ -62,32 +62,33 @@ function likeItModal(memberNo) {
 		icon: "success",
 		text: "찜하기 성공!",
 		cancelButtonColor: "#568A35",
-    	confirmButtonColor: "#badc58",
+		confirmButtonColor: "#badc58",
 		confirmButtonText: '계속 둘러보기',
 		cancelButtonText: `<a href="likeIt.do?memberNo=${memberNo}">나의 찜 목록 이동</a>`
 	})
 }//end of cartOkModal
 
-// 가격 새로 만들어서(, 추가) 추가하기
-	let priceLiTags = document.querySelectorAll('.price');
-	
-	priceLiTags.forEach(tag => {
-		let price = tag.dataset.price;
+
+function makeComma(price) {
+	// toString() 숫자 -> 문자열
+	// replace(정규표현식, "대체문자열")
+	// 정규표현식 \B(63개 문자에 일치하는 경계), {n}(n개) \d(숫자) g(전역검색)
+	// x(?=y) -> "x" 뒤에 "y"가 오는 경우에만 "x"와 일치
+	// x(?!y) -> "x" 뒤에 "y"가 없는 경우에만 "x"와 일치
+
+	return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	// 가격 새로 만들어서(, 추가) 추가하기
+	let priceSpans = document.querySelectorAll('.price');
+
+	priceSpans.forEach(span => {
+		let price = span.dataset.price;
 		let newPrice = makeComma(price);
 		console.log(newPrice);
-		tag.innerHTML = newPrice + '<span> 원</span>';
-		
+		span.innerHTML = newPrice + '<span> 원</span>';
+
 	})
 
-//랜덤 책 출력 랜덤쿼리로 만들어야함!!!!!!!!oracle randon 정렬 찾아서 main에 적용시키
-let bookNo = `${bookNo}`
-let min = bookNo[0];
-let max = bookNo.length;
-
-function getRandomBook(){
-	return Math.floor(Math.random() * (max - min + 1)) + min
-	
-}
 //HOT SPAN 판매기준 출력 // 적용 어떻게??
 /* fetch('bookBestList.do', {
  })

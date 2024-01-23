@@ -15,5 +15,6 @@ public interface BookMapper {
 	public List<BookVO> selectGenreList(BookVO cat); //분야별 리스트 
 	public List<BookVO> selectPageList (@Param("item") BookVO cat  , @Param("page") int page); //목록 페이징
 	int selectCount(@Param("item") BookVO cat); //페이징 용 목록 카운트 
+	public List<BookVO> selectRandomList();//랜덤도서리스트 출력
 
 }
