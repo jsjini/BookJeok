@@ -5,17 +5,16 @@
 
 <mapper namespace="com.yedam.review.mapper.ReviewMapper">
 	<select id="selectOne" parameterType="int" resultType="review">
-		select
-		review_no,
-		contents,
-		rdt,
-		r.member_no,
-		book_no,
-		orderitem_no,
-		m.m_name
-		from member m, review r
-		where book_no=#{bookNo}
-		and m.member_no=r.member_no
+		select review_no,
+			   contents,
+			   rdt,
+			   r.member_no,
+			   book_no,
+			   orderitem_no,
+			   m.m_name
+		from   member m, review r
+		where  book_no=#{bookNo}
+		and    m.member_no=r.member_no
 
 	</select>
 

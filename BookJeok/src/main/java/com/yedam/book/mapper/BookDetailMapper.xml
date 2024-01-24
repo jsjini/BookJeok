@@ -14,7 +14,7 @@
 			   ABOUT,
 			   IMG,
 			   ISBN
-		from book 
-		where BOOK_NO=#{bookNo}
+		 from  book 
+		where  BOOK_NO=#{bookNo}
 	</select>
 </mapper>  

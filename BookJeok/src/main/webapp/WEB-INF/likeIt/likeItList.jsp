@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<script src="https://code.jquery.com/jquery-3.7.1.js"
-	integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-	crossorigin="anonymous"></script>
+
 
 <!-- Breadcrumbs -->
 <div class="breadcrumbs">
@@ -75,8 +73,8 @@
 	<input type="hidden" name="orders" id="orders">
 </form>
 <script>
-//가격 새로 만들어서(, 추가) 추가하기 
-let priceLiTags = document.querySelectorAll('.price');
+	//가격 새로 만들어서(, 추가) 추가하기 
+	let priceLiTags = document.querySelectorAll('.price');
 	
 	priceLiTags.forEach(tag => {
 		let price = tag.dataset.price;
@@ -86,10 +84,5 @@ let priceLiTags = document.querySelectorAll('.price');
 		
 	})
 
-	document.querySelector('#selectList').addEventListener("click", function() {
-
-		if (event.target.nodeName == "TR") { //tag 이름은 무조건 대문자
-			//event.target.
-		}
-	})
+	
 </script>

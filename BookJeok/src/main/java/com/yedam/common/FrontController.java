@@ -83,9 +83,9 @@ public class FrontController extends HttpServlet {
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
 		
-		//상세페이지
+		//상세페이지(이수진)
 		map.put("/bookDetail.do", new BookDetailControl()); // 도서 상세페이지
-		map.put("/review.do", new ReviewControl()); // 리뷰
+		//map.put("/review.do", new ReviewControl()); // 리뷰
 
 		// 회원 관련
 		map.put("/loginbook.do", new LoginBookControl()); //로그인화면
@@ -98,9 +98,9 @@ public class FrontController extends HttpServlet {
 		map.put("/mypage.do", new MyPageControl()); //마이페이지(내 정보 먼저 보임)
 
 		
-		// 찜하기
+		// 찜하기(이수진)
 		map.put("/likeIt.do", new LikeItControl()); //찜하기 화면
-		map.put("/likeItListJson.do", new LikeItListJson());
+		//map.put("/likeItListJson.do", new LikeItListJson());
 		map.put("/removeLikeIt.do", new RemoveLikeItControl());
 		map.put("/addLikeIt.do", new AddLikeItControl());
 		
