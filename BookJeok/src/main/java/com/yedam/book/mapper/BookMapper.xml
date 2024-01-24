@@ -31,10 +31,10 @@
 		where dt > sysdate-7
 		order by dt desc)b)
 		 <![CDATA[
-		where rank >(1-1) and rank <= 10
+		where rank <= 10
 		  ]]> 
 	</select>
-	<!-- 장르별 출력 -->
+	<!-- 장르별 출력 사용안함  -->
 	<select id="selectGenreList" resultType="book" parameterType="book">
 	select * from book
 	<where>
@@ -74,8 +74,12 @@ order by 1)a)b
 </select>
 <!-- 랜덤리스트 출력 -->
 <select id="selectRandomList" resultType="book">
+		select * from (
 		select * from book
-	order by dbms_random.random
+	order by dbms_random.random)
+	 <![CDATA[
+	where rownum <= 15
+	  ]]> 
 	</select>
 </mapper>
 

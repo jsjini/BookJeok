@@ -17,11 +17,11 @@ public class MainControl implements Control {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		BookService svc = new BookServiceImpl();
-		List<BookVO> list = svc.bookList();
+		
 		List<BookVO> rlist = svc.bookRandomList();
 		
-		req.setAttribute("list", list);
 		req.setAttribute("bookRandomList", rlist);
+		
 		// 페이지를 이동(forward)
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookRandomList.tiles");
 		try {

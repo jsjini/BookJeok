@@ -5,10 +5,21 @@
   
 <mapper namespace="com.yedam.cart.mapper.CartMapper">
 	<select id="selectList" resultType="cart" parameterType="int">
-  		select c.cart_no, c.quantity, c.book_no, c.member_no, b.name, b.price, b.img
-		from cart c join book b on c.book_no = b.book_no
-		where member_no = #{memberNo}
-		order by 1
+  		select c.cart_no, 
+  		       c.quantity, 
+  		       c.book_no, 
+  		       c.member_no,
+  		        
+  		       b.name, 
+  		       b.price, 
+  		       b.img
+  		       
+		  from cart c 
+		  join book b on c.book_no = b.book_no
+		  
+		 where member_no = #{memberNo}
+		 
+		 order by 1
   	</select>
 	
 	<insert id="insertCart" parameterType="cart">
@@ -16,7 +27,8 @@
   	</insert>
   	
   	<delete id="deleteCart" parameterType="int">
-  		delete from cart where cart_no = #{cartNo}
+  		delete from cart 
+  		 where cart_no = #{cartNo}
   	</delete>
   	
   	<update id="updateCart" parameterType="cart">
@@ -24,8 +36,10 @@
  	</update>
  	
  	<select id="checkCart" resultType="cart" parameterType="cart">
-    	select * from cart 
-    	where member_no = #{memberNo} and book_no = #{bookNo}
+    	select * 
+    	  from cart 
+    	 where member_no = #{memberNo} 
+    	   and book_no = #{bookNo}
 	</select>
 
 </mapper>  

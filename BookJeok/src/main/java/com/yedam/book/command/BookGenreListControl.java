@@ -20,22 +20,31 @@ public class BookGenreListControl implements Control {
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		
+		//1. 파라미터 받고 
 		String[] cat= req.getParameterValues("categories");
 		String page = req.getParameter("page");
 		page = (page == null || page.equals(""))? "1" : page;
+		
+		//2.vo에 담고 
 		BookVO vo = new BookVO();
 		vo.setCategories(cat);
+
+		//3.서비스 호출 
 		BookService svc = new BookServiceImpl();
 		List<BookVO> list = svc.booksPagingList(vo, Integer.parseInt(page));
+		
+		//4.페이징 
 		int total = svc.totalCnt(vo);
 		int totalPage = (int)Math.ceil(total/12.0);
-		req.setAttribute("bookGenreList", list);
 		PageDTO dto = new PageDTO(Integer.parseInt(page),total); 
+		
+		//5.결과 저장
 		req.setAttribute("bookGenreList", list);
 		req.setAttribute("total", total);
 		req.setAttribute("totalPage", totalPage);
 		req.setAttribute("dto", dto);
 		req.setAttribute("vo", vo);
+
 		// 페이지를 이동(forward)
 		// 사용자가 URL을 입력시 "/WEB-INF/book/bookList.jsp"페이지 재이동
 		RequestDispatcher rd = req.getRequestDispatcher("book/bookGenreList.tiles");

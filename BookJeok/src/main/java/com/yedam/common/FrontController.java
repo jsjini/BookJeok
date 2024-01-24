@@ -71,15 +71,14 @@ public class FrontController extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		System.out.println("init() 호출");
-		// 메인페이지
+		// 메인페이지 - 박혜령
 		map.put("/main.do", new MainControl());
-		
-		// 도서 관련
-		map.put("/bookList.do", new BookListControl()); // 도서 목록조회
+		// 도서 관련 - 박혜령
+		//map.put("/bookList.do", new BookListControl()); // 도서 목록조회
 		map.put("/bookBestList.do", new BookBestListControl()); //도서 베스트셀러 조회
-		map.put("/bookNewList.do", new BookNewListControl()); //도서 베스트셀러 조회
-		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 베스트셀러 조회
-		map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
+		map.put("/bookNewList.do", new BookNewListControl()); //도서 신작 조회
+		map.put("/bookGenreList.do", new BookGenreListControl()); //도서 장르별 조회
+		//map.put("/pagingList.do", new PagingListControl()); //도서 목록 페이징
 		//map.put("/bookData.do", new BookDataContol()); // API도서 저장
 		
 		
@@ -107,18 +106,18 @@ public class FrontController extends HttpServlet {
 		//마이페이지
 		map.put("/mypage.do", new MyPageControl()); //마이페이지
 		
-		// 장바구니
+		// 장바구니 - 전상진
 		map.put("/cartList.do", new CartListControl()); // 카트페이지 이동
 		map.put("/cartListJson.do", new CartListJson()); // 카트페이지에 정보넘기는 기능
 		map.put("/removeCart.do", new RemoveCartControl()); // 카트삭제
 		map.put("/modifyCart.do", new ModifyCartControl()); // 카트수정
 		map.put("/addCart.do", new AddCartControl()); // 카트등록
 
-		// 주문페이지
+		// 주문페이지 - 전상진
 		map.put("/orderItemPageList.do", new OrderItemPageListControl()); // 주문페이지이동
 		map.put("/orderItemListJson.do", new OrderItemListJson()); // 주문페이지에 정보넘기는 기능
 		
-		// 주문상세페이지
+		// 주문상세페이지 - 전상진
 		map.put("/addOrderItem.do", new AddOrderItemControl()); // 주문상세등록
 		map.put("/orderDetailList.do", new OrderDetailListControl()); // 주문상세페이지 이동
 		map.put("/orderDetailListJson.do", new OrderDetailListJson()); // 주문상세페이지에 정보넘기는 기능
@@ -127,7 +126,7 @@ public class FrontController extends HttpServlet {
 		map.put("/checkReviewNo.do", new CheckReviewNoControl()); // 리뷰 번호 체크
 		map.put("/removeReview.do", new RemoveReviewControl()); // 리뷰 삭제
 		
-		// 주문목록페이지
+		// 주문목록페이지 - 전상진
 		map.put("/orderList.do", new OrderListControl()); // 주문목록페이지 이동
 		map.put("/orderListJson.do", new OrderListJson()); // 주문목록페이지에 정보넘기는 기능
 		map.put("/addOrder.do", new AddOrderControl()); // 주문등록

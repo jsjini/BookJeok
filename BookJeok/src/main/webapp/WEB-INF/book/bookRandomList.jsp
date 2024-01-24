@@ -157,7 +157,7 @@
 					</div>
 				</div>
 									<!-- Start Single List  -->
-					<c:forEach var="vo" items="${bookRandomList}" begin="10" end="14">
+					<c:forEach var="vo" items="${bookRandomList}" begin="5" end="9">
 					<div class="single-list">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-12">
@@ -190,7 +190,7 @@
 					</div>
 				</div>
 				<!-- Start Single List  -->
-					<c:forEach var="vo" items="${bookRandomList}" begin="20" end="24">
+					<c:forEach var="vo" items="${bookRandomList}" begin="10" end="15">
 					<div class="single-list">
 						<div class="row">
 							<div class="col-lg-6 col-md-6 col-12">

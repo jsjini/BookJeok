@@ -5,8 +5,8 @@
 
 <mapper namespace="com.yedam.order.mapper.OrderMapper">
 	<select id="selectList" resultType="order" parameterType="int">
-		select
-		* from orders where member_no = #{memberNo}
+		select	* 
+		from orders where member_no = #{memberNo}
 		order by 1 desc
 	</select>
 
@@ -17,16 +17,19 @@
 	</insert>
 
 	<select id="checkOrderNo" resultType="String"
-		parameterType="int">
-		select od_no from (select * from orders where member_no
-		= #{memberNo} order by 1
-		desc)
+		    parameterType="int">
+		select od_no 
+		  from (select * 
+		          from orders 
+		         where member_no = #{memberNo} 
+		         order by 1	desc)
 		where rownum = 1
 	</select>
 
 	<update id="updatePoint" parameterType="order">
-		update member set point =
-		#{point} where member_no = #{memberNo}
+		update member 
+		   set point =	#{point} 
+		 where member_no = #{memberNo}
 	</update>
 
 	<delete id="deleteOrder" parameterType="int">
@@ -39,9 +42,12 @@
 
 	<select id="selectBookInfo" resultType="order"
 		parameterType="int">
-		select b.name, b.img, oi.quantity
-		from book b join order_item oi
-		on b.book_no = oi.book_no
+		select b.name, 
+		       b.img, 
+		       oi.quantity
+		
+		from book b 
+		join order_item oi	on b.book_no = oi.book_no
 		where od_no = #{odNo}
 	</select>
 
