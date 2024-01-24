@@ -26,7 +26,7 @@
 </section>
 <!-- 메인배너 끝. -->
 <!-- 신간도서 -->
-<div class="product-area most-popular section">
+<div class="product-area most-popular section pricebook">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
@@ -39,7 +39,7 @@
 		<div class="row">
 
 			<div class="col-12">
-				<div class="owl-carousel popular-slider">
+				<div class="owl-carousel popular-slider ">
 					<!-- Start Single Product -->
 
 					<!-- End Single Product -->
@@ -68,7 +68,7 @@
 									<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 								</h3>
 								<div class="product-price">
-									<span class="price" data-price="${vo.price }">${vo.price}원</span>
+									<span class="price" data-price="${vo.price}">${vo.price}원</span>
 								</div>
 							</div>
 						</div>
@@ -115,7 +115,7 @@
 <section class="shop-home-list section">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-md-6 col-12">
+			<div class="col-lg-4 col-md-6 col-12 pricebook">
 					<div class="row">
 						<div class="col-12">
 							<div class="shop-section-title">
@@ -138,7 +138,8 @@
 									<h4 class="title">
 										<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 									</h4>
-									<p class="price with-discount">${vo.price}원</p>
+									<p>${vo.author}</p>
+									<p class="price" data-price="${vo.price}">${vo.price}</p>
 								</div>
 							</div>
 						</div>
@@ -147,7 +148,7 @@
 				<!-- End Single List  -->
 
 			</div>
-			<div class="col-lg-4 col-md-6 col-12">
+			<div class="col-lg-4 col-md-6 col-12 pricebook">
 				<div class="row">
 					<div class="col-12">
 						<div class="shop-section-title">
@@ -170,7 +171,8 @@
 									<h4 class="title">
 										<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 									</h4>
-									<p class="price with-discount">${vo.price}원</p>
+									<p>${vo.author}</p>
+									<p class="price" data-price="${vo.price}">${vo.price}</p>
 								</div>
 							</div>
 						</div>
@@ -179,7 +181,7 @@
 				<!-- End Single List  -->
 
 			</div>
-			<div class="col-lg-4 col-md-6 col-12">
+			<div class="col-lg-4 col-md-6 col-12 pricebook">
 				<div class="row">
 					<div class="col-12">
 						<div class="shop-section-title">
