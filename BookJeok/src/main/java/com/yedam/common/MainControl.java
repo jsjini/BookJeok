@@ -18,10 +18,12 @@ public class MainControl implements Control {
 	public void execute(HttpServletRequest req, HttpServletResponse resp) {
 		BookService svc = new BookServiceImpl();
 		List<BookVO> list = svc.bookList();
+		List<BookVO> rlist = svc.bookRandomList();
 		
 		req.setAttribute("list", list);
+		req.setAttribute("bookRandomList", rlist);
 		// 페이지를 이동(forward)
-		RequestDispatcher rd = req.getRequestDispatcher("main/mainbody.tiles");
+		RequestDispatcher rd = req.getRequestDispatcher("book/bookRandomList.tiles");
 		try {
 			rd.forward(req, resp); // 요청을 재 지정하겠습니다.
 		} catch (ServletException | IOException e) {

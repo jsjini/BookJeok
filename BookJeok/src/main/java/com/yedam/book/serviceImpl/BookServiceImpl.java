@@ -49,6 +49,11 @@ public class BookServiceImpl  implements BookService{
 		return mapper.selectPageList(cat, page);
 	}
 
+	@Override
+	public List<BookVO> bookRandomList() {
+		return mapper.selectRandomList();
+	}
+
 
 
 

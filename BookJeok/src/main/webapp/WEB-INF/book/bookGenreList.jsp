@@ -61,7 +61,7 @@
 														<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 													</h3>
 													<div class="product-price">
-														<span>${vo.price}원</span>
+														<span class="price" data-price="${vo.price}">${vo.price}원</span>
 													</div>
 												</div>
 											</div>
