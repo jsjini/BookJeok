@@ -37,7 +37,7 @@
 										<li><a href="mypage.do">마이페이지</a>
 											<ul class="dropdown">
 												<li><a href="likeIt.do?memberNo=${memberNo }">내 서재</a></li>
-												<li><a href="cartList.do?memberNo=${memberNo }">주문내역</a></li>
+												<li><a href="orderList.do">주문내역</a></li>
 											</ul>
 										</li>
 									</ul>
