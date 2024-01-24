@@ -12,22 +12,24 @@
 	           b.author,
 	           b.comp,
 	           b.price
-		from book b, like_it l
-		where member_no=${memberNo}
-		and b.book_no=l.book_no
+		 from  book b, like_it l
+		where  member_no = ${memberNo}
+		  and  b.book_no = l.book_no
 	</select>
 	
-	<insert id="insertLikeIt" parameterType="int">
+	<insert id="insertLikeIt">
   		insert into like_it values (#{memberNo}, #{bookNo})
   	</insert>
   	
-  	<select id="checkLikeIt" resultType="likeIt" parameterType="int">
+  	<select id="checkLikeIt" resultType="likeIt" >
     	select * from like_it 
     	where member_no = #{memberNo} and book_no = #{bookNo}
 	</select>
 		
-	<delete id="deleteLikeIt" parameterType="int">
-  		delete from like_it where book_no = #{bookNo} and member_no = #{memberNo}
+	<delete id="deleteLikeIt" >
+  		delete from like_it
+  		 where book_no = #{bookNo} 
+  		   and member_no = #{memberNo}
   	</delete>
   	
   	

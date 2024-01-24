@@ -22,9 +22,7 @@
 					</p>
 					<!-- heading (책제목) -->
 					<div class="pb-2">
-						<h4 class="py-3">
-							<p class="text-left">${vo.name }</p>
-							</h1>
+						<h4 class="py-3 text-left">${vo.name }</h4>
 					</div>
 				</div>
 
@@ -100,7 +98,7 @@
 			<div class="col-md-12">
 				<ul class="nav nav-pills nav-lb-tab" id="myTab" role="tablist">
 					<!-- nav item -->
-					<ul class="nav nav-tabs" id="myTab" role="tablist">
+
 						<li class="nav-item" role="presentation">
 							<button class="btn" id="home-tab" data-toggle="tab"
 								data-target="#home" type="button" role="tab"
@@ -131,16 +129,18 @@
 								<!-- text -->
 								<h4 class="mb-1">책 리뷰</h4>
 								<br>
-								<c:forEach var="review" items="${reviewVO }">
-								<p class="mb-3">
-									${review.reviewNo}. ${review.mname}:
-										${review.contents} (${review.rdt})
-								</p>
+								<c:forEach var="review" items="${reviewVO }" varStatus="i">
+								<div class="mb-3 row">
+									<div class="col-3">${i.count}. ${review.mname}:</div>
+									<div class="col-6 text-left">	${review.contents} </div>
+									<div class="col-3">${review.rdt}</div>
+								</div>
 								</c:forEach>
 							</div>
 						</div>
 					</div>
 			</div>
+		</div>
 	</section>
 	<!-- 하단 탭 메뉴(상세정보 및 리뷰) 끝. -->
 </div>
@@ -151,8 +151,8 @@
 
 
 <script>
-//가격 새로 만들어서(, 추가) 추가하기 
-let priceLiTags = document.querySelectorAll('.price');
+	//가격 새로 만들어서(, 추가) 추가하기 
+	let priceLiTags = document.querySelectorAll('.price');
 	
 	priceLiTags.forEach(tag => {
 		let price = tag.dataset.price;
@@ -182,15 +182,15 @@ let priceLiTags = document.querySelectorAll('.price');
 			},
 			body: 'quantity=' + 1 + '&memberNo=' + memberNo + '&bookNo=' + bookNo
 		})
-			.then(result => result.json())
-			.then(result => {
-				console.log(result);
-				if (result.retCode == 'OK') {
-					cartOkModal(memberNo)
-				} else if (result.retCode == 'CK') {
-					cartCKModal();
-				}
-			});
+		.then(result => result.json())
+		.then(result => {
+			console.log(result);
+			if (result.retCode == 'OK') {
+				cartOkModal(memberNo)
+			} else if (result.retCode == 'CK') {
+				cartCKModal();
+			}
+		});
 	});
 	
 	
@@ -211,7 +211,7 @@ let priceLiTags = document.querySelectorAll('.price');
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded'
 			},
-			body: 'quantity=' + 1 + '&memberNo=' + memberNo + '&bookNo=' + bookNo
+			body: 'memberNo=' + memberNo + '&bookNo=' + bookNo
 		})
 			.then(result => result.json())
 			.then(result => {

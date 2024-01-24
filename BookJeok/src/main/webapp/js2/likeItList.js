@@ -12,13 +12,14 @@
 
 // 찜하기 삭제 이벤트 등록
 removeLikeItEvent();
+
 //체크박스 선택 삭제 이벤트
 delCheckEvent();
 
-
-
 // 상품 체크박스 이벤트 등록
 allCheckboxEvent();
+
+//체크박스 선택
 selCheckboxEvent();
 
 
@@ -117,12 +118,14 @@ function removeLikeItEvent() {
 // 체크박스 선택 전체 삭제
 function delCheckEvent() {
 	$('#delChecked').on('click', async function() {
+		//체크여부 확인
 		let checkedItems = document.querySelectorAll('#selectList .selCheck:checked');
 		if (checkedItems.length === 0) {
 			likeItNGModal();
 			return;
 		}
-
+		
+		//체크 삭제 확인
 		const result = await likeItDelAllModal();
 
 		if (result.isConfirmed) {
