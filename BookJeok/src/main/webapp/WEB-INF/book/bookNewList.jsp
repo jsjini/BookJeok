@@ -8,7 +8,7 @@
 <script src="js2/alert.js"></script>
 <link href="css2/bootstrap4_6_2.css">
 
-<div class="product-area most-popular section">
+<div class="product-area most-popular section pricebook">
 	<div class="container">
 		<div class="row">
 			<div class="col-12">

@@ -56,7 +56,7 @@ function loginModal() {
 		cancelButtonColor: "#568A35",
 		confirmButtonColor: "#badc58",
 		cancelButtonText: `계속 둘러보기`,
-		confirmButtonText: '<a href="loginbook.do">로그인 하기</a>'
+		confirmButtonText: '<a href="main.do">로그인 하기</a>'
 	})
 } // end of loginModal
 

@@ -56,11 +56,11 @@
 														</div>
 													</div>
 												</div>
-												<div class="product-content">
+												<div class="product-content pricebook">
 													<h3>
 														<a href="bookDetail.do?bookNo=${vo.bookNo}">${vo.name}</a>
 													</h3>
-													<div class="product-price">
+													<div>
 														<span class="price" data-price="${vo.price}">${vo.price}원</span>
 													</div>
 												</div>
