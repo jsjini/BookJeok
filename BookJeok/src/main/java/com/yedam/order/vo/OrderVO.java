@@ -17,4 +17,8 @@ public class OrderVO {
 	private int memberNo;		// 회원번호
 	private String phone;		// 주문자 폰번호
 	private int point;			// 사용 후 남은 포인트
+	
+	private String name;
+	private String img;
+	private int quantity;
 }

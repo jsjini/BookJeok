@@ -11,9 +11,9 @@ function showOrder() {
 	fetch("orderListJson.do?memberNo=" + memberNo1)
 		.then(result => result.json())
 		.then(result => {
-			console.log(result);
+			// console.log(result);
 			result.forEach(item => {
-				console.log(item);
+				// console.log(item);
 				const newtbody = maketr(item);
 				orderList.insertAdjacentHTML("beforeend", newtbody);
 			});
@@ -23,6 +23,8 @@ function showOrder() {
 			moveOrderDetaliPage();
 
 			removeOrderBtn();
+
+			orderListInfo();
 		})
 }
 
@@ -39,8 +41,8 @@ function maketr(item) {
 		<th scope="row" style="padding: 0px 0px 20px 0px;"><img src="images/8901276534_2.jpg" alt="#" class="bookImg"></th>
 		<td style="padding: 0px 0px 20px 80px;">
 			<div style="padding: 0px 7px 10px 7px; font-size: 15px;"><span>${odt}&nbsp;&nbsp;결제</span></div>
-			<div style="padding: 7px; font-size: 20px;"><span class="bookName">혼자 공부하는 자바</span><span style="padding: 7px 7px 7px 20px;"><span>총</span><span class="totalQuan">2</span><span>건</span></span></div>
-			<div style="padding: 7px; font-size: 20px;"><span>${price}&nbsp;&nbsp;원</span></div>
+			<div style="padding: 7px; font-size: 20px;"><span class="bookName"></span><span style="padding: 7px 7px 7px 20px;"><span>총&nbsp;</span><span class="totalQuan"></span><span>건</span></span></div>
+			<div style="padding: 7px; font-size: 20px;"><span>${price}&nbsp;원</span></div>
 			<div style="padding: 7px 7px 0px 7px; font-size: 17px;"><a href="#" class="orderDetail" data-odno="${item.odNo}"
 			data-odstatus="${item.odStatus}" data-odt="${odt}" data-memberno="${item.memberNo}"
 			data-odtg="${item.odTg}" data-phone="${item.phone}" data-odad="${item.odAd}" data-odprice="${item.odPrice}"
@@ -52,9 +54,25 @@ function maketr(item) {
 	return newtbody1;
 }
 
-
 function orderListInfo() {
-
+	let remBtns = document.querySelectorAll("#orderList .remBtn");
+	remBtns.forEach(remBtn => {
+		let orderNo = remBtn.dataset.odno;
+		fetch("checkBookInfo.do?odNo=" + orderNo)
+			.then(result => result.json())
+			.then(result => {
+				console.log(result[0]);
+				let quantity3 = 0;
+				for (res of result) {
+					quantity3 += res.quantity;
+				}
+				let bookImg = result[0].img;
+				let bookName = result[0].name;
+				remBtn.closest("tr").nextElementSibling.querySelector(".bookName").innerHTML = bookName;
+				remBtn.closest("tr").nextElementSibling.querySelector(".totalQuan").innerHTML = quantity3;
+				remBtn.closest("tr").nextElementSibling.querySelector(".bookImg").src = "images/" + bookImg;
+			})
+	})
 }
 
 function delAlert() {
@@ -85,40 +103,49 @@ function removeOrderBtn() {
 	remBtns.forEach(remBtn => {
 		remBtn.addEventListener("click", function (e) {
 			e.preventDefault();
-			Swal.fire({
-				title: "함께 주문한 전체 상품의 결제내역이 삭제되어 복구할 수 없으며, 삭제 이후 상품에 대한 리뷰작성 및 삭제가 불가능합니다.",
-				text: "정말 삭제하시겠습니까?",
-				icon: "warning",
-				showCancelButton: true,
-				confirmButtonColor: "#badc58",
-				cancelButtonColor: "#568A35",
-				confirmButtonText: "삭제하기"
-			}).then((result) => {
-				if (result.isConfirmed) {
-					let orderNo = remBtn.dataset.odno;
-					console.log("클릭됨" + orderNo);
-					fetch("removeOrderItem.do?orderNo=" + orderNo);
-					fetch("removeOrder.do?orderNo=" + orderNo)
-						.then(result => result.json())
-						.then(result => {
-							if (result.retCode == "OK") {
-								// alert("주문삭제가 성공했습니다.");
-								Swal.fire({
-									title: "삭제완료",
-									text: "주문삭제가 성공했습니다.",
-									icon: "success",
-									confirmButtonColor: "#badc58",
-									confirmButtonText: "확인"
-								})
-								location.reload();
-							} else {
-								alert("주문 삭제에 실패하였습니다.");
-							}
-						})
+			if (confirm("함께 주문한 전체 상품의 결제내역이 삭제되어 복구할 수 없으며, 삭제 이후 상품에 대한 리뷰작성 및 삭제가 불가능합니다. 정말 삭제하시겠습니까?")) {
+				// Swal.fire({
+				// 	title: "함께 주문한 전체 상품의 결제내역이 삭제되어 복구할 수 없으며, 삭제 이후 상품에 대한 리뷰작성 및 삭제가 불가능합니다.",
+				// 	text: "정말 삭제하시겠습니까?",
+				// 	icon: "warning",
+				// 	showCancelButton: true,
+				// 	confirmButtonColor: "#badc58",
+				// 	cancelButtonColor: "#568A35",
+				// 	confirmButtonText: "삭제하기"
+				// }).then((result) => {
+				// 	if (result.isConfirmed) {
+				let orderNo = remBtn.dataset.odno;
+				fetch("removeOrderItem.do?orderNo=" + orderNo)
+					.then(result => result.json())
+					.then(result => {
+						if (result.retCode == "OK") {
+							console.log("주문아이템 삭제");
+						}
+					})
+				console.log("주문아이템 삭제");
+				console.log("포렌키...");
+				console.log("흑...ㅜ");
+				fetch("removeOrder.do?orderNo=" + orderNo)
+					.then(result => result.json())
+					.then(result => {
+						if (result.retCode == "OK") {
+							alert("주문내역이 삭제되었습니다.");
+							// Swal.fire({
+							// 	title: "삭제완료",
+							// 	text: "주문내역이 삭제되었습니다.",
+							// 	icon: "success",
+							// 	confirmButtonColor: "#badc58",
+							// 	confirmButtonText: "확인"
+							// })
+							location.reload();
+						} else {
+							alert("주문 삭제에 실패하였습니다.");
+						}
+					})
 
-				}
-			});
-
+				// }
+				// });
+			}
 		})
 	})
 }

@@ -20,4 +20,6 @@ public interface OrderMapper {
 	int deleteOrder(int odNo);
 	
 	int deleteOrderItem(int odNo);
+	
+	List<OrderVO> selectBookInfo(int odNo);
 }

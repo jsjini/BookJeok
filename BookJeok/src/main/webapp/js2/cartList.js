@@ -52,7 +52,9 @@ function selCheckboxEvent() {
 }
 
 function maketr(item) {
+	let price1 = makeComma(item.price);
 	let totalPrice = item.price * item.quantity;
+	let totalPrice1 = makeComma(totalPrice);
 	const newtbody = `<tr>
 			<td><input type="checkbox" class="selCheck" data-cartno="${item.cartNo}" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-img="${item.img}" data-name="${item.name}" data-price="${item.price}" checked></td>
 			<td data-title="No"><a href="bookDetail.do?bookNo=${item.bookNo}"><img src="images/${item.img}"
@@ -65,7 +67,7 @@ function maketr(item) {
 			<td class="product-des" data-title="Description">
 				<p class="product-des">내일 수령</p>
 			</td>
-			<td class="price" data-title="${item.price}"><span>${item.price}</span></td>
+			<td class="price" data-title="${item.price}"><span>${price1}</span></td>
 			<td class="qty" data-title="Qty">
 				<!-- Input Order -->
 				<div class="input-group">
@@ -86,7 +88,7 @@ function maketr(item) {
 					<div style="text-align: center; margin-top: 10px;"><button type="button" class="modBtn" data-memberno="${item.memberNo}" data-bookno="${item.bookNo}" data-quantity="${item.quantity}" data-cartno="${item.cartNo}" data-name="${item.name}" data-price="${item.price}" data-img="${item.img}" style="width: 100px; padding: 7px;">수정</button></div>
 				</div> <!--/ End Input Order -->
 			</td>
-			<td class="total-amount" data-title="Total"><span>${totalPrice}</span></td>
+			<td class="total-amount" data-title="${totalPrice}"><span>${totalPrice1}</span></td>
 			<td class="action"><a href="#" class="remBtn" data-cartno="${item.cartNo}"><i
 						class="ti-trash remove-icon"></i></a></td>
 		</tr>`
@@ -163,6 +165,7 @@ function orderBtnEvent() {
 	let orderBtn = document.querySelector("#orderBtn");
 	orderBtn.addEventListener("click", function (e) {
 		e.preventDefault();
+		
 		let orders = [];
 		// let order22 = '';
 		let checks = document.querySelectorAll('#cartList .selCheck');
@@ -213,20 +216,20 @@ function removeCartEvent() {
 
 function btnEvent() {
 	$(".plusBtn").on("click", function () {
-		let price = $(this).closest("tr").find(".price").find("span").text();
+		let price = $(this).closest("tr").find(".price").data("title");
 		let quantity = $(this).parent("div").parent("div").find("input").val();
 		$(this).parent("div").parent("div").find("input").val(++quantity);
-		$(this).closest("td").next("td").find("span").text(price * quantity);
+		$(this).closest("td").next("td").find("span").text(makeComma(price * quantity));
 		// makePoint();
 	});
 
 	$(".minusBtn").on("click", function () {
-		let price = $(this).closest("td").prev().find("span").text();
+		let price = $(this).closest("td").prev().data("title");
 		let quantity = $(this).parent("div").parent("div").find("input").val();
 		if (quantity > 1) {
 			$(this).parent("div").parent("div").find("input").val(--quantity);
 		}
-		$(this).closest("td").next("td").find("span").text(price * quantity);
+		$(this).closest("td").next("td").find("span").text(makeComma(price * quantity));
 		// makePoint();
 	});
 }
@@ -243,7 +246,7 @@ function makeTotal() {
 		console.log(check);
 		if (check.checked == true) {
 			let sumPrice = check.closest("tr").querySelector(".total-amount");
-			totalPrice += parseInt(sumPrice.innerText);
+			totalPrice += parseInt(sumPrice.dataset.title);
 
 			let quantity = check.closest("tr").querySelector(".input-number");
 			totalQuantity += parseInt(quantity.value);
@@ -257,16 +260,18 @@ function makeTotal() {
 		}
 	})
 	totalPoint = totalPrice * 0.05;
-	document.querySelector(".totalPoint").innerText = totalPoint;
+	let totalPoint1 = makeComma(totalPoint);
+	let totalPrice1 = makeComma(totalPrice);
+	document.querySelector(".totalPoint").innerText = totalPoint1;
 	document.querySelector(".totalQuantity").innerText = totalQuantity;
 	document.querySelector(".totalType").innerText = totalType;
-	document.querySelector(".totalPrice").innerText = totalPrice;
+	document.querySelector(".totalPrice").innerText = totalPrice1;
 	document.querySelector(".deliveryPrice").innerText = deliveryPrice;
 }
 
 function createOrderBtn() {
 	const createBtn = `<div class="button5">
-		<a href="#" class="btn" id="orderBtn" style="font-weight: bold; font-size: larger;">주문하기</a> <a href="#" class="btn" style="font-weight: bold; font-size: larger;">쇼핑 계속하기</a>
+		<a href="#" class="btn" id="orderBtn" style="font-weight: bold; font-size: larger;">주문하기</a> <a href="bookGenreList.do" class="btn" style="font-weight: bold; font-size: larger;">쇼핑 계속하기</a>
 	</div>`
 	return createBtn;
 }
