@@ -5,20 +5,44 @@
 
 <mapper namespace="com.yedam.member.mapper.MemberMapper">
 
-  <insert id="insertMember" parameterType="member">
-  	insert into member
-  	values (member_sequence.nextval, #{id}, #{mName}, #{pw}, #{email}, #{age}, #{phone}, #{likes}, #{sms}, 0)
-  </insert>
-  
-  <select id="selectMember" resultType="member">
-    select * from member where id=#{id} and pw=#{pw}
-  </select>
-  
-  <select id="checkMember" resultType="member">
-    select * from member where id=#{id}
-  </select>
-  
-  <select id="selectPage" resultType="member" >
-  select * from member where member_no=#{memberNo }
-  </select>
+	<insert id="insertMember" parameterType="member">
+		insert into member (MEMBER_NO,
+							ID,
+							M_NAME,
+							PW,
+							EMAIL,
+							AGE,
+							PHONE,
+							LIKES,
+							SMS,
+							POINT)
+					values (member_sequence.nextval,
+							#{id}, 
+							#{mName}, 
+							#{pw}, 
+							#{email}, 
+							#{age},
+							#{phone}, 
+							#{likes}, 
+							#{sms}, 
+							0)
+	</insert>
+
+	<select id="selectMember" resultType="member">
+		select * 
+		from member
+		where id=#{id} and pw=#{pw}
+	</select>
+
+	<select id="checkMember" resultType="member">
+		select * 
+		from member
+		where id=#{id}
+	</select>
+
+	<select id="selectPage" resultType="member">
+		select * 
+		from member
+		where member_no=#{memberNo }
+	</select>
 </mapper>
